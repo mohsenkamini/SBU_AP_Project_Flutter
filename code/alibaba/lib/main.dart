@@ -2,6 +2,8 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
+import 'SignUpPage.dart';
+import 'FavoritesPage.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,14 +20,13 @@ class MyApp extends StatelessWidget {
         title: 'Namer App',
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 34, 255, 229)),
+          colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(133, 255, 255, 0)),
         ),
         home: MyHomePage(),
       ),
     );
   }
 }
-
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
   // ↓ Add this.
@@ -64,6 +65,9 @@ class _MyHomePageState extends State<MyHomePage> {
       case 1:
         page = FavoritesPage();
         break;
+      case 2:
+        page = SignUpPage();
+        break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
@@ -78,11 +82,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   destinations: [
                     NavigationRailDestination(
                       icon: Icon(Icons.home),
-                      label: Text('Home'),
+                      label: Text('خانه'),
                     ),
                     NavigationRailDestination(
                       icon: Icon(Icons.favorite),
                       label: Text('Favorites'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.person_2_outlined),
+                      label: Text('ثبت نام'),
                     ),
                   ],
                   selectedIndex: selectedIndex,
@@ -96,7 +104,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Expanded(
                 child: Container(
-                  color: Theme.of(context).colorScheme.primaryContainer,
+                  //color: Theme.of(context).colorScheme.background,
+                  color: Color.fromARGB(100, 100, 100, 100),
                   child: page,
                 ),
               ),
@@ -108,37 +117,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class FavoritesPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
-    if (appState.favorites.isEmpty){
-      return Center(
-        child: Text('No favorites yer.'),
-      );
-    }
-    return ListView(
-      scrollDirection: Axis.vertical,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: Text('You have ${appState.favorites.length} favorites ' ),
-        ),
-        
-        for (var i in appState.favorites)
-          ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text(i.asLowerCase),
-          ),
-          
-        
-        
-        
-
-      ],
-    );
-  }
-}
 
 
 class GeneratorPage extends StatelessWidget {
