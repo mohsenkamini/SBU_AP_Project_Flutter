@@ -26,10 +26,10 @@ class SignUpPage extends StatelessWidget {
     ),
     body: Center(
       child: Text(
-      '!به علی‌بابا خوش آمدید',
-      style: TextStyle(
-        fontSize: appState.header2Size,
-        fontWeight: FontWeight.bold,
+        '!به علی‌بابا خوش آمدید',
+        style: TextStyle(
+          fontSize: appState.header2Size,
+          fontWeight: FontWeight.bold,
       ),
     ),),
     );
