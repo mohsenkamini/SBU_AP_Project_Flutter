@@ -14,6 +14,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var selectedIndex =0 ;
+  void onItemTapped(int index) {
+  setState(() {
+    selectedIndex = index;
+  });
+}
   @override
 
   
@@ -22,13 +27,13 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget page;
     switch (selectedIndex) {
       case 0:
-        page=GeneratorPage();
+        page = SignUpPage();
         break;
       case 1:
         page = FavoritesPage();
         break;
       case 2:
-        page = SignUpPage();
+        page=GeneratorPage();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
@@ -36,6 +41,26 @@ class _MyHomePageState extends State<MyHomePage> {
     return LayoutBuilder(
       builder: (context, constraints) {
         return Scaffold(
+          bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person_outline_rounded),
+              label: 'حساب کاربری',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.luggage_outlined),
+              label: 'سفر‌های من',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_filled),
+              label: 'خانه',
+            ),
+          ],
+          currentIndex: selectedIndex,
+          onTap: onItemTapped,
+          ),
+
           body: Row(
             children: [
               SafeArea(
