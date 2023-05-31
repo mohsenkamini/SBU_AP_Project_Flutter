@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'main.dart';
-
+import 'FavoritesPage.dart';
+import 'SignUpPage.dart';
 
 
 class MyHomePage extends StatefulWidget {

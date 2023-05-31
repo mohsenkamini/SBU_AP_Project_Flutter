@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
         title: 'Namer App',
         theme: ThemeData(
           useMaterial3: true,
-          fontFamily: ,
           colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(133, 255, 255, 0)),
         ),
         home: MyHomePage(),
@@ -32,6 +31,9 @@ class MyApp extends StatelessWidget {
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
   var backgroundColor = Color.fromARGB(82, 219, 219, 209);
+  var barColor = Color.fromARGB(216, 236, 236, 74);
+  var header1Size = 30.0;
+  var header2Size = 20.0;
   // ↓ Add this.
   void getNext() {
     current = WordPair.random();
@@ -107,7 +109,6 @@ class BigCard extends StatelessWidget {
     final theme = Theme.of(context);
     final style = theme.textTheme.displayMedium!.copyWith(
       color: theme.colorScheme.onPrimary,
-      backgroundColor: theme.colorScheme.onSecondaryContainer,
     );
     return Card(
       elevation: 20,
