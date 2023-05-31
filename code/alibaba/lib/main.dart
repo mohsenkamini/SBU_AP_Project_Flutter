@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'SignUpPage.dart';
 import 'FavoritesPage.dart';
+import 'MyHomePage.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         title: 'Namer App',
         theme: ThemeData(
           useMaterial3: true,
+          fontFamily: ,
           colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(133, 255, 255, 0)),
         ),
         home: MyHomePage(),
@@ -29,6 +31,7 @@ class MyApp extends StatelessWidget {
 }
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
+  var backgroundColor = Color.fromARGB(82, 219, 219, 209);
   // ↓ Add this.
   void getNext() {
     current = WordPair.random();
@@ -45,79 +48,6 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 }
-
-class MyHomePage extends StatefulWidget {
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  var selectedIndex =0 ;
-  @override
-
-  
-  Widget build(BuildContext context) {
-    Widget page;
-    switch (selectedIndex) {
-      case 0:
-        page=GeneratorPage();
-        break;
-      case 1:
-        page = FavoritesPage();
-        break;
-      case 2:
-        page = SignUpPage();
-        break;
-      default:
-        throw UnimplementedError('no widget for $selectedIndex');
-    }
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return Scaffold(
-          body: Row(
-            children: [
-              SafeArea(
-                child: NavigationRail(
-                  extended: constraints.maxWidth >= 600,
-                  destinations: [
-                    NavigationRailDestination(
-                      icon: Icon(Icons.home),
-                      label: Text('خانه'),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(Icons.favorite),
-                      label: Text('Favorites'),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(Icons.person_2_outlined),
-                      label: Text('ثبت نام'),
-                    ),
-                  ],
-                  selectedIndex: selectedIndex,
-                  onDestinationSelected: (value) {
-                    setState(() {
-                      selectedIndex = value;
-                    });
-                    //print('selected: $value');
-                  },
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  //color: Theme.of(context).colorScheme.background,
-                  color: Color.fromARGB(100, 100, 100, 100),
-                  child: page,
-                ),
-              ),
-            ],
-          ),
-        );
-      }
-    );
-  }
-}
-
-
 
 class GeneratorPage extends StatelessWidget {
   @override

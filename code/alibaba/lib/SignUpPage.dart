@@ -20,7 +20,6 @@ class SignUpPage extends StatelessWidget {
 
         SizedBox(height: 100),
         Container(
-          color: Color.fromARGB(255, 203, 203, 118),
           child: Text(
             'ثبت نام',
             style: style),
