@@ -46,14 +46,17 @@ class _MyHomePageState extends State<MyHomePage> {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.person_outline_rounded),
+              activeIcon: Icon(Icons.person_sharp),
               label: 'حساب کاربری',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.luggage_outlined),
+              activeIcon: Icon(Icons.luggage_sharp),
               label: 'سفر‌های من',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.home_filled),
+              icon: Icon(Icons.home_outlined),
+              activeIcon: Icon(Icons.home_sharp),
               label: 'خانه',
             ),
           ],
