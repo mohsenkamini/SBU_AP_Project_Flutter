@@ -24,14 +24,56 @@ class Account extends StatelessWidget {
         ),
       ),
     ),
-    body: Center(
-      child: Text(
-        'به علی‌بابا خوش آمدید',
-        style: TextStyle(
-          fontSize: appState.header2Size,
-          fontWeight: FontWeight.bold,
+    body: Padding(
+      padding: const EdgeInsets.all(18.0),
+      child: Column(
+        children: [
+          SizedBox(height: 20,),
+          Text(
+            'ثبت نام',
+            style: TextStyle(
+              fontSize: appState.header2Size,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          //SizedBox(height: 10,),
+          Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: TextField (  
+              textAlign: TextAlign.right,
+              obscureText: false,  
+              decoration: InputDecoration(  
+                border: OutlineInputBorder(),  
+                hintText: 'آدرس ایمیل'  
+              ),  
+            ),
+          ),  
+          Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: TextField (  
+              textAlign: TextAlign.right,
+              obscureText: false,  
+              decoration: InputDecoration(  
+                border: OutlineInputBorder(),  
+                //labelText: 'نام کاربری',  
+                hintText: 'نام کاربری'  
+              ),  
+            ),
+          ),  
+          Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: TextField (  
+              textAlign: TextAlign.right,
+              obscureText: true,  
+              decoration: InputDecoration(  
+                border: OutlineInputBorder(),  
+                hintText: 'کلمه عبور'  
+              ),  
+            ),
+          ),  
+        ],
       ),
-    ),),
+    ),
     );
   }
 }
