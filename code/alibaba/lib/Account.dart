@@ -18,7 +18,7 @@ class Account extends StatelessWidget {
       backgroundColor: appState.barColor,
       centerTitle: true,
       title: const Text(
-        'ثبت نام',
+        'حساب کاربری',
         style: TextStyle(
         fontWeight: FontWeight.bold,
         ),
