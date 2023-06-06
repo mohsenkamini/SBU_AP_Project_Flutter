@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'main.dart';
 
-class SignUpPage extends StatelessWidget {
+class Account extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
@@ -26,7 +26,7 @@ class SignUpPage extends StatelessWidget {
     ),
     body: Center(
       child: Text(
-        '!به علی‌بابا خوش آمدید',
+        'به علی‌بابا خوش آمدید',
         style: TextStyle(
           fontSize: appState.header2Size,
           fontWeight: FontWeight.bold,

@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'main.dart';
 import 'FavoritesPage.dart';
-import 'SignUpPage.dart';
+import 'Account.dart';
 
 
 class MyHomePage extends StatefulWidget {
@@ -27,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget page;
     switch (selectedIndex) {
       case 0:
-        page = SignUpPage();
+        page = Account();
         break;
       case 1:
         page = FavoritesPage();
