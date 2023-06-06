@@ -7,12 +7,25 @@ import 'package:provider/provider.dart';
 import 'main.dart';
 import 'MyHomePage.dart';
 
-class Account extends StatelessWidget {
+class Account extends StatefulWidget {
   
-  TextEditingController emailController = TextEditingController();  
-  TextEditingController usernameController = TextEditingController();  
-  TextEditingController passwordController = TextEditingController();  
+  @override
+  State<Account> createState() => _AccountState();
+}
 
+class _AccountState extends State<Account> {
+  TextEditingController emailController = TextEditingController();  
+
+  TextEditingController usernameController = TextEditingController();  
+
+  TextEditingController passwordController = TextEditingController();  
+  
+  bool _obscureText = true;
+  void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
@@ -22,7 +35,7 @@ class Account extends StatelessWidget {
       );
     final theme = Theme.of(context);
     final style = theme.textTheme.displayMedium!.copyWith();
-
+    
   return Scaffold(
     backgroundColor:  appState.backgroundColor,
     appBar: AppBar(
@@ -62,11 +75,11 @@ class Account extends StatelessWidget {
           ),  
           Padding(
             padding: const EdgeInsets.all(15.0),
-            child: TextField ( 
+            child: TextFormField ( 
               controller: usernameController, 
               textAlign: TextAlign.right,
               obscureText: false,  
-              decoration: InputDecoration(  
+              decoration: InputDecoration( 
                 border: OutlineInputBorder(),  
                 //labelText: 'نام کاربری',  
                 hintText: 'نام کاربری'  
@@ -78,8 +91,9 @@ class Account extends StatelessWidget {
             child: TextField (  
               controller: passwordController,
               textAlign: TextAlign.right,
-              obscureText: true,  
-              decoration: InputDecoration(  
+              obscureText: _obscureText,  
+              decoration: InputDecoration(
+                icon: const Icon(Icons.visibility_off),
                 border: OutlineInputBorder(),  
                 hintText: 'کلمه عبور'  
               ),  
