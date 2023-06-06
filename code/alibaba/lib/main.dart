@@ -1,3 +1,4 @@
+import 'package:alibaba/Login.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -12,28 +13,32 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
+  
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
-        title: 'Namer App',
+        title: 'علی‌بابا',
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(245, 151, 151, 94)),
         ),
         home: MyHomePage(),
+        routes: <String, WidgetBuilder> {
+          '/Account/Login': (BuildContext context) => Login(),
+        },
       ),
     );
   }
 }
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
-  var backgroundColor = Color.fromARGB(82, 227, 229, 229);
+  var backgroundColor = Color.fromARGB(255, 240, 243, 243);
   var barColor = Color.fromARGB(255, 255, 255, 255);
   var header1Size = 30.0;
   var header2Size = 20.0;
+  var normalSize = 14.0;
   // ↓ Add this.
   void getNext() {
     current = WordPair.random();

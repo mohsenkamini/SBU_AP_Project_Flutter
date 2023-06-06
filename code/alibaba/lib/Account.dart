@@ -1,10 +1,11 @@
-import 'package:alibaba/SignIn.dart';
+import 'package:alibaba/Login.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'main.dart';
+import 'MyHomePage.dart';
 
 class Account extends StatelessWidget {
   
@@ -105,7 +106,9 @@ class Account extends StatelessWidget {
                   text: ' ورود',
                   style: linkStyle,
                   recognizer: TapGestureRecognizer()
-                    ..onTap = () => SignIn()),
+                    ..onTap = () {
+                      Navigator.pushNamed(context, '/Account/Login');
+                    } ),
               ],
             ),
           ),

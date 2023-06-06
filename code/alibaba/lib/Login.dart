@@ -5,7 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'main.dart';
 
-class SignIn extends StatelessWidget {  
+class Login extends StatelessWidget {  
   TextEditingController emailController = TextEditingController();  
   TextEditingController usernameController = TextEditingController();  
   TextEditingController passwordController = TextEditingController();  
@@ -39,25 +39,13 @@ class SignIn extends StatelessWidget {
         children: [
           SizedBox(height: 18,),
           Text(
-            'ورود',
+            '.نام کاربری و کلمه عبور خود را وارد کنید',
+            textAlign: TextAlign.left,
             style: TextStyle(
-              fontSize: appState.header2Size,
-              fontWeight: FontWeight.bold,
+              fontSize: appState.normalSize,
+              //fontWeight: FontWeight.bold,
             ),
           ),
-          //SizedBox(height: 10,),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: TextField (  
-              controller: emailController,
-              textAlign: TextAlign.right,
-              obscureText: false,  
-              decoration: InputDecoration(  
-                border: OutlineInputBorder(),  
-                hintText: 'آدرس ایمیل'  
-              ),  
-            ),
-          ),  
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: TextField ( 
@@ -86,29 +74,14 @@ class SignIn extends StatelessWidget {
           ElevatedButton(
            onPressed: (){},
            child: Text(
-              'ثبت نام',
+              'ورود',
               style: TextStyle(
                 fontSize: appState.header2Size,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
-          RichText(
-            text: TextSpan(
-              style: DefaultTextStyle.of(context).style,
-              children: <TextSpan>[
-                TextSpan(
-                  text: 'قبلا حساب کاربری ایجاد کرده‌اید؟',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-                TextSpan(
-                  text: ' ورود',
-                  style: linkStyle,
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () => print('click')),
-              ],
-            ),
-          ),
-
+          
         ],
       ),
     ),
