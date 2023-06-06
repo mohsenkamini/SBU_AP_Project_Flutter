@@ -2,7 +2,7 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
-import 'SignUpPage.dart';
+import 'Account.dart';
 import 'FavoritesPage.dart';
 import 'MyHomePage.dart';
 
@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
 }
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
-  var backgroundColor = Color.fromARGB(82, 219, 219, 209);
-  var barColor = Color.fromARGB(216, 236, 236, 74);
+  var backgroundColor = Color.fromARGB(82, 227, 229, 229);
+  var barColor = Color.fromARGB(255, 255, 255, 255);
   var header1Size = 30.0;
   var header2Size = 20.0;
   // ↓ Add this.
@@ -109,6 +109,9 @@ class BigCard extends StatelessWidget {
     final theme = Theme.of(context);
     final style = theme.textTheme.displayMedium!.copyWith(
       color: theme.colorScheme.onPrimary,
+    );
+    final linkStyle = theme.textTheme.displayMedium!.copyWith(
+      color: Colors.blue,
     );
     return Card(
       elevation: 20,
