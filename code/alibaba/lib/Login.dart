@@ -1,14 +1,11 @@
-import 'package:alibaba/Login.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'main.dart';
-import 'MyHomePage.dart';
 
-class Account extends StatelessWidget {
-  
+class Login extends StatelessWidget {  
   TextEditingController emailController = TextEditingController();  
   TextEditingController usernameController = TextEditingController();  
   TextEditingController passwordController = TextEditingController();  
@@ -16,6 +13,7 @@ class Account extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
+
     TextStyle linkStyle = TextStyle(
       color: Colors.blue,
       fontWeight: FontWeight.bold,
@@ -23,7 +21,7 @@ class Account extends StatelessWidget {
     final theme = Theme.of(context);
     final style = theme.textTheme.displayMedium!.copyWith();
 
-  return Scaffold(
+    return Scaffold(
     backgroundColor:  appState.backgroundColor,
     appBar: AppBar(
       backgroundColor: appState.barColor,
@@ -41,25 +39,13 @@ class Account extends StatelessWidget {
         children: [
           SizedBox(height: 18,),
           Text(
-            'ایجاد حساب جدید',
+            '.نام کاربری و کلمه عبور خود را وارد کنید',
+            textAlign: TextAlign.left,
             style: TextStyle(
-              fontSize: appState.header2Size,
-              fontWeight: FontWeight.bold,
+              fontSize: appState.normalSize,
+              //fontWeight: FontWeight.bold,
             ),
           ),
-          //SizedBox(height: 10,),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: TextField (  
-              controller: emailController,
-              textAlign: TextAlign.right,
-              obscureText: false,  
-              decoration: InputDecoration(  
-                border: OutlineInputBorder(),  
-                hintText: 'آدرس ایمیل'  
-              ),  
-            ),
-          ),  
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: TextField ( 
@@ -88,31 +74,14 @@ class Account extends StatelessWidget {
           ElevatedButton(
            onPressed: (){},
            child: Text(
-              'ثبت نام',
+              'ورود',
               style: TextStyle(
                 fontSize: appState.header2Size,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
-          RichText(
-            text: TextSpan(
-              style: DefaultTextStyle.of(context).style,
-              children: <TextSpan>[
-                TextSpan(
-                  text: 'قبلا حساب کاربری ایجاد کرده‌اید؟',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-                TextSpan(
-                  text: ' ورود',
-                  style: linkStyle,
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      Navigator.pushNamed(context, '/Account/Login');
-                    } ),
-              ],
-            ),
-          ),
-
+          
         ],
       ),
     ),
