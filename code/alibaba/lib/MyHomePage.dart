@@ -63,32 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
           body: Row(
             children: [
-              SafeArea(
-                child: NavigationRail(
-                  extended: constraints.maxWidth >= 600,
-                  destinations: [
-                    NavigationRailDestination(
-                      icon: Icon(Icons.home),
-                      label: Text('خانه'),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(Icons.favorite),
-                      label: Text('Favorites'),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(Icons.person_2_outlined),
-                      label: Text('ثبت نام'),
-                    ),
-                  ],
-                  selectedIndex: selectedIndex,
-                  onDestinationSelected: (value) {
-                    setState(() {
-                      selectedIndex = value;
-                    });
-                    //print('selected: $value');
-                  },
-                ),
-              ),
+
               Expanded(
                 child: Container(
                   //color: Theme.of(context).colorScheme.background,
