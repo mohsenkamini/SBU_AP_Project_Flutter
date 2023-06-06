@@ -42,18 +42,21 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (context, constraints) {
         return Scaffold(
           bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: Color.fromARGB(255, 0, 0, 0),
           items: const <BottomNavigationBarItem>[
-
             BottomNavigationBarItem(
               icon: Icon(Icons.person_outline_rounded),
+              activeIcon: Icon(Icons.person_sharp),
               label: 'حساب کاربری',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.luggage_outlined),
+              activeIcon: Icon(Icons.luggage_sharp),
               label: 'سفر‌های من',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.home_filled),
+              icon: Icon(Icons.home_outlined),
+              activeIcon: Icon(Icons.home_sharp),
               label: 'خانه',
             ),
           ],
@@ -63,32 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
           body: Row(
             children: [
-              SafeArea(
-                child: NavigationRail(
-                  extended: constraints.maxWidth >= 600,
-                  destinations: [
-                    NavigationRailDestination(
-                      icon: Icon(Icons.home),
-                      label: Text('خانه'),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(Icons.favorite),
-                      label: Text('Favorites'),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(Icons.person_2_outlined),
-                      label: Text('ثبت نام'),
-                    ),
-                  ],
-                  selectedIndex: selectedIndex,
-                  onDestinationSelected: (value) {
-                    setState(() {
-                      selectedIndex = value;
-                    });
-                    //print('selected: $value');
-                  },
-                ),
-              ),
+
               Expanded(
                 child: Container(
                   //color: Theme.of(context).colorScheme.background,
