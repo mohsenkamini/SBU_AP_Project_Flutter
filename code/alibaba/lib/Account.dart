@@ -1,14 +1,23 @@
 import 'package:english_words/english_words.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'main.dart';
 
 class Account extends StatelessWidget {
+  
+  TextEditingController emailController = TextEditingController();  
+  TextEditingController usernameController = TextEditingController();  
+  TextEditingController passwordController = TextEditingController();  
+
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
-
+    TextStyle linkStyle = TextStyle(
+      color: Colors.blue,
+      fontWeight: FontWeight.bold,
+      );
     final theme = Theme.of(context);
     final style = theme.textTheme.displayMedium!.copyWith();
 
@@ -28,9 +37,9 @@ class Account extends StatelessWidget {
       padding: const EdgeInsets.all(18.0),
       child: Column(
         children: [
-          SizedBox(height: 20,),
+          SizedBox(height: 18,),
           Text(
-            'ثبت نام',
+            'ایجاد حساب جدید',
             style: TextStyle(
               fontSize: appState.header2Size,
               fontWeight: FontWeight.bold,
@@ -38,8 +47,9 @@ class Account extends StatelessWidget {
           ),
           //SizedBox(height: 10,),
           Padding(
-            padding: const EdgeInsets.all(18.0),
+            padding: const EdgeInsets.all(15.0),
             child: TextField (  
+              controller: emailController,
               textAlign: TextAlign.right,
               obscureText: false,  
               decoration: InputDecoration(  
@@ -49,8 +59,9 @@ class Account extends StatelessWidget {
             ),
           ),  
           Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: TextField (  
+            padding: const EdgeInsets.all(15.0),
+            child: TextField ( 
+              controller: usernameController, 
               textAlign: TextAlign.right,
               obscureText: false,  
               decoration: InputDecoration(  
@@ -61,8 +72,9 @@ class Account extends StatelessWidget {
             ),
           ),  
           Padding(
-            padding: const EdgeInsets.all(18.0),
+            padding: const EdgeInsets.all(15.0),
             child: TextField (  
+              controller: passwordController,
               textAlign: TextAlign.right,
               obscureText: true,  
               decoration: InputDecoration(  
@@ -71,6 +83,32 @@ class Account extends StatelessWidget {
               ),  
             ),
           ),  
+          ElevatedButton(
+           onPressed: (){},
+           child: Text(
+              'ثبت نام',
+              style: TextStyle(
+                fontSize: appState.header2Size,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          RichText(
+            text: TextSpan(
+              style: DefaultTextStyle.of(context).style,
+              children: <TextSpan>[
+                TextSpan(
+                  text: 'قبلا حساب کاربری ایجاد کرده‌اید؟',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+                TextSpan(
+                  text: ' ورود',
+                  style: linkStyle,
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => print('click')),
+              ],
+            ),
+          ),
+
         ],
       ),
     ),

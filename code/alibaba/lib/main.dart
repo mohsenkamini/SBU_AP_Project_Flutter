@@ -110,6 +110,9 @@ class BigCard extends StatelessWidget {
     final style = theme.textTheme.displayMedium!.copyWith(
       color: theme.colorScheme.onPrimary,
     );
+    final linkStyle = theme.textTheme.displayMedium!.copyWith(
+      color: Colors.blue,
+    );
     return Card(
       elevation: 20,
       color: theme.colorScheme.primary,
