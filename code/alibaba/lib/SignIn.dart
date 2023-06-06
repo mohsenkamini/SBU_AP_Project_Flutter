@@ -1,4 +1,3 @@
-import 'package:alibaba/SignIn.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'main.dart';
 
-class Account extends StatelessWidget {
-  
+class SignIn extends StatelessWidget {  
   TextEditingController emailController = TextEditingController();  
   TextEditingController usernameController = TextEditingController();  
   TextEditingController passwordController = TextEditingController();  
@@ -15,6 +13,7 @@ class Account extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
+
     TextStyle linkStyle = TextStyle(
       color: Colors.blue,
       fontWeight: FontWeight.bold,
@@ -22,7 +21,7 @@ class Account extends StatelessWidget {
     final theme = Theme.of(context);
     final style = theme.textTheme.displayMedium!.copyWith();
 
-  return Scaffold(
+    return Scaffold(
     backgroundColor:  appState.backgroundColor,
     appBar: AppBar(
       backgroundColor: appState.barColor,
@@ -40,7 +39,7 @@ class Account extends StatelessWidget {
         children: [
           SizedBox(height: 18,),
           Text(
-            'ایجاد حساب جدید',
+            'ورود',
             style: TextStyle(
               fontSize: appState.header2Size,
               fontWeight: FontWeight.bold,
@@ -105,7 +104,7 @@ class Account extends StatelessWidget {
                   text: ' ورود',
                   style: linkStyle,
                   recognizer: TapGestureRecognizer()
-                    ..onTap = () => SignIn()),
+                    ..onTap = () => print('click')),
               ],
             ),
           ),
