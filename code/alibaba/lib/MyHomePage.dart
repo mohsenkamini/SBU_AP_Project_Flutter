@@ -42,8 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (context, constraints) {
         return Scaffold(
           bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: Color.fromARGB(255, 0, 0, 0),
           items: const <BottomNavigationBarItem>[
-
             BottomNavigationBarItem(
               icon: Icon(Icons.person_outline_rounded),
               label: 'حساب کاربری',
