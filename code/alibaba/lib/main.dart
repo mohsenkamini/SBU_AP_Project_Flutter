@@ -1,4 +1,4 @@
-import 'package:alibaba/Login.dart';
+import 'Login.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -13,7 +13,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -22,16 +22,18 @@ class MyApp extends StatelessWidget {
         title: 'علی‌بابا',
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(245, 151, 151, 94)),
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: Color.fromARGB(245, 151, 151, 94)),
         ),
         home: MyHomePage(),
-        routes: <String, WidgetBuilder> {
+        routes: <String, WidgetBuilder>{
           '/Account/Login': (BuildContext context) => Login(),
         },
       ),
     );
   }
 }
+
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
   var backgroundColor = Color.fromARGB(255, 240, 243, 243);
@@ -100,7 +102,6 @@ class GeneratorPage extends StatelessWidget {
   }
 }
 
-
 class BigCard extends StatelessWidget {
   const BigCard({
     super.key,
@@ -128,7 +129,7 @@ class BigCard extends StatelessWidget {
           child: Text(
             pair.asLowerCase,
             style: style,
-            semanticsLabel: "${pair.first} ${pair.second}",  
+            semanticsLabel: "${pair.first} ${pair.second}",
           ),
         ),
       ),
