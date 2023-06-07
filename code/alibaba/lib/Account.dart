@@ -21,7 +21,7 @@ class _AccountState extends State<Account> {
   TextEditingController passwordController = TextEditingController();  
   
   bool _obscureText = true;
-  void _toggle() {
+  void _togglePasswordView() {
     setState(() {
       _obscureText = !_obscureText;
     });
@@ -68,7 +68,7 @@ class _AccountState extends State<Account> {
               textAlign: TextAlign.right,
               obscureText: false,  
               decoration: InputDecoration(  
-                border: OutlineInputBorder(),  
+                border: UnderlineInputBorder(),  
                 hintText: 'آدرس ایمیل'  
               ),  
             ),
@@ -80,7 +80,7 @@ class _AccountState extends State<Account> {
               textAlign: TextAlign.right,
               obscureText: false,  
               decoration: InputDecoration( 
-                border: OutlineInputBorder(),  
+                border: UnderlineInputBorder(),  
                 //labelText: 'نام کاربری',  
                 hintText: 'نام کاربری'  
               ),  
@@ -93,8 +93,17 @@ class _AccountState extends State<Account> {
               textAlign: TextAlign.right,
               obscureText: _obscureText,  
               decoration: InputDecoration(
-                icon: const Icon(Icons.visibility_off),
-                border: OutlineInputBorder(),  
+                prefix: InkWell(
+                    onTap: _togglePasswordView,
+                    child: Icon(
+                        _obscureText 
+                        ? Icons.visibility_off
+                        : Icons.visibility,
+                    ),
+                ),
+                border: UnderlineInputBorder(
+                  borderSide: BorderSide(width: 1, color: Colors.black),
+                ),  
                 hintText: 'کلمه عبور'  
               ),  
             ),

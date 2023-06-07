@@ -5,10 +5,25 @@ import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'main.dart';
 
-class Login extends StatelessWidget {  
+class Login extends StatefulWidget {  
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+
   TextEditingController emailController = TextEditingController();  
+
   TextEditingController usernameController = TextEditingController();  
+
   TextEditingController passwordController = TextEditingController();  
+
+bool _obscureText = true;
+  void _togglePasswordView() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +63,12 @@ class Login extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(15.0),
-            child: TextField ( 
+            child: TextFormField ( 
               controller: usernameController, 
               textAlign: TextAlign.right,
               obscureText: false,  
-              decoration: InputDecoration(  
-                border: OutlineInputBorder(),  
+              decoration: InputDecoration( 
+                border: UnderlineInputBorder(),  
                 //labelText: 'نام کاربری',  
                 hintText: 'نام کاربری'  
               ),  
@@ -64,9 +79,19 @@ class Login extends StatelessWidget {
             child: TextField (  
               controller: passwordController,
               textAlign: TextAlign.right,
-              obscureText: true,  
-              decoration: InputDecoration(  
-                border: OutlineInputBorder(),  
+              obscureText: _obscureText,  
+              decoration: InputDecoration(
+                prefix: InkWell(
+                    onTap: _togglePasswordView,
+                    child: Icon(
+                        _obscureText 
+                        ? Icons.visibility_off
+                        : Icons.visibility,
+                    ),
+                ),
+                border: UnderlineInputBorder(
+                  borderSide: BorderSide(width: 1, color: Colors.black),
+                ),  
                 hintText: 'کلمه عبور'  
               ),  
             ),
