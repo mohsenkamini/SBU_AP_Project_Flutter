@@ -45,21 +45,6 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  var passwordFieldInputDecorations = InputDecoration(
-                prefix: InkWell(
-                    onTap: _togglePasswordView,
-                    child: Icon(
-                        _obscureText 
-                        ? Icons.visibility_off
-                        : Icons.visibility,
-                    ),
-                ),
-                border: UnderlineInputBorder(
-                  borderSide: BorderSide(width: 1, color: Colors.black),
-                ),  
-                hintText: 'کلمه عبور'  
-              );
-
   var favorites = <WordPair>[];
   void toggleFavorite() {
     if (favorites.contains(current)) {
