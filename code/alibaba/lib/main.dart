@@ -37,10 +37,13 @@ class MyApp extends StatelessWidget {
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
   var backgroundColor = Color.fromARGB(255, 240, 243, 243);
+  var columnColor = Color.fromARGB(255, 255, 255, 255);
   var barColor = Color.fromARGB(255, 255, 255, 255);
   var header1Size = 30.0;
   var header2Size = 20.0;
+  var header3Size = 16.0;
   var normalSize = 14.0;
+  var smallSize = 10.0;
   // ↓ Add this.
   void getNext() {
     current = WordPair.random();

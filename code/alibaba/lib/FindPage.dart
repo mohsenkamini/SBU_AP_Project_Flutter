@@ -16,23 +16,30 @@ class FindPage extends StatelessWidget {
       backgroundColor:  appState.backgroundColor,
     appBar: AppBar(
       backgroundColor: appState.barColor,
-      centerTitle: false,
+      centerTitle: true,
 
-      title: Column(
-        children: [
-          const Text(
-            'بلیط هواپیم تهران به اهواز',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
+      title: Align(
+        alignment: Alignment.centerRight,
+        child: Column(
+          children: [
+            Text(
+      
+              textAlign: TextAlign.right,
+              'بلیط هواپیما تهران به اهواز',
+              style: TextStyle(
+                fontWeight: FontWeight.normal,
+              ),
             ),
-          ),
-          const Text(
-            'پنجشنبه ۸ تیر ۱۰ نفر',
-            style: TextStyle(
-              fontWeight: FontWeight.w300,
+            Text(
+              textAlign: TextAlign.right,
+              'پنجشنبه ۸ تیر ۱۰ نفر',
+              style: TextStyle(
+                fontWeight: FontWeight.w100,
+                fontSize: appState.header3Size,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
 
     ),
@@ -41,13 +48,86 @@ class FindPage extends StatelessWidget {
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
-          Text(
-            'بلیط هواپیم تهران به اهواز',
-            style: TextStyle(
-            fontWeight: FontWeight.bold,
-            ),
+          Row(
+            children: [
+              Container(
+                color: appState.columnColor,
+                height: 60,
+                width: 80,
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    'ی - ۰۴/۰۴ تکمیل',
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: appState.header3Size,
+                    ),
+                  ),
+                ),
+              ),Container(
+                color: appState.columnColor,
+                height: 60,
+                width: 80,
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    'ی - ۰۴/۰۴ تکمیل',
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: appState.header3Size,
+                    ),
+                  ),
+                ),
+              ),Container(
+                color: appState.columnColor,
+                height: 60,
+                width: 80,
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    'ی - ۰۴/۰۴ ۱,۲۰۷',
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: appState.header3Size,
+                    ),
+                  ),
+                ),
+              ),Container(
+                color: appState.columnColor,
+                height: 60,
+                width: 80,
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    'ی - ۰۴/۰۴ تکمیل',
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: appState.header3Size,
+                    ),
+                  ),
+                ),
+              ),Container(
+                color: appState.columnColor,
+                height: 60,
+                width: 80,
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    'ی - ۰۴/۰۴ ۱,۲۰۷',
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: appState.header3Size,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-          
         ],
       ),
     ),
