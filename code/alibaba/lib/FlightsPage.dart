@@ -28,11 +28,15 @@ class Ticket {
   }
 }
 
-class _FlightsPageState extends State<FlightsPage> {
+class _FlightsPageState extends State<FlightsPage>
+    with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     //pagelayout
     final size = AppLayout.getSize(context);
+    TabController _tabController = TabController(length: 2, vsync: this);
+    TabController _tabController1 = TabController(length: 2, vsync: this);
+    TabController _tabController2 = TabController(length: 2, vsync: this);
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 240, 243, 243),
         body: ListView(
@@ -55,143 +59,188 @@ class _FlightsPageState extends State<FlightsPage> {
 
               //Start of Flight buttons
               Gap(AppLayout.getHeight(20)),
-              FittedBox(
-                  child: Container(
-                padding: const EdgeInsets.all(3.5),
-                child: Row(
+              SizedBox(
+                  child: TabBar(
+                controller: _tabController,
+                labelColor: Colors.black,
+                unselectedLabelColor: Colors.black,
+                tabs: [
+                  Tab(text: "پروازهای داخلی"),
+                  Tab(text: "پروازهای خارجی"),
+                ],
+              )),
+              // Gap(AppLayout.getHeight(20)),
+              SizedBox(
+                width: 20,
+                height: AppLayout.getHeight(20),
+                child: TabBarView(
+                  controller: _tabController1,
                   children: [
-                    Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                              AppLayout.getHeight(50),
-                            ),
-                            color: const Color(0xFF4FF6FD)),
-                        child: Row(
+                    SizedBox(
+                        width: 20,
+                        height: AppLayout.getHeight(20),
+                        child: Container(
+                          child: TabBar(
+                              controller: _tabController1,
+                              labelColor: Colors.black,
+                              unselectedLabelColor: Colors.black,
+                              tabs: [
+                                Tab(text: "یک طرفه"),
+                                Tab(text: "دو طرفه"),
+                              ]),
+                        )),
+                    Gap(AppLayout.getHeight(20)),
+                    SizedBox(
+                        width: 20,
+                        height: AppLayout.getHeight(20),
+                        child: TabBarView(
+                          controller: _tabController2,
                           children: [
-                            /*
-                  domestic flights
-                  */
-                            Container(
-                              width: size.width * .44,
-                              height: size.height * .05,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.horizontal(
-                                    left: Radius.circular(
-                                        AppLayout.getHeight(50)),
-                                  ),
-                                  color: Colors.white),
-                              child: Center(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                DomesticFlights()));
-                                  },
-                                  child: Text(
-                                    "پرواز داخلی",
-                                    style: TextStyle(color: Colors.black),
-                                  ),
-                                ),
-                              ),
-                            )
+                            Text("Hallo"),
+                            Text("Hi"),
                           ],
                         )),
-
-                    /*Intenational Flights */
-                    Container(
-                      width: size.width * .44,
-                      height: size.height * .05,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.horizontal(
-                            right: Radius.circular(AppLayout.getHeight(50)),
-                          ),
-                          color: Colors.white),
-                      child: Center(
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        InternationalFlights()));
-                          },
-                          child: Text(
-                            "پرواز خارجی",
-                            style: TextStyle(color: Colors.black),
-                          ),
-                        ),
-                      ),
-                    )
                   ],
                 ),
-              )),
-              //End of Flight Buttons
-              Gap(AppLayout.getHeight(5)),
-              FittedBox(
-                  child: Container(
-                padding: const EdgeInsets.all(3.5),
-                child: Row(
-                  children: [
-                    Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                              AppLayout.getHeight(50),
-                            ),
-                            color: const Color(0xFF4FF6FD)),
-                        child: Row(
-                          children: [
-                            /*
-                  Two-Way
-                  */
-                            Container(
-                              width: size.width * .44,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(
-                                      AppLayout.getHeight(50)),
-                                  color: Colors.white),
-                              child: Center(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Ticket.isOneWay = false;
-                                  },
-                                  child: Text(
-                                    "رفت و برگشت",
-                                    style: TextStyle(color: Colors.black),
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        )),
+              ),
 
-                    /*One-Way */
-                    Container(
-                      width: size.width * .44,
-                      decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular(AppLayout.getHeight(50)),
-                          color: Colors.white),
-                      child: Center(
-                        child: GestureDetector(
-                          onTap: () {
-                            Ticket.isOneWay = true;
-                          },
-                          child: Text(
-                            "یک طرفه",
-                            style: TextStyle(color: Colors.black),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              )),
-              //end of tickets
+              // FittedBox(
+              //     child: Container(
+              //   padding: const EdgeInsets.all(3.5),
+              //   child: Row(
+              //     children: [
+              //       Container(
+              //           decoration: BoxDecoration(
+              //               borderRadius: BorderRadius.circular(
+              //                 AppLayout.getHeight(50),
+              //               ),
+              //               color: const Color(0xFF4FF6FD)),
+              //           child: Row(
+              //             children: [
+              //               /*
+              //     domestic flights
+              //     */
+              //               Container(
+              //                 width: size.width * .44,
+              //                 height: size.height * .05,
+              //                 decoration: BoxDecoration(
+              //                     borderRadius: BorderRadius.horizontal(
+              //                       left: Radius.circular(
+              //                           AppLayout.getHeight(50)),
+              //                     ),
+              //                     color: Colors.white),
+              //                 child: Center(
+              //                   child: GestureDetector(
+              //                     onTap: () {
+              //                       Navigator.push(
+              //                           context,
+              //                           MaterialPageRoute(
+              //                               builder: (context) =>
+              //                                   DomesticFlights()));
+              //                     },
+              //                     child: Text(
+              //                       "پرواز داخلی",
+              //                       style: TextStyle(color: Colors.black),
+              //                     ),
+              //                   ),
+              //                 ),
+              //               )
+              //             ],
+              //           )),
+
+              //       /*Intenational Flights */
+              //       Container(
+              //         width: size.width * .44,
+              //         height: size.height * .05,
+              //         decoration: BoxDecoration(
+              //             borderRadius: BorderRadius.horizontal(
+              //               right: Radius.circular(AppLayout.getHeight(50)),
+              //             ),
+              //             color: Colors.white),
+              //         child: Center(
+              //           child: GestureDetector(
+              //             onTap: () {
+              //               Navigator.push(
+              //                   context,
+              //                   MaterialPageRoute(
+              //                       builder: (context) =>
+              //                           InternationalFlights()));
+              //             },
+              //             child: Text(
+              //               "پرواز خارجی",
+              //               style: TextStyle(color: Colors.black),
+              //             ),
+              //           ),
+              //         ),
+              //       )
+              //     ],
+              //   ),
+              // )),
+              // //End of Flight Buttons
+              // Gap(AppLayout.getHeight(5)),
+              // FittedBox(
+              //     child: Container(
+              //   padding: const EdgeInsets.all(3.5),
+              //   child: Row(
+              //     children: [
+              //       Container(
+              //           decoration: BoxDecoration(
+              //               borderRadius: BorderRadius.circular(
+              //                 AppLayout.getHeight(50),
+              //               ),
+              //               color: const Color(0xFF4FF6FD)),
+              //           child: Row(
+              //             children: [
+              //               /*
+              //     Two-Way
+              //     */
+              //               Container(
+              //                 width: size.width * .44,
+              //                 decoration: BoxDecoration(
+              //                     borderRadius: BorderRadius.circular(
+              //                         AppLayout.getHeight(50)),
+              //                     color: Colors.white),
+              //                 child: Center(
+              //                   child: GestureDetector(
+              //                     onTap: () {
+              //                       Ticket.isOneWay = false;
+              //                     },
+              //                     child: Text(
+              //                       "رفت و برگشت",
+              //                       style: TextStyle(color: Colors.black),
+              //                     ),
+              //                   ),
+              //                 ),
+              //               )
+              //             ],
+              //           )),
+
+              //       /*One-Way */
+              //       Container(
+              //         width: size.width * .44,
+              //         decoration: BoxDecoration(
+              //             borderRadius:
+              //                 BorderRadius.circular(AppLayout.getHeight(50)),
+              //             color: Colors.white),
+              //         child: Center(
+              //           child: GestureDetector(
+              //             onTap: () {
+              //               Ticket.isOneWay = true;
+              //             },
+              //             child: Text(
+              //               "یک طرفه",
+              //               style: TextStyle(color: Colors.black),
+              //             ),
+              //           ),
+              //         ),
+              //       )
+              //     ],
+              //   ),
+              // )),
+              // //end of tickets
 
               //start of Search Button
-              Gap(AppLayout.getHeight(370)),
+              Gap(AppLayout.getHeight(300)),
               FittedBox(
                 child: Center(
                   child: Row(
@@ -206,7 +255,7 @@ class _FlightsPageState extends State<FlightsPage> {
                             child: Row(
                               children: [
                                 Center(
-                                  child: Container(
+                                  child: SizedBox(
                                       width: size.width * .7,
                                       child: Center(
                                         child: SizedBox(
