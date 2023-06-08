@@ -6,7 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'main.dart';
 import 'MyHomePage.dart';
-
+import 'Widgets/TicketCatalog.dart';
 
 class FindPage extends StatefulWidget {
   @override
@@ -55,8 +55,13 @@ class _FindPageState extends State<FindPage> {
       padding: const EdgeInsets.all(5.0),
       child: Column(
         children: [
-          Expanded(
+          ConstrainedBox(
+            constraints: new BoxConstraints(
+            minHeight: 35.0,
+            maxHeight: 65.0,
+            ),
             child: ListView(
+              shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               children: [
                 Expanded(
@@ -166,7 +171,11 @@ class _FindPageState extends State<FindPage> {
               ],
             ),
           ),
-          Expanded(
+          ConstrainedBox(
+            constraints: new BoxConstraints(
+            minHeight: 35.0,
+            maxHeight: 70.0,
+            ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -212,6 +221,52 @@ class _FindPageState extends State<FindPage> {
                   ),
               ],
             ),
+          ),
+          Expanded(
+            child: 
+             Padding(
+               padding: const EdgeInsets.all(8.0),
+               child: ListView(
+                 children: [ 
+                  TicketCatalog(
+                    airlineName: "ایران ایر",
+                    airlineImageUrl: "https://baradfreight.com/wp-content/uploads/2021/11/iran-air-150x150.webp",
+                    tag1: "سیستمی", 
+                    tag2: "اکونومی", 
+                    tag3: "Fokker ۱۰۰", 
+                    takeOffTime: "۰۶:۱۰", 
+                    landingTime: "۰۷:۳۰", 
+                    price: "۱۲,۰۷۰,۰۰۰", 
+                    booked: 34, 
+                    capacity: 200,
+                  ),
+                  TicketCatalog(
+                    airlineName: "آسمان",
+                    airlineImageUrl: "https://baradfreight.com/wp-content/uploads/2021/11/aseman-150x150.webp",
+                    tag1: "سیستمی", 
+                    tag2: "اکونومی", 
+                    tag3: "Fokker ۱۰۰", 
+                    takeOffTime: "۰۶:۱۰", 
+                    landingTime: "۰۷:۳۰", 
+                    price: "۱۲,۰۷۰,۰۰۰", 
+                    booked: 34, 
+                    capacity: 200,
+                  ),
+                  TicketCatalog(
+                    airlineName: "ایران ایر",
+                    airlineImageUrl: "https://baradfreight.com/wp-content/uploads/2021/11/iran-air-150x150.webp",
+                    tag1: "سیستمی", 
+                    tag2: "اکونومی", 
+                    tag3: "Fokker ۱۰۰", 
+                    takeOffTime: "۰۶:۱۰", 
+                    landingTime: "۰۷:۳۰", 
+                    price: "۱۲,۰۷۰,۰۰۰", 
+                    booked: 200, 
+                    capacity: 200,
+                  ),
+                 ],
+               ),
+             ),
           ),
         ],
       ),
