@@ -8,9 +8,17 @@ import 'main.dart';
 import 'MyHomePage.dart';
 
 
-class FindPage extends StatelessWidget {
+class FindPage extends StatefulWidget {
+  @override
+  State<FindPage> createState() => _FindPageState();
+}
+
+class _FindPageState extends State<FindPage> {
   @override
   Widget build(BuildContext context) {
+    String dropdownvalue = 'مرتب سازی'; 
+    var items =['مرتب سازی' ,'پیشنهاد علی‌بابا', 'زودترین', 'دیرترین', 'ارزان‌ترین','گران‌ترین'];
+
     var appState = context.watch<MyAppState>();
     return Scaffold(
       backgroundColor:  appState.backgroundColor,
@@ -44,89 +52,142 @@ class FindPage extends StatelessWidget {
 
     ),
     body: Padding(
-      padding: const EdgeInsets.all(18.0),
-      child: ListView(
-        scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.all(5.0),
+      child: Column(
         children: [
-          Row(
-            children: [
-              Container(
-                color: appState.columnColor,
-                height: 60,
-                width: 80,
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Text(
-                    textAlign: TextAlign.center,
-                    'ی - ۰۴/۰۴ تکمیل',
-                    style: TextStyle(
-                      fontWeight: FontWeight.normal,
-                      fontSize: appState.header3Size,
-                    ),
+          Expanded(
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                Expanded(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 30,
+                        child: IconButton(
+                          onPressed: (){},
+                          icon: Icon(Icons.arrow_back_ios)
+                        ),
+                      ),Container(decoration: BoxDecoration(
+                        color: appState.columnColor,
+                        border: Border.all(
+                          width: 0.1,
+                        ),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                        height: 60,
+                        width: 80,
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                            textAlign: TextAlign.center,
+                            'ی - ۰۴/۰۴ تکمیل',
+                            style: TextStyle(
+                              fontWeight: FontWeight.normal,
+                              fontSize: appState.header3Size,
+                            ),
+                          ),
+                        ),
+                      ),Container(
+                        decoration: BoxDecoration(
+                        color: appState.columnColor,
+                        border: Border.all(
+                          width: 0.1,
+                        ),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                        height: 60,
+                        width: 80,
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                            textAlign: TextAlign.center,
+                            'ی - ۰۴/۰۴ ۱,۲۰۷',
+                            style: TextStyle(
+                              fontWeight: FontWeight.normal,
+                              fontSize: appState.header3Size,
+                            ),
+                          ),
+                        ),
+                      ),Container(
+                        decoration: BoxDecoration(
+                          color: appState.columnColor,
+                          border: Border.all(
+                            width: 0.1,
+                          ),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        height: 60,
+                        width: 80,
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                            textAlign: TextAlign.center,
+                            'ی - ۰۴/۰۴ تکمیل',
+                            style: TextStyle(
+                              fontWeight: FontWeight.normal,
+                              fontSize: appState.header3Size,
+                            ),
+                          ),
+                        ),
+                      ),Container(
+                        decoration: BoxDecoration(
+                          color: appState.columnColor,
+                          border: Border.all(
+                            width: 0.1,
+                          ),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        height: 60,
+                        width: 80,
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                            textAlign: TextAlign.center,
+                            'ی - ۰۴/۰۴ ۱,۲۰۷',
+                            style: TextStyle(
+                              fontWeight: FontWeight.normal,
+                              fontSize: appState.header3Size,
+                            ),
+                          ),
+                        ),
+                      ), 
+                      Container(
+                        width: 30,
+                        child: IconButton(
+                          onPressed: (){},
+                          icon: Icon(Icons.arrow_forward_ios),
+                          ),
+                      ),
+                    ],
                   ),
                 ),
-              ),Container(
-                color: appState.columnColor,
-                height: 60,
-                width: 80,
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Text(
-                    textAlign: TextAlign.center,
-                    'ی - ۰۴/۰۴ تکمیل',
-                    style: TextStyle(
-                      fontWeight: FontWeight.normal,
-                      fontSize: appState.header3Size,
-                    ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                DropdownButton(
+                    value: dropdownvalue,
+                    icon: const Icon(Icons.sort),    
+                    items: items.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) { 
+                      setState(() {
+                        dropdownvalue = newValue!;
+                      });
+                    },
                   ),
-                ),
-              ),Container(
-                color: appState.columnColor,
-                height: 60,
-                width: 80,
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Text(
-                    textAlign: TextAlign.center,
-                    'ی - ۰۴/۰۴ ۱,۲۰۷',
-                    style: TextStyle(
-                      fontWeight: FontWeight.normal,
-                      fontSize: appState.header3Size,
-                    ),
-                  ),
-                ),
-              ),Container(
-                color: appState.columnColor,
-                height: 60,
-                width: 80,
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Text(
-                    textAlign: TextAlign.center,
-                    'ی - ۰۴/۰۴ تکمیل',
-                    style: TextStyle(
-                      fontWeight: FontWeight.normal,
-                      fontSize: appState.header3Size,
-                    ),
-                  ),
-                ),
-              ),Container(
-                color: appState.columnColor,
-                height: 60,
-                width: 80,
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Text(
-                    textAlign: TextAlign.center,
-                    'ی - ۰۴/۰۴ ۱,۲۰۷',
-                    style: TextStyle(
-                      fontWeight: FontWeight.normal,
-                      fontSize: appState.header3Size,
-                    ),
-                  ),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
