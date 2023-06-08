@@ -186,6 +186,30 @@ class _FindPageState extends State<FindPage> {
                       });
                     },
                   ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FindPage() // this should be changed to filters page
+                          )
+                      );
+                    },
+                    child: Row(
+                      children: [
+                        Text(
+                          'فیلتر‌ها',
+                          style: TextStyle(
+                            fontSize: appState.header3Size,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                        Icon(
+                          Icons.filter_list_rounded,
+                          ),
+                      ],
+                    ),
+                  ),
               ],
             ),
           ),
