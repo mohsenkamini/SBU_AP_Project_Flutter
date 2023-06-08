@@ -55,7 +55,7 @@ class TicketCatalog extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: const EdgeInsets.fromLTRB(5, 12, 5, 12),
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius:
@@ -73,7 +73,7 @@ class TicketCatalog extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: const EdgeInsets.fromLTRB(5, 12, 5, 12),
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius:
@@ -91,7 +91,7 @@ class TicketCatalog extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: const EdgeInsets.fromLTRB(5, 12, 5, 12),
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius:
