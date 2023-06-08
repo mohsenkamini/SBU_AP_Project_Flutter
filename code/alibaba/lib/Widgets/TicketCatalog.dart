@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:alibaba/main.dart';
 import 'package:alibaba/screens/utils/App_Layout.dart';
 
-class TicketCatalog extends StatelessWidget {
+class TicketCatalog extends StatefulWidget {
   const TicketCatalog({
     super.key,
     required this.airlineName,
@@ -32,6 +32,11 @@ class TicketCatalog extends StatelessWidget {
   final int capacity;
 
   @override
+  State<TicketCatalog> createState() => _TicketCatalogState();
+}
+
+class _TicketCatalogState extends State<TicketCatalog> {
+  @override
   Widget build(BuildContext context) {
 
     var appState = context.watch<MyAppState>();
@@ -42,6 +47,9 @@ class TicketCatalog extends StatelessWidget {
     final linkStyle = theme.textTheme.displayMedium!.copyWith(
       color: Colors.blue,
     );
+
+    var isCapacityFull = (widget.capacity <= widget.booked );
+
     return Card(
       elevation: 20,
       surfaceTintColor: appState.columnColor,
@@ -50,32 +58,52 @@ class TicketCatalog extends StatelessWidget {
           onTap: () {
             debugPrint('Card tapped.');
           },
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.end,
+          child: Column(
             children: [
-              Column(
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  
-                  Row(
+                  Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(5, 12, 5, 12),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.circular(AppLayout.getHeight(50)),
-                              color: appState.backgroundColor),
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Text(
-                                tag3,
-                                style: TextStyle(color: Colors.black),
+                      
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(5, 12, 5, 12),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.circular(AppLayout.getHeight(50)),
+                                  color: appState.backgroundColor),
+                              child: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: Text(
+                                    widget.tag3,
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                        ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(5, 12, 5, 12),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.circular(AppLayout.getHeight(50)),
+                                  color: appState.backgroundColor),
+                              child: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: Text(
+                                    widget.tag2,
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                ),
+                              ),
+                            ),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(5, 12, 5, 12),
@@ -88,91 +116,103 @@ class TicketCatalog extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.all(4.0),
                               child: Text(
-                                tag2,
+                                widget.tag1,
                                 style: TextStyle(color: Colors.black),
                               ),
                             ),
                           ),
                         ),
+                      ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              widget.takeOffTime,
+                              style: TextStyle(
+                                fontSize: appState.header2Size,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              ),
+                          ),
+                          Icon(
+                            Icons.circle_outlined,
+                            size: 10,
+                            color: Colors.grey,
+                          ),
+                          Container(
+                            height:3.0,
+                            width:110.0,
+                            color:Colors.grey,
+                          ),
+                          Icon(
+                            Icons.circle_rounded,
+                            size: 10,
+                            color: Colors.grey,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              widget.landingTime,
+                              style: TextStyle(
+                                fontSize: appState.header2Size,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(5, 12, 5, 12),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular(AppLayout.getHeight(50)),
-                          color: appState.backgroundColor),
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Text(
-                            tag1,
-                            style: TextStyle(color: Colors.black),
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                            child: CircleAvatar(
+                              backgroundColor: Colors.grey,
+                              radius: 27,
+                              child: ClipOval(
+                                child: Image.network(widget.airlineImageUrl),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
+                        Text(widget.airlineName),
+                      ],
                     ),
-                  ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          takeOffTime,
-                          style: TextStyle(
-                            fontSize: appState.header2Size,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          ),
-                      ),
-                      Icon(
-                        Icons.circle_outlined,
-                        size: 10,
-                        color: Colors.grey,
-                      ),
-                      Container(
-                        height:3.0,
-                        width:110.0,
-                        color:Colors.grey,
-                      ),
-                      Icon(
-                        Icons.circle_rounded,
-                        size: 10,
-                        color: Colors.grey,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          landingTime,
-                          style: TextStyle(
-                            fontSize: appState.header2Size,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          ),
-                      ),
-                    ],
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                        child: CircleAvatar(
-                          backgroundColor: Colors.grey,
-                          radius: 27,
-                          child: ClipOval(
-                            child: Image.network(airlineImageUrl),
+              Divider(),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  isCapacityFull
+                  ? Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 10, 10, 16),
+                    child: Text(
+                      
+                      "تکمیل ظرفیت",
+                      style: TextStyle(
+                        color: Colors.red,
+                        shadows: [
+                          Shadow( // bottomLeft
+                            offset: Offset(0.02, 0.02),
+                            color: Colors.black
                           ),
-                        ),
+                        ],
+                        fontSize: appState.header3Size,
+                        fontWeight: FontWeight.normal,
                       ),
-                    Text(airlineName),
-                  ],
-                ),
+                      ),
+                  )
+                  : Text("true")
+                  
+                ],
               ),
             ],
           ),
