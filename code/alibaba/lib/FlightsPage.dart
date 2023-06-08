@@ -1,10 +1,17 @@
+import 'package:alibaba/FindPage.dart';
 import 'package:alibaba/main.dart';
 import 'package:alibaba/screens/utils/App_Layout.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:alibaba/screens/utils/Styles.dart';
 
-class FlightsPage extends StatelessWidget {
+class FlightsPage extends StatefulWidget {
+  @override
+  State<FlightsPage> createState() => _FlightsPageState();
+}
+
+class _FlightsPageState extends State<FlightsPage> {
   // const Flight({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -132,6 +139,56 @@ class FlightsPage extends StatelessWidget {
                   ],
                 ),
               )),
+              //end of tickets
+
+              //start of search button
+              Gap(AppLayout.getHeight(370)),
+              FittedBox(
+                child: Center(
+                  child: Row(
+                    children: [
+                      Center(
+                        child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                AppLayout.getHeight(50),
+                              ),
+                            ),
+                            child: Row(
+                              children: [
+                                Center(
+                                  child: Container(
+                                      width: size.width * .7,
+                                      child: Center(
+                                        child: SizedBox(
+                                          child: ElevatedButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          FindPage()));
+                                            },
+
+                                            child: Text(
+                                              'جست و جو',
+                                              style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            // recognizer: TapGestureRecognizer()
+                                          ),
+                                        ),
+                                      )),
+                                ),
+                              ],
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ]));
   }
 }
