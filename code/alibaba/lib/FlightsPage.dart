@@ -9,6 +9,8 @@ import 'package:gap/gap.dart';
 import 'package:alibaba/screens/utils/Styles.dart';
 import 'package:alibaba/DomesticFlights.dart';
 
+import 'InternationalFlights.dart';
+
 class FlightsPage extends StatefulWidget {
   @override
   State<FlightsPage> createState() => _FlightsPageState();
@@ -107,9 +109,18 @@ class _FlightsPageState extends State<FlightsPage> {
                           ),
                           color: Colors.white),
                       child: Center(
-                        child: Text(
-                          "پرواز خارجی",
-                          style: TextStyle(color: Colors.black),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        InternationalFlights()));
+                          },
+                          child: Text(
+                            "پرواز خارجی",
+                            style: TextStyle(color: Colors.black),
+                          ),
                         ),
                       ),
                     )

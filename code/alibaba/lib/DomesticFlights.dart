@@ -20,10 +20,8 @@ class DomesticFlights extends StatefulWidget {
 }
 
 class _DomesticFlightsState extends State<DomesticFlights> {
-  static Color selectedColor = Color.fromARGB(255, 150, 26, 24);
-  static Color notSelectedColor = Colors.white;
-  Color _OneWayColor = selectedColor;
-  Color _TwoWayColor = notSelectedColor;
+  Color _OneWayColor = Styles.selectedColor;
+  Color _TwoWayColor = Styles.notSelectedColor;
   @override
   Widget build(BuildContext context) {
     //pagelayout
@@ -74,15 +72,15 @@ class _DomesticFlightsState extends State<DomesticFlights> {
                                     left: Radius.circular(
                                         AppLayout.getHeight(50)),
                                   ),
-                                  color: selectedColor),
+                                  color: Styles.selectedColor),
                               child: Center(
                                 child: GestureDetector(
                                   onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                FavoritesPage()));
+                                    // Navigator.push(
+                                    //     context,
+                                    //     MaterialPageRoute(
+                                    //         builder: (context) =>
+                                    //             FavoritesPage()));
                                   },
                                   child: Text(
                                     "پرواز داخلی",
@@ -102,7 +100,7 @@ class _DomesticFlightsState extends State<DomesticFlights> {
                           borderRadius: BorderRadius.horizontal(
                             right: Radius.circular(AppLayout.getHeight(50)),
                           ),
-                          color: notSelectedColor),
+                          color: Styles.notSelectedColor),
                       child: Center(
                         child: GestureDetector(
                           onTap: () {
@@ -150,8 +148,8 @@ class _DomesticFlightsState extends State<DomesticFlights> {
                                 child: GestureDetector(
                                   onTap: () {
                                     setState(() {
-                                      _TwoWayColor = selectedColor;
-                                      _OneWayColor = notSelectedColor;
+                                      _TwoWayColor = Styles.selectedColor;
+                                      _OneWayColor = Styles.notSelectedColor;
                                     });
                                     Ticket.isOneWay = false;
                                   },
@@ -176,8 +174,8 @@ class _DomesticFlightsState extends State<DomesticFlights> {
                         child: GestureDetector(
                           onTap: () {
                             setState(() {
-                              _OneWayColor = selectedColor;
-                              _TwoWayColor = notSelectedColor;
+                              _OneWayColor = Styles.selectedColor;
+                              _TwoWayColor = Styles.notSelectedColor;
                             });
                             Ticket.isOneWay = true;
                           },
