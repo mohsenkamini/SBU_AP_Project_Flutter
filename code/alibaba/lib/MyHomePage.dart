@@ -2,7 +2,7 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
-import 'Flight.dart';
+import 'FlightsPage.dart';
 import 'main.dart';
 import 'FavoritesPage.dart';
 import 'Account.dart';
@@ -32,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = FavoritesPage();
         break;
       case 2:
-        page = Flight();
+        page = FlightsPage();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
