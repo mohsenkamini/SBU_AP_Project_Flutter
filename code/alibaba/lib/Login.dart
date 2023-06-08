@@ -55,7 +55,7 @@ bool _obscureText = true;
           SizedBox(height: 18,),
           Text(
             '.نام کاربری و کلمه عبور خود را وارد کنید',
-            textAlign: TextAlign.left,
+            textAlign: TextAlign.right,
             style: TextStyle(
               fontSize: appState.normalSize,
               //fontWeight: FontWeight.bold,
