@@ -49,7 +49,7 @@ class _TicketCatalogState extends State<TicketCatalog> {
     );
 
     var isCapacityFull = (widget.capacity <= widget.booked );
-
+    var emptySeats = widget.capacity - widget.booked;
     return Card(
       elevation: 20,
       surfaceTintColor: appState.columnColor,
@@ -174,8 +174,10 @@ class _TicketCatalogState extends State<TicketCatalog> {
                           padding: const EdgeInsets.all(8.0),
                             child: CircleAvatar(
                               backgroundColor: Colors.grey,
-                              radius: 27,
-                              child: ClipOval(
+                              radius: 26.1,
+                              child: CircleAvatar(
+                                radius: 26,
+                                backgroundColor: Colors.white,
                                 child: Image.network(widget.airlineImageUrl),
                               ),
                             ),
@@ -188,12 +190,10 @@ class _TicketCatalogState extends State<TicketCatalog> {
               ),
               Divider(),
               Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   isCapacityFull
                   ? Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 10, 10, 16),
+                    padding: const EdgeInsets.fromLTRB(16, 10, 10, 12),
                     child: Text(
                       
                       "تکمیل ظرفیت",
@@ -210,7 +210,78 @@ class _TicketCatalogState extends State<TicketCatalog> {
                       ),
                       ),
                   )
-                  : Text("true")
+                  : Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 10, 10, 12),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'ریال',
+                          style: TextStyle(
+                            color: Colors.black,
+                            shadows: [
+                              Shadow( // bottomLeft
+                                offset: Offset(0.02, 0.02),
+                                color: Colors.black
+                              ),
+                            ],
+                            fontSize: appState.normalSize,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: Text(
+                            widget.price,
+                            style: TextStyle(
+                              color: Colors.blue,
+                              shadows: [
+                                Shadow( // bottomLeft
+                                  offset: Offset(0.4, 0.4),
+                                  color: Colors.blue
+                                ),
+                              ],
+                              fontSize: appState.header2Size,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        VerticalDivider(
+                          color: Colors.transparent,  //color of divider
+                          width: 100, //width space of divider
+                        ),
+                        Text(
+                          'صندلی باقی مانده ',
+                          style: TextStyle(
+                            color: Colors.red,
+                            shadows: [
+                              Shadow( // bottomLeft
+                                offset: Offset(0.02, 0.02),
+                                color: Colors.black
+                              ),
+                            ],
+                            fontSize: appState.normalSize,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                        Text(
+                          '$emptySeats',
+                          style: TextStyle(
+                            color: Colors.red,
+                            shadows: [
+                              Shadow( // bottomLeft
+                                offset: Offset(0.02, 0.02),
+                                color: Colors.black
+                              ),
+                            ],
+                            fontSize: appState.normalSize,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
                   
                 ],
               ),

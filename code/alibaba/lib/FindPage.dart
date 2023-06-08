@@ -230,7 +230,19 @@ class _FindPageState extends State<FindPage> {
                  children: [ 
                   TicketCatalog(
                     airlineName: "ایران ایر",
-                    airlineImageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx9DB25fTRofwq7hyc4i1m2g35pxyS1FKiUEXBk19VKDlfGVR0KOZKnYzWzzAdBn7k&usqp=CAU",
+                    airlineImageUrl: "https://baradfreight.com/wp-content/uploads/2021/11/iran-air-150x150.webp",
+                    tag1: "سیستمی", 
+                    tag2: "اکونومی", 
+                    tag3: "Fokker ۱۰۰", 
+                    takeOffTime: "۰۶:۱۰", 
+                    landingTime: "۰۷:۳۰", 
+                    price: "۱۲,۰۷۰,۰۰۰", 
+                    booked: 34, 
+                    capacity: 200,
+                  ),
+                  TicketCatalog(
+                    airlineName: "آسمان",
+                    airlineImageUrl: "https://baradfreight.com/wp-content/uploads/2021/11/aseman-150x150.webp",
                     tag1: "سیستمی", 
                     tag2: "اکونومی", 
                     tag3: "Fokker ۱۰۰", 
@@ -242,7 +254,7 @@ class _FindPageState extends State<FindPage> {
                   ),
                   TicketCatalog(
                     airlineName: "ایران ایر",
-                    airlineImageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx9DB25fTRofwq7hyc4i1m2g35pxyS1FKiUEXBk19VKDlfGVR0KOZKnYzWzzAdBn7k&usqp=CAU",
+                    airlineImageUrl: "https://baradfreight.com/wp-content/uploads/2021/11/iran-air-150x150.webp",
                     tag1: "سیستمی", 
                     tag2: "اکونومی", 
                     tag3: "Fokker ۱۰۰", 
