@@ -37,6 +37,8 @@ class _FlightsPageState extends State<FlightsPage>
     TabController _tabController = TabController(length: 2, vsync: this);
     TabController _tabController1 = TabController(length: 2, vsync: this);
     TabController _tabController2 = TabController(length: 2, vsync: this);
+    TabController _tabController3 = TabController(length: 2, vsync: this);
+    TabController _tabController4 = TabController(length: 2, vsync: this);
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 240, 243, 243),
         body: ListView(
@@ -69,40 +71,52 @@ class _FlightsPageState extends State<FlightsPage>
                   Tab(text: "پروازهای خارجی"),
                 ],
               )),
-              // Gap(AppLayout.getHeight(20)),
+
               SizedBox(
                 width: 20,
-                height: AppLayout.getHeight(20),
+                height: AppLayout.getHeight(30),
                 child: TabBarView(
-                  controller: _tabController1,
+                  controller: _tabController,
                   children: [
                     SizedBox(
                         width: 20,
-                        height: AppLayout.getHeight(20),
+                        height: AppLayout.getHeight(25),
                         child: Container(
                           child: TabBar(
                               controller: _tabController1,
                               labelColor: Colors.black,
                               unselectedLabelColor: Colors.black,
                               tabs: [
-                                Tab(text: "یک طرفه"),
                                 Tab(text: "دو طرفه"),
+                                Tab(text: "یک طرفه"),
                               ]),
                         )),
-                    Gap(AppLayout.getHeight(20)),
                     SizedBox(
                         width: 20,
-                        height: AppLayout.getHeight(20),
-                        child: TabBarView(
-                          controller: _tabController2,
-                          children: [
-                            Text("Hallo"),
-                            Text("Hi"),
-                          ],
+                        height: AppLayout.getHeight(25),
+                        child: Container(
+                          child: TabBar(
+                              controller: _tabController2,
+                              labelColor: Colors.black,
+                              unselectedLabelColor: Colors.black,
+                              tabs: [
+                                Tab(text: "دو طرفه"),
+                                Tab(text: "یک طرفه"),
+                              ]),
                         )),
+                    SizedBox(
+                      child: TabBarView(
+                          controller: _tabController2,
+                          children: [Text("Test1"), Text("Test2")]),
+                    ),
+                    SizedBox(
+                      child: TabBarView(
+                          controller: _tabController,
+                          children: [Text("Test1"), Text("Test2")]),
+                    ),
                   ],
                 ),
-              ),
+              )
 
               // FittedBox(
               //     child: Container(
@@ -240,6 +254,7 @@ class _FlightsPageState extends State<FlightsPage>
               // //end of tickets
 
               //start of Search Button
+              ,
               Gap(AppLayout.getHeight(300)),
               FittedBox(
                 child: Center(
