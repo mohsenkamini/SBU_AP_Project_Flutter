@@ -2,10 +2,10 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
+import 'FlightsPage.dart';
 import 'main.dart';
 import 'FavoritesPage.dart';
 import 'Account.dart';
-
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -13,15 +13,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var selectedIndex =0 ;
+  var selectedIndex = 0;
   void onItemTapped(int index) {
-  setState(() {
-    selectedIndex = index;
-  });
-}
-  @override
+    setState(() {
+      selectedIndex = index;
+    });
+  }
 
-  
+  @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
     Widget page;
@@ -33,15 +32,14 @@ class _MyHomePageState extends State<MyHomePage> {
         page = FavoritesPage();
         break;
       case 2:
-        page=GeneratorPage();
+        page = FlightsPage();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return Scaffold(
-          bottomNavigationBar: BottomNavigationBar(
+    return LayoutBuilder(builder: (context, constraints) {
+      return Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Color.fromARGB(255, 0, 0, 0),
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
@@ -62,24 +60,19 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
           currentIndex: selectedIndex,
           onTap: onItemTapped,
-          ),
-
-          body: Row(
-            children: [
-
-              Expanded(
-                child: Container(
-                  //color: Theme.of(context).colorScheme.background,
-                  color: appState.backgroundColor,
-                  child: page,
-                ),
+        ),
+        body: Row(
+          children: [
+            Expanded(
+              child: Container(
+                //color: Theme.of(context).colorScheme.background,
+                color: appState.backgroundColor,
+                child: page,
               ),
-            ],
-          ),
-        );
-      }
-    );
+            ),
+          ],
+        ),
+      );
+    });
   }
 }
-
-
