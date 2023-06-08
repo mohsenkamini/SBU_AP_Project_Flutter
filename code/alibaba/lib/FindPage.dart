@@ -44,14 +44,26 @@ class FindPage extends StatelessWidget {
 
     ),
     body: Padding(
-      padding: const EdgeInsets.all(18.0),
+      padding: const EdgeInsets.all(5.0),
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
+                width: 30,
+                child: IconButton(
+                  onPressed: (){},
+                  icon: Icon(Icons.arrow_back_ios)
+                ),
+              ),Container(decoration: BoxDecoration(
                 color: appState.columnColor,
+                border: Border.all(
+                  width: 0.1,
+                ),
+                borderRadius: BorderRadius.circular(5),
+              ),
                 height: 60,
                 width: 80,
                 child: Padding(
@@ -66,22 +78,13 @@ class FindPage extends StatelessWidget {
                   ),
                 ),
               ),Container(
+                decoration: BoxDecoration(
                 color: appState.columnColor,
-                height: 60,
-                width: 80,
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Text(
-                    textAlign: TextAlign.center,
-                    'ی - ۰۴/۰۴ تکمیل',
-                    style: TextStyle(
-                      fontWeight: FontWeight.normal,
-                      fontSize: appState.header3Size,
-                    ),
-                  ),
+                border: Border.all(
+                  width: 0.1,
                 ),
-              ),Container(
-                color: appState.columnColor,
+                borderRadius: BorderRadius.circular(5),
+              ),
                 height: 60,
                 width: 80,
                 child: Padding(
@@ -96,7 +99,13 @@ class FindPage extends StatelessWidget {
                   ),
                 ),
               ),Container(
-                color: appState.columnColor,
+                decoration: BoxDecoration(
+                  color: appState.columnColor,
+                  border: Border.all(
+                    width: 0.1,
+                  ),
+                  borderRadius: BorderRadius.circular(5),
+                ),
                 height: 60,
                 width: 80,
                 child: Padding(
@@ -111,7 +120,13 @@ class FindPage extends StatelessWidget {
                   ),
                 ),
               ),Container(
-                color: appState.columnColor,
+                decoration: BoxDecoration(
+                  color: appState.columnColor,
+                  border: Border.all(
+                    width: 0.1,
+                  ),
+                  borderRadius: BorderRadius.circular(5),
+                ),
                 height: 60,
                 width: 80,
                 child: Padding(
@@ -125,6 +140,13 @@ class FindPage extends StatelessWidget {
                     ),
                   ),
                 ),
+              ), 
+              Container(
+                width: 30,
+                child: IconButton(
+                  onPressed: (){},
+                  icon: Icon(Icons.arrow_forward_ios),
+                  ),
               ),
             ],
           ),
