@@ -1,6 +1,7 @@
 import 'package:alibaba/Account.dart';
 import 'package:alibaba/FavoritesPage.dart';
 import 'package:alibaba/FindPage.dart';
+import 'package:alibaba/InternationalFlights.dart';
 import 'package:alibaba/main.dart';
 import 'package:alibaba/screens/utils/App_Layout.dart';
 import 'package:flutter/gestures.dart';
@@ -8,25 +9,21 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:alibaba/screens/utils/Styles.dart';
 import 'package:alibaba/DomesticFlights.dart';
+import 'FindPage.dart';
+import 'FlightsPage.dart';
 
-class FlightsPage extends StatefulWidget {
+class DomesticFlights extends StatefulWidget {
+  // _DomesticFlights({super.key});
+
   @override
-  State<FlightsPage> createState() => _FlightsPageState();
+  State<DomesticFlights> createState() => _DomesticFlightsState();
 }
 
-class Ticket {
-  static bool isOneWay = true;
-
-  bool getIsOneWay() {
-    return isOneWay;
-  }
-
-  void setIsOneWay(bool b) {
-    isOneWay = b;
-  }
-}
-
-class _FlightsPageState extends State<FlightsPage> {
+class _DomesticFlightsState extends State<DomesticFlights> {
+  static Color selectedColor = Color.fromARGB(255, 150, 26, 24);
+  static Color notSelectedColor = Colors.white;
+  Color _OneWayColor = selectedColor;
+  Color _TwoWayColor = notSelectedColor;
   @override
   Widget build(BuildContext context) {
     //pagelayout
@@ -77,7 +74,7 @@ class _FlightsPageState extends State<FlightsPage> {
                                     left: Radius.circular(
                                         AppLayout.getHeight(50)),
                                   ),
-                                  color: Colors.white),
+                                  color: selectedColor),
                               child: Center(
                                 child: GestureDetector(
                                   onTap: () {
@@ -85,7 +82,7 @@ class _FlightsPageState extends State<FlightsPage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                DomesticFlights()));
+                                                FavoritesPage()));
                                   },
                                   child: Text(
                                     "پرواز داخلی",
@@ -105,11 +102,20 @@ class _FlightsPageState extends State<FlightsPage> {
                           borderRadius: BorderRadius.horizontal(
                             right: Radius.circular(AppLayout.getHeight(50)),
                           ),
-                          color: Colors.white),
+                          color: notSelectedColor),
                       child: Center(
-                        child: Text(
-                          "پرواز خارجی",
-                          style: TextStyle(color: Colors.black),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        InternationalFlights()));
+                          },
+                          child: Text(
+                            "پرواز خارجی",
+                            style: TextStyle(color: Colors.black),
+                          ),
                         ),
                       ),
                     )
@@ -139,10 +145,14 @@ class _FlightsPageState extends State<FlightsPage> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(
                                       AppLayout.getHeight(50)),
-                                  color: Colors.white),
+                                  color: _TwoWayColor),
                               child: Center(
                                 child: GestureDetector(
                                   onTap: () {
+                                    setState(() {
+                                      _TwoWayColor = selectedColor;
+                                      _OneWayColor = notSelectedColor;
+                                    });
                                     Ticket.isOneWay = false;
                                   },
                                   child: Text(
@@ -161,10 +171,14 @@ class _FlightsPageState extends State<FlightsPage> {
                       decoration: BoxDecoration(
                           borderRadius:
                               BorderRadius.circular(AppLayout.getHeight(50)),
-                          color: Colors.white),
+                          color: _OneWayColor),
                       child: Center(
                         child: GestureDetector(
                           onTap: () {
+                            setState(() {
+                              _OneWayColor = selectedColor;
+                              _TwoWayColor = notSelectedColor;
+                            });
                             Ticket.isOneWay = true;
                           },
                           child: Text(
