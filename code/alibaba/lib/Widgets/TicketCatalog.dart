@@ -54,61 +54,108 @@ class TicketCatalog extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(5, 12, 5, 12),
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.circular(AppLayout.getHeight(50)),
-                      color: appState.backgroundColor),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Text(
-                        tag3,
-                        style: TextStyle(color: Colors.black),
+              Column(
+                children: [
+                  
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(5, 12, 5, 12),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.circular(AppLayout.getHeight(50)),
+                              color: appState.backgroundColor),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Text(
+                                tag3,
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(5, 12, 5, 12),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.circular(AppLayout.getHeight(50)),
+                              color: appState.backgroundColor),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Text(
+                                tag2,
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ),
+                          ),
+                        ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(5, 12, 5, 12),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(AppLayout.getHeight(50)),
+                          color: appState.backgroundColor),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                            tag1,
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(5, 12, 5, 12),
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.circular(AppLayout.getHeight(50)),
-                      color: appState.backgroundColor),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Text(
-                        tag2,
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    ),
+                    ],
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(5, 12, 5, 12),
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.circular(AppLayout.getHeight(50)),
-                      color: appState.backgroundColor),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Text(
-                        tag1,
-                        style: TextStyle(color: Colors.black),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          takeOffTime,
+                          style: TextStyle(
+                            fontSize: appState.header2Size,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          ),
                       ),
-                    ),
+                      Icon(
+                        Icons.circle_outlined,
+                        size: 10,
+                        color: Colors.grey,
+                      ),
+                      Container(
+                        height:3.0,
+                        width:110.0,
+                        color:Colors.grey,
+                      ),
+                      Icon(
+                        Icons.circle_rounded,
+                        size: 10,
+                        color: Colors.grey,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          landingTime,
+                          style: TextStyle(
+                            fontSize: appState.header2Size,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          ),
+                      ),
+                    ],
                   ),
-                ),
+                ],
               ),
-              
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
