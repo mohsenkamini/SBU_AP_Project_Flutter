@@ -2,12 +2,13 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
+import 'package:alibaba/main.dart';
 
 class TicketCatalog extends StatelessWidget {
   const TicketCatalog({
     super.key,
     required this.airlineName,
-    required this.airlineUrl,
+    required this.airlineImageUrl,
     required this.tag1,
     required this.tag2,
     required this.tag3,
@@ -19,7 +20,7 @@ class TicketCatalog extends StatelessWidget {
   });
 
   final String airlineName;
-  final String airlineUrl;
+  final String airlineImageUrl;
   final String tag1;
   final String tag2;
   final String tag3;
@@ -31,6 +32,8 @@ class TicketCatalog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    var appState = context.watch<MyAppState>();
     final theme = Theme.of(context);
     final style = theme.textTheme.displayMedium!.copyWith(
       color: theme.colorScheme.onPrimary,
@@ -40,18 +43,18 @@ class TicketCatalog extends StatelessWidget {
     );
     return Card(
       elevation: 20,
-      color: ,
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Text(
-            pair.asLowerCase,
-            style: style,
-            semanticsLabel: "${pair.first} ${pair.second}",
+      color: appState.columnColor,
+      child: InkWell(
+          splashColor: Colors.blue.withAlpha(30),
+          onTap: () {
+            debugPrint('Card tapped.');
+          },
+          child: const SizedBox(
+            width: 300,
+            height: 100,
+            child: Text('A card that can be tapped'),
           ),
         ),
-      ),
     );
   }
 }

@@ -6,7 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'main.dart';
 import 'MyHomePage.dart';
-
+import 'Widgets/TicketCatalog.dart';
 
 class FindPage extends StatefulWidget {
   @override
@@ -55,8 +55,13 @@ class _FindPageState extends State<FindPage> {
       padding: const EdgeInsets.all(5.0),
       child: Column(
         children: [
-          Expanded(
+          ConstrainedBox(
+            constraints: new BoxConstraints(
+            minHeight: 35.0,
+            maxHeight: 65.0,
+            ),
             child: ListView(
+              shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               children: [
                 Expanded(
@@ -166,7 +171,11 @@ class _FindPageState extends State<FindPage> {
               ],
             ),
           ),
-          Expanded(
+          ConstrainedBox(
+            constraints: new BoxConstraints(
+            minHeight: 35.0,
+            maxHeight: 70.0,
+            ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -212,6 +221,50 @@ class _FindPageState extends State<FindPage> {
                   ),
               ],
             ),
+          ),
+          Expanded(
+            child: 
+             Padding(
+               padding: const EdgeInsets.all(8.0),
+               child: ListView(
+                 children: [ 
+                  TicketCatalog(
+                    airlineName: "airlineName",
+                    airlineImageUrl: "airlineImageUrl",
+                    tag1: "tag1", 
+                    tag2: "tag2", 
+                    tag3: "tag3", 
+                    takeOffTime: "takeOffTime", 
+                    landingTime: "landingTime", 
+                    price: "price", 
+                    booked: 1, 
+                    capacity: 2,
+                  ),TicketCatalog(
+                    airlineName: "airlineName",
+                    airlineImageUrl: "airlineImageUrl",
+                    tag1: "tag1", 
+                    tag2: "tag2", 
+                    tag3: "tag3", 
+                    takeOffTime: "takeOffTime", 
+                    landingTime: "landingTime", 
+                    price: "price", 
+                    booked: 1, 
+                    capacity: 2,
+                  ),TicketCatalog(
+                    airlineName: "airlineName",
+                    airlineImageUrl: "airlineImageUrl",
+                    tag1: "tag1", 
+                    tag2: "tag2", 
+                    tag3: "tag3", 
+                    takeOffTime: "takeOffTime", 
+                    landingTime: "landingTime", 
+                    price: "price", 
+                    booked: 1, 
+                    capacity: 2,
+                  ),
+                 ],
+               ),
+             ),
           ),
         ],
       ),
