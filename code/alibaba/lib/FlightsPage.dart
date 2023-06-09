@@ -37,6 +37,9 @@ class _FlightsPageState extends State<FlightsPage>
   String? valueOriginInternational;
   String? valueDestinationInternational;
   String passengersText = "مسافران";
+  int adult = 1;
+  int child = 0;
+  int infant = 0;
   var buildSize;
   Widget build(BuildContext context) {
     //pagelayout
@@ -360,56 +363,121 @@ class _FlightsPageState extends State<FlightsPage>
         context: context,
         builder: (BuildContext bc) {
           return Container(
+              margin: EdgeInsets.symmetric(vertical: 5, horizontal: 12),
               height: MediaQuery.of(context).size.height * .35,
-              child: Padding(
-                  padding: const EdgeInsets.all(2.0),
-                  child: Row(children: [
-                    Container(
-                      margin: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width * .8,
-                          bottom: MediaQuery.of(context).size.height * .3),
-                      child: Text(
-                        "مسافران",
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.right,
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(
-                          // left: MediaQuery.of(context).size.width * .8,
-                          bottom: MediaQuery.of(context).size.height * .3),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * .5,
-                        child: Padding(
-                          padding: const EdgeInsets.all(2.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Flexible(
-                                child: Text(
-                                  " بزرگسال ",
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.right,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: Row(children: [
+                                Container(
+                                  margin: EdgeInsets.only(top: 7, bottom: 7),
+                                  decoration: BoxDecoration(),
+                                  child: Text(
+                                    "مسافران",
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                    textDirection: TextDirection.rtl,
+                                  ),
                                 ),
-                              ),
-                              Flexible(
-                                child: Text(
-                                  " (دوازده سال به بالا)",
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.right,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                              ])),
+                        ],
                       ),
-                    )
-                  ])));
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: Row(children: [
+                                Container(
+                                  margin: EdgeInsets.only(top: 7, bottom: 7),
+                                  child: Text(
+                                    "(دوازده سال به بالا) ",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                    ),
+                                    textAlign: TextAlign.right,
+                                  ),
+                                ),
+                                Container(
+                                  child: Text(
+                                    "  بزرگسال",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.right,
+                                  ),
+                                ),
+                              ]))
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: Row(children: [
+                                Container(
+                                  margin: EdgeInsets.only(top: 7, bottom: 7),
+                                  child: Text(
+                                    "(دو تا دوازده سال) ",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                    ),
+                                    textAlign: TextAlign.right,
+                                  ),
+                                ),
+                                Container(
+                                  child: Text(
+                                    "  کودک",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.right,
+                                  ),
+                                ),
+                              ]))
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: Row(children: [
+                                Container(
+                                  margin: EdgeInsets.only(top: 7, bottom: 7),
+                                  child: Text(
+                                    "(ده روز تا دو سال) ",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                    ),
+                                    textAlign: TextAlign.right,
+                                  ),
+                                ),
+                                Container(
+                                  child: Text(
+                                    "  نوزاد",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.right,
+                                  ),
+                                ),
+                              ]))
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ));
         });
   }
 }
