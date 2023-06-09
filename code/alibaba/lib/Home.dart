@@ -25,6 +25,7 @@ class _HomeState extends State<Home> {
               width: MediaQuery.of(context).size.width * .7,
               height: MediaQuery.of(context).size.height * .2,
               child: FloatingActionButton(
+                  heroTag: "btnFlights",
                   backgroundColor: Colors.blueGrey[600],
                   onPressed: () {
                     Navigator.push(context,
@@ -41,6 +42,7 @@ class _HomeState extends State<Home> {
               width: MediaQuery.of(context).size.width * .7,
               height: MediaQuery.of(context).size.height * .2,
               child: FloatingActionButton(
+                  heroTag: "btnTrains",
                   backgroundColor: Colors.blueGrey[600],
                   onPressed: () {
                     Navigator.push(context,
@@ -57,6 +59,7 @@ class _HomeState extends State<Home> {
               width: MediaQuery.of(context).size.width * .7,
               height: MediaQuery.of(context).size.height * .2,
               child: FloatingActionButton(
+                  heroTag: "btnBuses",
                   backgroundColor: Colors.blueGrey[600],
                   onPressed: () {
                     Navigator.push(context,

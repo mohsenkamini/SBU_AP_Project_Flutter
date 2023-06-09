@@ -31,6 +31,53 @@ class Ticket {
 
 class _FlightsPageState extends State<FlightsPage>
     with TickerProviderStateMixin {
+  static String selectedCity = "";
+
+  static final allCityItemsInter = [
+    'شهر پرواز خارجی 1',
+    'شهر پرواز خارجی 2',
+    'شهر پرواز خارجی 3',
+    'شهر پرواز خارجی 4',
+  ];
+  static List<String> originCitiesInter = [
+    'شهر پرواز خارجی 1',
+    'شهر پرواز خارجی 2',
+    'شهر پرواز خارجی 3',
+    'شهر پرواز خارجی 4',
+  ];
+  static var destinationCitiesInter = [
+    'شهر پرواز خارجی 1',
+    'شهر پرواز خارجی 2',
+    'شهر پرواز خارجی 3',
+    'شهر پرواز خارجی 4',
+  ];
+
+  static final allCityItems = [
+    'شهر پرواز داخلی 1',
+    'شهر پرواز داخلی 2',
+    'شهر پرواز داخلی 3',
+    'شهر پرواز داخلی 4',
+  ];
+  static List<String> originCities = [
+    'شهر پرواز داخلی 1',
+    'شهر پرواز داخلی 2',
+    'شهر پرواز داخلی 3',
+    'شهر پرواز داخلی 4',
+  ];
+  static var destinationCities = [
+    'شهر پرواز داخلی 1',
+    'شهر پرواز داخلی 2',
+    'شهر پرواز داخلی 3',
+    'شهر پرواز داخلی 4',
+  ];
+
+  List<String> availableCities(List<String> host, List<String> c, String s) {
+    c = host.sublist(0, host.length);
+    c.remove(s);
+    if (c != null) return c;
+    return [];
+  }
+
   int _adult = 1;
   int child = 0;
   int infant = 0;
@@ -69,7 +116,7 @@ class _FlightsPageState extends State<FlightsPage>
   }
 
   DomesticOrigin() {
-    var items = OriginDomestic.items;
+    var items = originCities;
 
     DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
         value: item,
@@ -95,13 +142,18 @@ class _FlightsPageState extends State<FlightsPage>
         ),
         items: items.map(buildMenuItem).toList(),
         value: valueOriginDomestic,
-        onChanged: ((value) => setState(() => valueOriginDomestic = value)),
+        onChanged: ((value) => setState(() {
+              valueOriginDomestic = value;
+              selectedCity = valueOriginDomestic!;
+              destinationCities = availableCities(
+                  allCityItems, destinationCities, selectedCity);
+            })),
       ),
     );
   }
 
   DomesticDestination() {
-    var items = DestinationDomestic.items;
+    var items = destinationCities;
 
     DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
         value: item,
@@ -127,8 +179,12 @@ class _FlightsPageState extends State<FlightsPage>
         ),
         items: items.map(buildMenuItem).toList(),
         value: valueDestinationDomestic,
-        onChanged: ((value) =>
-            setState(() => valueDestinationDomestic = value)),
+        onChanged: ((value) => setState(() {
+              valueDestinationDomestic = value;
+              selectedCity = valueDestinationDomestic!;
+              originCities =
+                  availableCities(allCityItems, originCities, selectedCity);
+            })),
       ),
     );
   }
@@ -209,12 +265,14 @@ class _FlightsPageState extends State<FlightsPage>
   }
 
   InternationalOrigin() {
-    var items = OriginDomestic.items;
+    var items = originCitiesInter;
 
     DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
         value: item,
-        child: Text(
-          item,
+        child: Center(
+          child: Text(
+            item,
+          ),
         ));
     return Container(
       margin: EdgeInsets.only(top: 5, right: 20, left: 20),
@@ -233,14 +291,18 @@ class _FlightsPageState extends State<FlightsPage>
         ),
         items: items.map(buildMenuItem).toList(),
         value: valueOriginInternational,
-        onChanged: ((value) =>
-            setState(() => valueOriginInternational = value)),
+        onChanged: ((value) => setState(() {
+              valueOriginInternational = value;
+              selectedCity = valueOriginInternational!;
+              destinationCitiesInter = availableCities(
+                  allCityItemsInter, destinationCitiesInter, selectedCity);
+            })),
       ),
     );
   }
 
   InternationalDestination() {
-    var items = DestinationInternational.items;
+    var items = destinationCitiesInter;
 
     DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
         value: item,
@@ -270,8 +332,12 @@ class _FlightsPageState extends State<FlightsPage>
         ),
         items: items.map(buildMenuItem).toList(),
         value: valueDestinationInternational,
-        onChanged: ((value) =>
-            setState(() => valueDestinationInternational = value)),
+        onChanged: ((value) => setState(() {
+              valueDestinationInternational = value;
+              selectedCity = valueDestinationInternational!;
+              originCitiesInter = availableCities(
+                  allCityItemsInter, originCitiesInter, selectedCity);
+            })),
       ),
     );
   }

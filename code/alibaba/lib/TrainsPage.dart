@@ -41,6 +41,33 @@ class _TrainsPageState extends State<TrainsPage> with TickerProviderStateMixin {
   String passengersText = "مسافران";
   String calendarTextDeparture = "تاریخ رفت";
   String calendarTextReturn = "تاریخ برگشت";
+  static String selectedCity = "";
+
+  static final allCityItems = [
+    'train city1',
+    'train city2',
+    'train city3',
+    'train city4'
+  ];
+  static List<String> originCities = [
+    'train city1',
+    'train city2',
+    'train city3',
+    'train city4'
+  ];
+  static var destinationCities = [
+    'train city1',
+    'train city2',
+    'train city3',
+    'train city4'
+  ];
+
+  List<String> availableCities(List<String> c, String s) {
+    c = allCityItems.sublist(0, allCityItems.length);
+    c.remove(s);
+    if (c != null) return c;
+    return [];
+  }
 
   var buildSize;
   Widget build(BuildContext context) {
@@ -370,7 +397,7 @@ class _TrainsPageState extends State<TrainsPage> with TickerProviderStateMixin {
   }
 
   DomesticOrigin() {
-    var items = OriginDomestic.items;
+    var items = originCities;
 
     DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
         value: item,
@@ -396,13 +423,18 @@ class _TrainsPageState extends State<TrainsPage> with TickerProviderStateMixin {
         ),
         items: items.map(buildMenuItem).toList(),
         value: valueOriginDomestic,
-        onChanged: ((value) => setState(() => valueOriginDomestic = value)),
+        onChanged: ((value) => setState(() {
+              valueOriginDomestic = value;
+              selectedCity = valueOriginDomestic!;
+              destinationCities =
+                  availableCities(destinationCities, selectedCity);
+            })),
       ),
     );
   }
 
   DomesticDestination() {
-    var items = DestinationDomestic.items;
+    var items = destinationCities;
 
     DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
         value: item,
@@ -428,8 +460,14 @@ class _TrainsPageState extends State<TrainsPage> with TickerProviderStateMixin {
         ),
         items: items.map(buildMenuItem).toList(),
         value: valueDestinationDomestic,
-        onChanged: ((value) =>
-            setState(() => valueDestinationDomestic = value)),
+        onChanged: ((value) => setState(() {
+              valueDestinationDomestic = value;
+              selectedCity = valueDestinationDomestic!;
+              List<String> temp = [];
+              temp = availableCities(originCities, selectedCity);
+              originCities = temp;
+              int x = 2;
+            })),
       ),
     );
   }

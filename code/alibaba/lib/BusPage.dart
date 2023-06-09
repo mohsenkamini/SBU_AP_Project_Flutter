@@ -30,6 +30,32 @@ class Ticket {
 }
 
 class _BusPageState extends State<BusPage> with TickerProviderStateMixin {
+  static String selectedCity = "";
+  static final allCityItems = [
+    'شهر اتوبوس 1',
+    'شهر اتوبوس 2',
+    'شهر اتوبوس 3',
+    'شهر اتوبوس 4',
+  ];
+  static List<String> originCities = [
+    'شهر اتوبوس 1',
+    'شهر اتوبوس 2',
+    'شهر اتوبوس 3',
+    'شهر اتوبوس 4',
+  ];
+  static var destinationCities = [
+    'شهر اتوبوس 1',
+    'شهر اتوبوس 2',
+    'شهر اتوبوس 3',
+    'شهر اتوبوس 4',
+  ];
+  List<String> availableCities(List<String> c, String s) {
+    c = allCityItems.sublist(0, allCityItems.length);
+    c.remove(s);
+    if (c != null) return c;
+    return [];
+  }
+
   int _adult = 1;
   int child = 0;
   int infant = 0;
@@ -328,7 +354,7 @@ class _BusPageState extends State<BusPage> with TickerProviderStateMixin {
   }
 
   DomesticOrigin() {
-    var items = OriginDomestic.items;
+    var items = originCities;
 
     DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
         value: item,
@@ -354,13 +380,18 @@ class _BusPageState extends State<BusPage> with TickerProviderStateMixin {
         ),
         items: items.map(buildMenuItem).toList(),
         value: valueOriginDomestic,
-        onChanged: ((value) => setState(() => valueOriginDomestic = value)),
+        onChanged: ((value) => setState(() {
+              valueOriginDomestic = value;
+              selectedCity = valueOriginDomestic!;
+              destinationCities =
+                  availableCities(destinationCities, selectedCity);
+            })),
       ),
     );
   }
 
   DomesticDestination() {
-    var items = DestinationDomestic.items;
+    var items = destinationCities;
 
     DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
         value: item,
