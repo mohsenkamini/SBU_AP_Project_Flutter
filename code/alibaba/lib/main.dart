@@ -24,7 +24,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(
-              seedColor: Color.fromARGB(245, 151, 151, 94)),
+              seedColor: Colors.amber,
+              ),
         ),
         home: MyHomePage(),
         routes: <String, WidgetBuilder>{
