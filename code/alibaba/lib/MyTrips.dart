@@ -246,7 +246,7 @@ class MyTrips extends StatelessWidget {
                         DataRow(
                           cells: [
                             DataCell(i.statusIcon()),
-                            DataCell(Center(child: Text(i.price, textAlign:TextAlign.center))),
+                            DataCell(Center(child: Text(i.price, textAlign:TextAlign.center, style: TextStyle(color: Colors.green.shade700,fontWeight: FontWeight.bold),))),
                             DataCell(Center(child: Text(i.dateAndTime, textAlign:TextAlign.center))),
                             DataCell(Center(child: Text(i.type, textAlign:TextAlign.center))),
                             DataCell(Center(child: Text(i.number, textAlign:TextAlign.center))),
