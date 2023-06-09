@@ -112,18 +112,26 @@ class _FlightsPageState extends State<FlightsPage>
 
     DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
         value: item,
-        child: Text(
-          item,
+        child: Center(
+          child: Text(
+            item,
+          ),
         ));
     return Container(
-      // margin: EdgeInsets.only(top: 2, bottom: 350, right: 20, left: 10),
-      padding: EdgeInsets.only(top: 2, bottom: 0, right: 20, left: 10),
+      margin: EdgeInsets.only(top: 5, right: 20, left: 20),
+      padding: EdgeInsets.only(top: 2, bottom: 0, right: 10, left: 10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: Colors.black87, width: 2)),
       child: DropdownButton<String>(
+        icon: Icon(Icons.location_on_outlined),
         isExpanded: true,
-        hint: Text("مبدا"),
+        hint: Center(
+          child: Text(
+            "مبدا",
+            textAlign: TextAlign.right,
+          ),
+        ),
         items: items.map(buildMenuItem).toList(),
         value: valueOriginDomestic,
         onChanged: ((value) => setState(() => valueOriginDomestic = value)),
@@ -136,18 +144,26 @@ class _FlightsPageState extends State<FlightsPage>
 
     DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
         value: item,
-        child: Text(
-          item,
+        child: Center(
+          child: Text(
+            item,
+          ),
         ));
     return Container(
-      // margin: EdgeInsets.only(top: 2, bottom: 350, right: 20, left: 10),
-      padding: EdgeInsets.only(top: 2, bottom: 0, right: 20, left: 10),
+      margin: EdgeInsets.only(top: 5, right: 20, left: 20),
+      padding: EdgeInsets.only(top: 2, bottom: 0, right: 10, left: 10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: Colors.black87, width: 2)),
       child: DropdownButton<String>(
+        icon: Icon(Icons.location_on_outlined),
         isExpanded: true,
-        hint: Text("مقصد"),
+        hint: Center(
+          child: Text(
+            "مقصد",
+            textAlign: TextAlign.right,
+          ),
+        ),
         items: items.map(buildMenuItem).toList(),
         value: valueDestinationDomestic,
         onChanged: ((value) =>
@@ -213,14 +229,20 @@ class _FlightsPageState extends State<FlightsPage>
           item,
         ));
     return Container(
-      // margin: EdgeInsets.only(top: 2, bottom: 350, right: 20, left: 10),
-      padding: EdgeInsets.only(top: 2, bottom: 0, right: 20, left: 10),
+      margin: EdgeInsets.only(top: 5, right: 20, left: 20),
+      padding: EdgeInsets.only(top: 2, bottom: 0, right: 10, left: 10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: Colors.black87, width: 2)),
       child: DropdownButton<String>(
+        icon: Icon(Icons.location_on_outlined),
         isExpanded: true,
-        hint: Text("مبدا"),
+        hint: Center(
+          child: Text(
+            "مبدا",
+            textAlign: TextAlign.right,
+          ),
+        ),
         items: items.map(buildMenuItem).toList(),
         value: valueOriginInternational,
         onChanged: ((value) =>
@@ -234,18 +256,30 @@ class _FlightsPageState extends State<FlightsPage>
 
     DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
         value: item,
-        child: Text(
-          item,
+        child: Center(
+          child: Center(
+            child: Text(
+              item,
+            ),
+          ),
         ));
     return Container(
-      // margin: EdgeInsets.only(top: 2, bottom: 350, right: 20, left: 10),
-      padding: EdgeInsets.only(top: 2, bottom: 0, right: 20, left: 10),
+      margin: EdgeInsets.only(top: 5, right: 20, left: 20),
+      padding: EdgeInsets.only(top: 2, bottom: 0, right: 10, left: 10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: Colors.black87, width: 2)),
       child: DropdownButton<String>(
+        icon: Icon(Icons.location_on_outlined),
         isExpanded: true,
-        hint: Text("مقصد"),
+        hint: Center(
+          child: Center(
+            child: Text(
+              "مقصد",
+              textAlign: TextAlign.right,
+            ),
+          ),
+        ),
         items: items.map(buildMenuItem).toList(),
         value: valueDestinationInternational,
         onChanged: ((value) =>
