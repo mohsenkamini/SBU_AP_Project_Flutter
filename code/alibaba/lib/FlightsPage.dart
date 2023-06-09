@@ -40,6 +40,8 @@ class _FlightsPageState extends State<FlightsPage>
   String? valueOriginInternational;
   String? valueDestinationInternational;
   String passengersText = "مسافران";
+  String calendarTextDeparture = "تاریخ رفت";
+  String calendarTextReturn = "تاریخ برگشت";
 
   var buildSize;
   Widget build(BuildContext context) {
@@ -162,8 +164,22 @@ class _FlightsPageState extends State<FlightsPage>
                 Container(
                   child: SizedBox(child: DomesticDestination()),
                 ),
-                Container(
-                  child: Passengers(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                        child: Container(
+                            child: CalendarReturn(
+                                MediaQuery.of(context).size.width * .45))),
+                    Container(
+                        child: CalendarDeparture(
+                            MediaQuery.of(context).size.width * .45)),
+                  ],
+                ),
+                Center(
+                  child: Container(
+                    child: Passengers(),
+                  ),
                 ),
                 Container(child: SearchButton()),
               ],
@@ -177,9 +193,13 @@ class _FlightsPageState extends State<FlightsPage>
                 Container(
                   child: SizedBox(child: DomesticDestination()),
                 ),
-                Container(child: Calendar()),
                 Container(
-                  child: Passengers(),
+                    child: CalendarDeparture(
+                        MediaQuery.of(context).size.width * .9)),
+                Center(
+                  child: Container(
+                    child: Passengers(),
+                  ),
                 ),
                 Container(child: SearchButton()),
               ],
@@ -287,7 +307,18 @@ class _FlightsPageState extends State<FlightsPage>
                 Container(
                   child: SizedBox(child: InternationalDestination()),
                 ),
-                Container(child: Calendar()),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                        child: Container(
+                            child: CalendarReturn(
+                                MediaQuery.of(context).size.width * .45))),
+                    Container(
+                        child: CalendarDeparture(
+                            MediaQuery.of(context).size.width * .45)),
+                  ],
+                ),
                 Container(
                   child: Passengers(),
                 ),
@@ -303,7 +334,9 @@ class _FlightsPageState extends State<FlightsPage>
                 Container(
                   child: SizedBox(child: InternationalDestination()),
                 ),
-                Container(child: Calendar()),
+                Container(
+                    child: CalendarDeparture(
+                        MediaQuery.of(context).size.width * .9)),
                 Container(
                   child: Passengers(),
                 ),
@@ -315,20 +348,22 @@ class _FlightsPageState extends State<FlightsPage>
   }
 
   Passengers() {
-    return SizedBox(
-      child: Container(
-        margin: EdgeInsets.only(
-            top: 20, right: 20, left: AppLayout.getScreenWidth() * .6),
-        padding: EdgeInsets.only(top: 10, bottom: 10, right: 10),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: Colors.black87, width: 2)),
-        child: Center(
-            child: TextButton(
-                onPressed: () {
-                  _passengersBottomSheet(context);
-                },
-                child: Text(passengersText))),
+    return Center(
+      child: SizedBox(
+        child: Container(
+          width: MediaQuery.of(context).size.width * .5,
+          margin: EdgeInsets.only(top: 20),
+          padding: EdgeInsets.only(top: 10, bottom: 10, right: 10),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: Colors.black87, width: 2)),
+          child: Center(
+              child: TextButton(
+                  onPressed: () {
+                    _passengersBottomSheet(context);
+                  },
+                  child: Text(passengersText))),
+        ),
       ),
     );
   }
@@ -338,7 +373,8 @@ class _FlightsPageState extends State<FlightsPage>
       child: SizedBox(
           width: buildSize.width * .7,
           child: Center(
-            child: SizedBox(
+            child: Container(
+              margin: EdgeInsets.only(top: 20),
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(context,
@@ -357,7 +393,37 @@ class _FlightsPageState extends State<FlightsPage>
     );
   }
 
-  Calendar() {}
+  CalendarDeparture(double a) {
+    return SizedBox(
+      width: a,
+      child: Container(
+        margin: EdgeInsets.only(top: 20, right: 20, left: 20),
+        padding: EdgeInsets.only(top: 10, bottom: 10, right: 10),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: Colors.black87, width: 2)),
+        child: Center(
+            child: TextButton(
+                onPressed: () {}, child: Text(calendarTextDeparture))),
+      ),
+    );
+  }
+
+  CalendarReturn(double a) {
+    return SizedBox(
+      width: a,
+      child: Container(
+        margin: EdgeInsets.only(top: 20, right: 20, left: 20),
+        padding: EdgeInsets.only(top: 10, bottom: 10, right: 10),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: Colors.black87, width: 2)),
+        child: Center(
+            child:
+                TextButton(onPressed: () {}, child: Text(calendarTextReturn))),
+      ),
+    );
+  }
 
   void _passengersBottomSheet(context) {
     showModalBottomSheet(
