@@ -79,7 +79,7 @@ class MyTrips extends StatelessWidget {
     appState.trips.add(
       Trip(
         number: "۹۳۷۳۵۴۳",
-        type: "پرواز داخلی",
+        type: "قطار",
         dateAndTime: "۱۴۰۱/۰۹/۲۱ ۱۸:۰۰",
         price: "۱۰,۳۰۰,۰۰۰",
         status: Trip.statusDismissed,
