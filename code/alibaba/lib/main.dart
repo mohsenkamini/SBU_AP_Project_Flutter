@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'Account.dart';
 import 'FavoritesPage.dart';
 import 'MyHomePage.dart';
+import 'MyTrips.dart';
 
 void main() { 
   runApp(MyApp());
@@ -59,6 +60,8 @@ class MyAppState extends ChangeNotifier {
     }
     notifyListeners();
   }
+  var trips = <Trip>[];
+  
 }
 
 class GeneratorPage extends StatelessWidget {

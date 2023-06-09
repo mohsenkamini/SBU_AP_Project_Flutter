@@ -7,6 +7,7 @@ import 'main.dart';
 import 'FavoritesPage.dart';
 import 'Account.dart';
 import 'FindPage.dart';
+import 'MyTrips.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -30,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = Account();
         break;
       case 1:
-        page = FindPage();
+        page = MyTrips();
         break;
       case 2:
         page = FlightsPage();
