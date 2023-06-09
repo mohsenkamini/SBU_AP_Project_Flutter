@@ -31,15 +31,16 @@ class Ticket {
 
 class _FlightsPageState extends State<FlightsPage>
     with TickerProviderStateMixin {
+  int _adult = 1;
+  int child = 0;
+  int infant = 0;
   @override
   String? valueOriginDomestic;
   String? valueDestinationDomestic;
   String? valueOriginInternational;
   String? valueDestinationInternational;
   String passengersText = "مسافران";
-  int adult = 1;
-  int child = 0;
-  int infant = 0;
+
   var buildSize;
   Widget build(BuildContext context) {
     //pagelayout
@@ -395,27 +396,55 @@ class _FlightsPageState extends State<FlightsPage>
                         children: [
                           Padding(
                               padding: const EdgeInsets.all(2.0),
-                              child: Row(children: [
-                                Container(
-                                  margin: EdgeInsets.only(top: 7, bottom: 7),
-                                  child: Text(
-                                    "(دوازده سال به بالا) ",
-                                    style: TextStyle(
-                                      fontSize: 12,
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                              child: ElevatedButton(
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      _adult--;
+                                                    });
+                                                  },
+                                                  child: Icon(Icons.remove))),
+                                          Text('$_adult'),
+                                          Container(
+                                              child: ElevatedButton(
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      _adult++;
+                                                    });
+                                                  },
+                                                  child: Icon(Icons.add))),
+                                        ],
+                                      ),
                                     ),
-                                    textAlign: TextAlign.right,
-                                  ),
-                                ),
-                                Container(
-                                  child: Text(
-                                    "  بزرگسال",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold),
-                                    textAlign: TextAlign.right,
-                                  ),
-                                ),
-                              ]))
+                                    Container(
+                                      margin:
+                                          EdgeInsets.only(top: 7, bottom: 7),
+                                      child: Text(
+                                        "(دوازده سال به بالا) ",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                        ),
+                                        textAlign: TextAlign.right,
+                                      ),
+                                    ),
+                                    Container(
+                                      child: Text(
+                                        "  بزرگسال",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold),
+                                        textAlign: TextAlign.right,
+                                      ),
+                                    ),
+                                  ]))
                         ],
                       ),
                       Row(
