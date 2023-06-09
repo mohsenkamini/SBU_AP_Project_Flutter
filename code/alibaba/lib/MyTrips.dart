@@ -106,36 +106,41 @@ class MyTrips extends StatelessWidget {
         child: SingleChildScrollView(
           reverse: true,
           scrollDirection: Axis.horizontal,
-          child: DataTable(
-            dataRowColor: MaterialStateColor.resolveWith((states) => Colors.white),
-            headingRowColor: MaterialStateColor.resolveWith((states) => Colors.lightBlue.shade50),
-            columnSpacing: 8,
-            border: TableBorder(verticalInside: BorderSide(
-              color: Colors.grey,
-              width: 0.1,
-              
-            )),
-            columns: [
-              DataColumn(label: Center(child: Text(fields[4], textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))),
-              DataColumn(label: Center(child: Text(fields[3], textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))),
-              DataColumn(label: Center(child: Text(fields[2], textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))),
-              DataColumn(label: Center(child: Text(fields[1], textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))),
-              DataColumn(
-                label: Center(child: Text(fields.first, textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))
-              ),
-            ],
-            rows: 
-            [
-                for (var i in appState.trips)
-                  DataRow(
-                    cells: [
-                      DataCell(i.statusIcon()),
-                      DataCell(Center(child: Text(i.price, textAlign:TextAlign.center))),
-                      DataCell(Center(child: Text(i.dateAndTime, textAlign:TextAlign.center))),
-                      DataCell(Center(child: Text(i.type, textAlign:TextAlign.center))),
-                      DataCell(Center(child: Text(i.number, textAlign:TextAlign.center))),
-                    ],
+          child: Column(
+            children: [
+              Text('data'),
+              DataTable(
+                dataRowColor: MaterialStateColor.resolveWith((states) => Colors.white),
+                headingRowColor: MaterialStateColor.resolveWith((states) => Colors.lightBlue.shade50),
+                columnSpacing: 8,
+                border: TableBorder(verticalInside: BorderSide(
+                  color: Colors.grey,
+                  width: 0.1,
+                  
+                )),
+                columns: [
+                  DataColumn(label: Center(child: Text(fields[4], textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))),
+                  DataColumn(label: Center(child: Text(fields[3], textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))),
+                  DataColumn(label: Center(child: Text(fields[2], textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))),
+                  DataColumn(label: Center(child: Text(fields[1], textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))),
+                  DataColumn(
+                    label: Center(child: Text(fields.first, textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))
                   ),
+                ],
+                rows: 
+                [
+                    for (var i in appState.trips)
+                      DataRow(
+                        cells: [
+                          DataCell(i.statusIcon()),
+                          DataCell(Center(child: Text(i.price, textAlign:TextAlign.center))),
+                          DataCell(Center(child: Text(i.dateAndTime, textAlign:TextAlign.center))),
+                          DataCell(Center(child: Text(i.type, textAlign:TextAlign.center))),
+                          DataCell(Center(child: Text(i.number, textAlign:TextAlign.center))),
+                        ],
+                      ),
+                ],
+              ),
             ],
           ),
         ),
