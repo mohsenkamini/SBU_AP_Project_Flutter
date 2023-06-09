@@ -1,4 +1,5 @@
 import 'package:alibaba/Account.dart';
+import 'package:alibaba/Details/OriginDomestic.dart';
 import 'package:alibaba/FavoritesPage.dart';
 import 'package:alibaba/FindPage.dart';
 import 'package:alibaba/main.dart';
@@ -8,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:alibaba/screens/utils/Styles.dart';
 import 'package:alibaba/DomesticFlights.dart';
-
+import 'package:alibaba/Details/OriginDomestic.dart';
 import 'InternationalFlights.dart';
 
 class FlightsPage extends StatefulWidget {
@@ -31,6 +32,7 @@ class Ticket {
 class _FlightsPageState extends State<FlightsPage>
     with TickerProviderStateMixin {
   @override
+  String? valueOriginDomestic;
   Widget build(BuildContext context) {
     //pagelayout
     final size = AppLayout.getSize(context);
@@ -47,90 +49,10 @@ class _FlightsPageState extends State<FlightsPage>
               ),
             ]),
           ),
-          body: TabBarView(children: <Widget>[FlightTabs(), FlightTabs()])
-          // body: ListView(
-          //     padding: EdgeInsets.symmetric(
-          //         horizontal: AppLayout.getWidth(20),
-          //         vertical: AppLayout.getHeight(20)),
-          //     children: [
-          //       //Start of Header
-          //       Gap(AppLayout.getHeight(20)),
-          //       Center(
-          //         child: Text(
-          //           "پروازها",
-          //           style: TextStyle(
-          //               color: Colors.black,
-          //               fontSize: 20,
-          //               fontWeight: FontWeight.bold),
-          //         ),
-          //       ),
-          //       //End of Header
-
-          //       //Start of Flight buttons
-          //       Gap(AppLayout.getHeight(20)),
-          //       SizedBox(
-          //           child: TabBar(
-          //         controller: _tabController,
-          //         labelColor: Colors.black,
-          //         unselectedLabelColor: Colors.black,
-          //         tabs: [
-          //           Tab(text: "پروازهای داخلی"),
-          //           Tab(text: "پروازهای خارجی"),
-          //         ],
-          //       )),
-
-          //       SizedBox(
-          //         width: 20,
-          //         height: AppLayout.getHeight(30),
-          //         child: TabBarView(
-          //           controller: _tabController,
-          //           children: [
-          //             SizedBox(
-          //                 width: 20,
-          //                 height: AppLayout.getHeight(25),
-          //                 child: Container(
-          //                   child: TabBar(
-          //                       controller: _tabController1,
-          //                       labelColor: Colors.black,
-          //                       unselectedLabelColor: Colors.black,
-          //                       tabs: [
-          //                         Tab(text: "دو طرفه"),
-          //                         Tab(text: "یک طرفه"),
-          //                       ]),
-          //                 )),
-          //             SizedBox(
-          //                 width: 20,
-          //                 height: AppLayout.getHeight(25),
-          //                 child: Container(
-          //                   child: TabBar(
-          //                       controller: _tabController2,
-          //                       labelColor: Colors.black,
-          //                       unselectedLabelColor: Colors.black,
-          //                       tabs: [
-          //                         Tab(text: "دو طرفه"),
-          //                         Tab(text: "یک طرفه"),
-          //                       ]),
-          //                 )),
-          //             SizedBox(
-          //               width: 20,
-          //               height: AppLayout.getHeight(30),
-          //               child: TabBarView(
-          //                   controller: _tabController2,
-          //                   children: [Text("Test1"), Text("Test2")]),
-          //             ),
-          //             SizedBox(
-          //               child:
-          //                   TabBarView(controller: _tabController, children: [
-          //                 Text(
-          //                   "Test1",
-          //                   style: TextStyle(fontSize: 30),
-          //                 ),
-          //                 Text("Test2")
-          //               ]),
-          //             ),
-          //           ],
-          //         ),
-          //       ),
+          body: TabBarView(children: <Widget>[
+            FlightTabsDomestic(),
+            FlightTabsInternational()
+          ])
           //       Gap(AppLayout.getHeight(300)),
           //       FittedBox(
           //         child: Center(
@@ -183,27 +105,81 @@ class _FlightsPageState extends State<FlightsPage>
     );
   }
 
-  FlightTabs() {
+  DomesticOrigin() {
+    var items = OriginDomestic.items;
+
+    DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
+        value: item,
+        child: Text(
+          item,
+        ));
+    return DropdownButton<String>(
+      isExpanded: true,
+      items: items.map(buildMenuItem).toList(),
+      value: valueOriginDomestic,
+      onChanged: ((value) => setState(() => valueOriginDomestic = value)),
+    );
+  }
+
+  FlightTabsDomestic() {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
           appBar: AppBar(
+            title: Transform(
+              transform: Matrix4.translationValues(-20.0, 0.0, 0.0),
+            ),
             backgroundColor: Colors.white,
-            bottom: TabBar(
-              tabs: <Widget>[
-                Tab(
-                  child: Container(child: Text("دو طرفه")),
-                ),
-                Tab(child: Container(child: Text("یک طرفه"))),
-              ],
+            bottom: PreferredSize(
+              preferredSize: Size.fromHeight(0),
+              child: TabBar(
+                tabs: <Widget>[
+                  Tab(
+                    child: Container(child: Text("دو طرفه")),
+                  ),
+                  Tab(child: Container(child: Text("یک طرفه"))),
+                ],
+              ),
             ),
           ),
           body: TabBarView(children: <Widget>[
+            //Two-Way
+            Container(color: Colors.amber[300], child: DomesticOrigin()),
+            //One-Way
             Container(
-              color: Colors.amber[600],
+              color: Colors.amber[200],
+            )
+          ])),
+    );
+  }
+
+  FlightTabsInternational() {
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+          appBar: AppBar(
+            title: Transform(
+              transform: Matrix4.translationValues(-20.0, 0.0, 0.0),
             ),
+            backgroundColor: Colors.white,
+            bottom: PreferredSize(
+              preferredSize: Size.fromHeight(0),
+              child: TabBar(
+                tabs: <Widget>[
+                  Tab(
+                    child: Container(child: Text("دو طرفه")),
+                  ),
+                  Tab(child: Container(child: Text("یک طرفه"))),
+                ],
+              ),
+            ),
+          ),
+          body: TabBarView(children: <Widget>[
+            //Two-Way
+            Container(color: Colors.amber[300]),
+            //One-Way
             Container(
-              color: Colors.amber[100],
+              color: Colors.amber[200],
             )
           ])),
     );
