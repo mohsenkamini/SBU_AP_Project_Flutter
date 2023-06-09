@@ -34,273 +34,178 @@ class _FlightsPageState extends State<FlightsPage>
   Widget build(BuildContext context) {
     //pagelayout
     final size = AppLayout.getSize(context);
-    TabController _tabController = TabController(length: 2, vsync: this);
-    TabController _tabController1 = TabController(length: 2, vsync: this);
-    TabController _tabController2 = TabController(length: 2, vsync: this);
-    TabController _tabController3 = TabController(length: 2, vsync: this);
-    TabController _tabController4 = TabController(length: 2, vsync: this);
-    return Scaffold(
-        backgroundColor: Color.fromARGB(255, 240, 243, 243),
-        body: ListView(
-            padding: EdgeInsets.symmetric(
-                horizontal: AppLayout.getWidth(20),
-                vertical: AppLayout.getHeight(20)),
-            children: [
-              //Start of Header
-              Gap(AppLayout.getHeight(20)),
-              Center(
-                child: Text(
-                  "پروازها",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
-                ),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Color.fromARGB(255, 240, 243, 243),
+            title: Center(child: Text("پروازها")),
+            bottom: TabBar(tabs: <Widget>[
+              Tab(child: Container(child: Text("پرواز داخلی"))),
+              Tab(
+                child: Container(child: Text("پرواز خارجی")),
               ),
-              //End of Header
+            ]),
+          ),
+          body: TabBarView(children: <Widget>[FlightTabs(), FlightTabs()])
+          // body: ListView(
+          //     padding: EdgeInsets.symmetric(
+          //         horizontal: AppLayout.getWidth(20),
+          //         vertical: AppLayout.getHeight(20)),
+          //     children: [
+          //       //Start of Header
+          //       Gap(AppLayout.getHeight(20)),
+          //       Center(
+          //         child: Text(
+          //           "پروازها",
+          //           style: TextStyle(
+          //               color: Colors.black,
+          //               fontSize: 20,
+          //               fontWeight: FontWeight.bold),
+          //         ),
+          //       ),
+          //       //End of Header
 
-              //Start of Flight buttons
-              Gap(AppLayout.getHeight(20)),
-              SizedBox(
-                  child: TabBar(
-                controller: _tabController,
-                labelColor: Colors.black,
-                unselectedLabelColor: Colors.black,
-                tabs: [
-                  Tab(text: "پروازهای داخلی"),
-                  Tab(text: "پروازهای خارجی"),
-                ],
-              )),
+          //       //Start of Flight buttons
+          //       Gap(AppLayout.getHeight(20)),
+          //       SizedBox(
+          //           child: TabBar(
+          //         controller: _tabController,
+          //         labelColor: Colors.black,
+          //         unselectedLabelColor: Colors.black,
+          //         tabs: [
+          //           Tab(text: "پروازهای داخلی"),
+          //           Tab(text: "پروازهای خارجی"),
+          //         ],
+          //       )),
 
-              SizedBox(
-                width: 20,
-                height: AppLayout.getHeight(30),
-                child: TabBarView(
-                  controller: _tabController,
-                  children: [
-                    SizedBox(
-                        width: 20,
-                        height: AppLayout.getHeight(25),
-                        child: Container(
-                          child: TabBar(
-                              controller: _tabController1,
-                              labelColor: Colors.black,
-                              unselectedLabelColor: Colors.black,
-                              tabs: [
-                                Tab(text: "دو طرفه"),
-                                Tab(text: "یک طرفه"),
-                              ]),
-                        )),
-                    SizedBox(
-                        width: 20,
-                        height: AppLayout.getHeight(25),
-                        child: Container(
-                          child: TabBar(
-                              controller: _tabController2,
-                              labelColor: Colors.black,
-                              unselectedLabelColor: Colors.black,
-                              tabs: [
-                                Tab(text: "دو طرفه"),
-                                Tab(text: "یک طرفه"),
-                              ]),
-                        )),
-                    SizedBox(
-                      child: TabBarView(
-                          controller: _tabController2,
-                          children: [Text("Test1"), Text("Test2")]),
-                    ),
-                    SizedBox(
-                      child: TabBarView(
-                          controller: _tabController,
-                          children: [Text("Test1"), Text("Test2")]),
-                    ),
-                  ],
+          //       SizedBox(
+          //         width: 20,
+          //         height: AppLayout.getHeight(30),
+          //         child: TabBarView(
+          //           controller: _tabController,
+          //           children: [
+          //             SizedBox(
+          //                 width: 20,
+          //                 height: AppLayout.getHeight(25),
+          //                 child: Container(
+          //                   child: TabBar(
+          //                       controller: _tabController1,
+          //                       labelColor: Colors.black,
+          //                       unselectedLabelColor: Colors.black,
+          //                       tabs: [
+          //                         Tab(text: "دو طرفه"),
+          //                         Tab(text: "یک طرفه"),
+          //                       ]),
+          //                 )),
+          //             SizedBox(
+          //                 width: 20,
+          //                 height: AppLayout.getHeight(25),
+          //                 child: Container(
+          //                   child: TabBar(
+          //                       controller: _tabController2,
+          //                       labelColor: Colors.black,
+          //                       unselectedLabelColor: Colors.black,
+          //                       tabs: [
+          //                         Tab(text: "دو طرفه"),
+          //                         Tab(text: "یک طرفه"),
+          //                       ]),
+          //                 )),
+          //             SizedBox(
+          //               width: 20,
+          //               height: AppLayout.getHeight(30),
+          //               child: TabBarView(
+          //                   controller: _tabController2,
+          //                   children: [Text("Test1"), Text("Test2")]),
+          //             ),
+          //             SizedBox(
+          //               child:
+          //                   TabBarView(controller: _tabController, children: [
+          //                 Text(
+          //                   "Test1",
+          //                   style: TextStyle(fontSize: 30),
+          //                 ),
+          //                 Text("Test2")
+          //               ]),
+          //             ),
+          //           ],
+          //         ),
+          //       ),
+          //       Gap(AppLayout.getHeight(300)),
+          //       FittedBox(
+          //         child: Center(
+          //           child: Row(
+          //             children: [
+          //               Center(
+          //                 child: Container(
+          //                     decoration: BoxDecoration(
+          //                       borderRadius: BorderRadius.circular(
+          //                         AppLayout.getHeight(50),
+          //                       ),
+          //                     ),
+          //                     child: Row(
+          //                       children: [
+          //                         Center(
+          //                           child: SizedBox(
+          //                               width: size.width * .7,
+          //                               child: Center(
+          //                                 child: SizedBox(
+          //                                   child: ElevatedButton(
+          //                                     onPressed: () {
+          //                                       Navigator.push(
+          //                                           context,
+          //                                           MaterialPageRoute(
+          //                                               builder: (context) =>
+          //                                                   FindPage()));
+          //                                     },
+          //                                     child: Text(
+          //                                       'جست و جو',
+          //                                       style: TextStyle(
+          //                                         fontSize: 20,
+          //                                         fontWeight: FontWeight.bold,
+          //                                       ),
+          //                                     ),
+          //                                   ),
+          //                                 ),
+          //                               )),
+          //                         ),
+          //                       ],
+          //                     )),
+          //               ),
+          //             ],
+          //           ),
+          //         ),
+          //       ),
+          //       //End of Search Button
+          //     ])),
+
+          ),
+    );
+  }
+
+  FlightTabs() {
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            bottom: TabBar(
+              tabs: <Widget>[
+                Tab(
+                  child: Container(child: Text("دو طرفه")),
                 ),
-              )
-
-              // FittedBox(
-              //     child: Container(
-              //   padding: const EdgeInsets.all(3.5),
-              //   child: Row(
-              //     children: [
-              //       Container(
-              //           decoration: BoxDecoration(
-              //               borderRadius: BorderRadius.circular(
-              //                 AppLayout.getHeight(50),
-              //               ),
-              //               color: const Color(0xFF4FF6FD)),
-              //           child: Row(
-              //             children: [
-              //               /*
-              //     domestic flights
-              //     */
-              //               Container(
-              //                 width: size.width * .44,
-              //                 height: size.height * .05,
-              //                 decoration: BoxDecoration(
-              //                     borderRadius: BorderRadius.horizontal(
-              //                       left: Radius.circular(
-              //                           AppLayout.getHeight(50)),
-              //                     ),
-              //                     color: Colors.white),
-              //                 child: Center(
-              //                   child: GestureDetector(
-              //                     onTap: () {
-              //                       Navigator.push(
-              //                           context,
-              //                           MaterialPageRoute(
-              //                               builder: (context) =>
-              //                                   DomesticFlights()));
-              //                     },
-              //                     child: Text(
-              //                       "پرواز داخلی",
-              //                       style: TextStyle(color: Colors.black),
-              //                     ),
-              //                   ),
-              //                 ),
-              //               )
-              //             ],
-              //           )),
-
-              //       /*Intenational Flights */
-              //       Container(
-              //         width: size.width * .44,
-              //         height: size.height * .05,
-              //         decoration: BoxDecoration(
-              //             borderRadius: BorderRadius.horizontal(
-              //               right: Radius.circular(AppLayout.getHeight(50)),
-              //             ),
-              //             color: Colors.white),
-              //         child: Center(
-              //           child: GestureDetector(
-              //             onTap: () {
-              //               Navigator.push(
-              //                   context,
-              //                   MaterialPageRoute(
-              //                       builder: (context) =>
-              //                           InternationalFlights()));
-              //             },
-              //             child: Text(
-              //               "پرواز خارجی",
-              //               style: TextStyle(color: Colors.black),
-              //             ),
-              //           ),
-              //         ),
-              //       )
-              //     ],
-              //   ),
-              // )),
-              // //End of Flight Buttons
-              // Gap(AppLayout.getHeight(5)),
-              // FittedBox(
-              //     child: Container(
-              //   padding: const EdgeInsets.all(3.5),
-              //   child: Row(
-              //     children: [
-              //       Container(
-              //           decoration: BoxDecoration(
-              //               borderRadius: BorderRadius.circular(
-              //                 AppLayout.getHeight(50),
-              //               ),
-              //               color: const Color(0xFF4FF6FD)),
-              //           child: Row(
-              //             children: [
-              //               /*
-              //     Two-Way
-              //     */
-              //               Container(
-              //                 width: size.width * .44,
-              //                 decoration: BoxDecoration(
-              //                     borderRadius: BorderRadius.circular(
-              //                         AppLayout.getHeight(50)),
-              //                     color: Colors.white),
-              //                 child: Center(
-              //                   child: GestureDetector(
-              //                     onTap: () {
-              //                       Ticket.isOneWay = false;
-              //                     },
-              //                     child: Text(
-              //                       "رفت و برگشت",
-              //                       style: TextStyle(color: Colors.black),
-              //                     ),
-              //                   ),
-              //                 ),
-              //               )
-              //             ],
-              //           )),
-
-              //       /*One-Way */
-              //       Container(
-              //         width: size.width * .44,
-              //         decoration: BoxDecoration(
-              //             borderRadius:
-              //                 BorderRadius.circular(AppLayout.getHeight(50)),
-              //             color: Colors.white),
-              //         child: Center(
-              //           child: GestureDetector(
-              //             onTap: () {
-              //               Ticket.isOneWay = true;
-              //             },
-              //             child: Text(
-              //               "یک طرفه",
-              //               style: TextStyle(color: Colors.black),
-              //             ),
-              //           ),
-              //         ),
-              //       )
-              //     ],
-              //   ),
-              // )),
-              // //end of tickets
-
-              //start of Search Button
-              ,
-              Gap(AppLayout.getHeight(300)),
-              FittedBox(
-                child: Center(
-                  child: Row(
-                    children: [
-                      Center(
-                        child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(
-                                AppLayout.getHeight(50),
-                              ),
-                            ),
-                            child: Row(
-                              children: [
-                                Center(
-                                  child: SizedBox(
-                                      width: size.width * .7,
-                                      child: Center(
-                                        child: SizedBox(
-                                          child: ElevatedButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          FindPage()));
-                                            },
-                                            child: Text(
-                                              'جست و جو',
-                                              style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      )),
-                                ),
-                              ],
-                            )),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              //End of Search Button
-            ]));
+                Tab(child: Container(child: Text("یک طرفه"))),
+              ],
+            ),
+          ),
+          body: TabBarView(children: <Widget>[
+            Container(
+              color: Colors.amber[600],
+            ),
+            Container(
+              color: Colors.amber[100],
+            )
+          ])),
+    );
   }
 }
