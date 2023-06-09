@@ -106,7 +106,7 @@ class _BusPageState extends State<BusPage> with TickerProviderStateMixin {
                       MaterialPageRoute(builder: (context) => FindPage()));
                 },
                 child: Text(
-                  'جست و جو',
+                  'جستجو',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

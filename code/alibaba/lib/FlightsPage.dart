@@ -381,7 +381,7 @@ class _FlightsPageState extends State<FlightsPage>
                       MaterialPageRoute(builder: (context) => FindPage()));
                 },
                 child: Text(
-                  'جست و جو',
+                  'جستجو',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
