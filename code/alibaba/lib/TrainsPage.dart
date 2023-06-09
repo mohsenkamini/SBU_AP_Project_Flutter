@@ -44,22 +44,22 @@ class _TrainsPageState extends State<TrainsPage> with TickerProviderStateMixin {
   static String selectedCity = "";
 
   static final allCityItems = [
-    'train city1',
-    'train city2',
-    'train city3',
-    'train city4'
+    'شهر قطار ۱',
+    'شهر قطار ۲',
+    '۳ شهر قطار',
+    'شهر قطار ۴ '
   ];
   static List<String> originCities = [
-    'train city1',
-    'train city2',
-    'train city3',
-    'train city4'
+    'شهر قطار ۱',
+    'شهر قطار ۲',
+    '۳ شهر قطار',
+    'شهر قطار ۴ '
   ];
   static var destinationCities = [
-    'train city1',
-    'train city2',
-    'train city3',
-    'train city4'
+    'شهر قطار ۱',
+    'شهر قطار ۲',
+    '۳ شهر قطار',
+    'شهر قطار ۴ '
   ];
 
   List<String> availableCities(List<String> c, String s) {
