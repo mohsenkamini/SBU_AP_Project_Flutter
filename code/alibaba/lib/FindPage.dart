@@ -182,7 +182,7 @@ class _FindPageState extends State<FindPage> {
               children: [
                 DropdownButton(
                     value: dropdownvalue,
-                    icon: const Icon(Icons.sort),    
+                    icon: const Icon(Icons.swap_vert),    
                     items: items.map((String items) {
                       return DropdownMenuItem(
                         value: items,

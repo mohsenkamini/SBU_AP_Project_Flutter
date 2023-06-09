@@ -108,7 +108,7 @@ class MyTrips extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Column(
             children: [
-              Text('data'),
+              Text('Search will be here '),
               DataTable(
                 dataRowColor: MaterialStateColor.resolveWith((states) => Colors.white),
                 headingRowColor: MaterialStateColor.resolveWith((states) => Colors.grey.shade300),
