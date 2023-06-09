@@ -11,6 +11,7 @@ import 'package:alibaba/screens/utils/Styles.dart';
 import 'package:alibaba/Details/OriginDomestic.dart';
 import 'Details/DestinationDomestic.dart';
 import 'Details/DestinationInternational.dart';
+import 'package:date_time_picker/date_time_picker.dart';
 
 class BusPage extends StatefulWidget {
   @override
@@ -30,6 +31,9 @@ class Ticket {
 }
 
 class _BusPageState extends State<BusPage> with TickerProviderStateMixin {
+  DateTime date = DateTime(2023, 10, 6);
+  DateTime? dateDeparture = null;
+
   static String selectedCity = "";
   static final allCityItems = [
     'شهر اتوبوس 1',
@@ -66,7 +70,6 @@ class _BusPageState extends State<BusPage> with TickerProviderStateMixin {
   String? valueDestinationInternational;
   String passengersText = "مسافران";
   String calendarTextDeparture = "تاریخ رفت";
-  String calendarTextReturn = "تاریخ برگشت";
 
   var buildSize;
   Widget build(BuildContext context) {
@@ -155,23 +158,27 @@ class _BusPageState extends State<BusPage> with TickerProviderStateMixin {
             border: Border.all(color: Colors.black87, width: 2)),
         child: Center(
             child: TextButton(
-                onPressed: () {}, child: Text(calendarTextDeparture))),
-      ),
-    );
-  }
-
-  CalendarReturn(double a) {
-    return SizedBox(
-      width: a,
-      child: Container(
-        margin: EdgeInsets.only(top: 20, right: 20, left: 20),
-        padding: EdgeInsets.only(top: 10, bottom: 10, right: 10),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: Colors.black87, width: 2)),
-        child: Center(
-            child:
-                TextButton(onPressed: () {}, child: Text(calendarTextReturn))),
+                onPressed: () async {
+                  DateTime? newDate = await showDatePicker(
+                    context: context,
+                    initialDate: date,
+                    firstDate: DateTime(2023, 10, 6),
+                    lastDate: DateTime(2025),
+                  );
+                  if (newDate == null) {
+                    setState(() {
+                      calendarTextDeparture = "تاریخ رفت";
+                    });
+                  } else {
+                    setState(() {
+                      dateDeparture = newDate;
+                      calendarTextDeparture =
+                          "تاریخ رفت :${dateDeparture!.year}/${dateDeparture!.month}/${dateDeparture!.day}";
+                      date = newDate!;
+                    });
+                  }
+                },
+                child: Text(calendarTextDeparture))),
       ),
     );
   }

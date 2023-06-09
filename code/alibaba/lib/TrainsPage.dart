@@ -30,6 +30,9 @@ class Ticket {
 }
 
 class _TrainsPageState extends State<TrainsPage> with TickerProviderStateMixin {
+  DateTime date = DateTime(2023, 10, 6);
+  DateTime? dateDeparture = DateTime(2023, 10, 6);
+  DateTime? dateReturn = DateTime(2023, 10, 6);
   int _adult = 1;
   int child = 0;
   int infant = 0;
@@ -198,7 +201,27 @@ class _TrainsPageState extends State<TrainsPage> with TickerProviderStateMixin {
             border: Border.all(color: Colors.black87, width: 2)),
         child: Center(
             child: TextButton(
-                onPressed: () {}, child: Text(calendarTextDeparture))),
+                onPressed: () async {
+                  DateTime? newDate = await showDatePicker(
+                    context: context,
+                    initialDate: date,
+                    firstDate: DateTime(2023, 10, 6),
+                    lastDate: DateTime(2025),
+                  );
+                  if (newDate == null) {
+                    setState(() {
+                      calendarTextDeparture = "تاریخ رفت";
+                    });
+                  } else {
+                    setState(() {
+                      dateDeparture = newDate;
+                      calendarTextDeparture =
+                          "تاریخ رفت :${dateDeparture!.year}/${dateDeparture!.month}/${dateDeparture!.day}";
+                      date = newDate!;
+                    });
+                  }
+                },
+                child: Text(calendarTextDeparture))),
       ),
     );
   }
@@ -213,8 +236,27 @@ class _TrainsPageState extends State<TrainsPage> with TickerProviderStateMixin {
             borderRadius: BorderRadius.circular(10),
             border: Border.all(color: Colors.black87, width: 2)),
         child: Center(
-            child:
-                TextButton(onPressed: () {}, child: Text(calendarTextReturn))),
+            child: TextButton(
+                onPressed: () async {
+                  DateTime? newDate = await showDatePicker(
+                    context: context,
+                    initialDate: date,
+                    firstDate: DateTime(2023, 10, 6),
+                    lastDate: DateTime(2025),
+                  );
+                  if (newDate == null) {
+                    setState(() {
+                      calendarTextReturn = "تاریخ برگشت";
+                    });
+                  } else {
+                    setState(() {
+                      dateReturn = newDate;
+                      calendarTextReturn =
+                          "تاریخ برگشت :${dateReturn!.year}/${dateReturn!.month}/${dateReturn!.day}";
+                    });
+                  }
+                },
+                child: Text(calendarTextReturn))),
       ),
     );
   }
