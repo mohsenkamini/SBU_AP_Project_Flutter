@@ -54,15 +54,12 @@ class _LoginState extends State<Login> {
             SizedBox(
               height: 18,
             ),
-            SizedBox(
-              width: 100,
-              child: Text(
-                '.نام کاربری و کلمه عبور خود را وارد کنید',
-                textAlign: TextAlign.right,
-                style: TextStyle(
-                  fontSize: appState.normalSize,
-                  //fontWeight: FontWeight.bold,
-                ),
+            Text(
+              '.نام کاربری و کلمه عبور خود را وارد کنید',
+              textAlign: TextAlign.right,
+              style: TextStyle(
+                fontSize: appState.normalSize,
+                //fontWeight: FontWeight.bold,
               ),
             ),
             Padding(

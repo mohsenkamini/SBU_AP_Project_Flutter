@@ -8,11 +8,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:alibaba/screens/utils/Styles.dart';
-import 'package:alibaba/DomesticFlights.dart';
 import 'package:alibaba/Details/OriginDomestic.dart';
 import 'Details/DestinationDomestic.dart';
 import 'Details/DestinationInternational.dart';
-import 'InternationalFlights.dart';
 
 class FlightsPage extends StatefulWidget {
   @override
@@ -38,9 +36,12 @@ class _FlightsPageState extends State<FlightsPage>
   String? valueDestinationDomestic;
   String? valueOriginInternational;
   String? valueDestinationInternational;
+  String passengersText = "مسافران";
+  var buildSize;
   Widget build(BuildContext context) {
     //pagelayout
     final size = AppLayout.getSize(context);
+    buildSize = size;
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -59,52 +60,6 @@ class _FlightsPageState extends State<FlightsPage>
             FlightTabsInternational()
           ])),
     );
-    // Gap(AppLayout.getHeight(300)),
-    //       FittedBox(
-    //         child: Center(
-    //           child: Row(
-    //             children: [
-    //               Center(
-    //                 child: Container(
-    //                     decoration: BoxDecoration(
-    //                       borderRadius: BorderRadius.circular(
-    //                         AppLayout.getHeight(50),
-    //                       ),
-    //                     ),
-    //                     child: Row(
-    //                       children: [
-    //                         Center(
-    //                           child: SizedBox(
-    //                               width: size.width * .7,
-    //                               child: Center(
-    //                                 child: SizedBox(
-    //                                   child: ElevatedButton(
-    //                                     onPressed: () {
-    //                                       Navigator.push(
-    //                                           context,
-    //                                           MaterialPageRoute(
-    //                                               builder: (context) =>
-    //                                                   FindPage()));
-    //                                     },
-    //                                     child: Text(
-    //                                       'جست و جو',
-    //                                       style: TextStyle(
-    //                                         fontSize: 20,
-    //                                         fontWeight: FontWeight.bold,
-    //                                       ),
-    //                                     ),
-    //                                   ),
-    //                                 ),
-    //                               )),
-    //                         ),
-    //                       ],
-    //                     )),
-    //               ),
-    //             ],
-    //           ),
-    //         ),
-    //       ),
-    //       //End of Search Button
   }
 
   DomesticOrigin() {
@@ -203,6 +158,10 @@ class _FlightsPageState extends State<FlightsPage>
                 Container(
                   child: SizedBox(child: DomesticDestination()),
                 ),
+                Container(
+                  child: Passengers(),
+                ),
+                Container(child: SearchButton()),
               ],
             ),
             //One-Way
@@ -214,6 +173,11 @@ class _FlightsPageState extends State<FlightsPage>
                 Container(
                   child: SizedBox(child: DomesticDestination()),
                 ),
+                Container(child: Calendar()),
+                Container(
+                  child: Passengers(),
+                ),
+                Container(child: SearchButton()),
               ],
             ),
           ])),
@@ -319,6 +283,11 @@ class _FlightsPageState extends State<FlightsPage>
                 Container(
                   child: SizedBox(child: InternationalDestination()),
                 ),
+                Container(child: Calendar()),
+                Container(
+                  child: Passengers(),
+                ),
+                Container(child: SearchButton()),
               ],
             ),
             //One-Way
@@ -330,9 +299,117 @@ class _FlightsPageState extends State<FlightsPage>
                 Container(
                   child: SizedBox(child: InternationalDestination()),
                 ),
+                Container(child: Calendar()),
+                Container(
+                  child: Passengers(),
+                ),
+                Container(child: SearchButton()),
               ],
             ),
           ])),
     );
+  }
+
+  Passengers() {
+    return SizedBox(
+      child: Container(
+        margin: EdgeInsets.only(
+            top: 20, right: 20, left: AppLayout.getScreenWidth() * .6),
+        padding: EdgeInsets.only(top: 10, bottom: 10, right: 10),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: Colors.black87, width: 2)),
+        child: Center(
+            child: TextButton(
+                onPressed: () {
+                  _passengersBottomSheet(context);
+                },
+                child: Text(passengersText))),
+      ),
+    );
+  }
+
+  SearchButton() {
+    return Center(
+      child: SizedBox(
+          width: buildSize.width * .7,
+          child: Center(
+            child: SizedBox(
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => FindPage()));
+                },
+                child: Text(
+                  'جست و جو',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          )),
+    );
+  }
+
+  Calendar() {}
+
+  void _passengersBottomSheet(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+              height: MediaQuery.of(context).size.height * .35,
+              child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Row(children: [
+                    Container(
+                      margin: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width * .8,
+                          bottom: MediaQuery.of(context).size.height * .3),
+                      child: Text(
+                        "مسافران",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.right,
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                          // left: MediaQuery.of(context).size.width * .8,
+                          bottom: MediaQuery.of(context).size.height * .3),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * .5,
+                        child: Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  " بزرگسال ",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.right,
+                                ),
+                              ),
+                              Flexible(
+                                child: Text(
+                                  " (دوازده سال به بالا)",
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.right,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  ])));
+        });
   }
 }

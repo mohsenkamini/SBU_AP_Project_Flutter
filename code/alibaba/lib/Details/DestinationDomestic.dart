@@ -1,4 +1,4 @@
 class DestinationDomestic {
-  static final items = ['dcity1', 'dcity2', 'dcity3', 'dcity4'];
+  static final items = ['city1', 'city2', 'city3', 'city4'];
   String? valueDestinationDomestic;
 }
