@@ -1,3 +1,4 @@
+import 'package:alibaba/Home.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -33,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = FindPage();
         break;
       case 2:
-        page = FlightsPage();
+        page = Home();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');

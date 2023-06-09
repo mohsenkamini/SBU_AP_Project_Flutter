@@ -12,9 +12,9 @@ import 'package:alibaba/Details/OriginDomestic.dart';
 import 'Details/DestinationDomestic.dart';
 import 'Details/DestinationInternational.dart';
 
-class FlightsPage extends StatefulWidget {
+class BusPage extends StatefulWidget {
   @override
-  State<FlightsPage> createState() => _FlightsPageState();
+  State<BusPage> createState() => _BusPageState();
 }
 
 class Ticket {
@@ -29,8 +29,7 @@ class Ticket {
   }
 }
 
-class _FlightsPageState extends State<FlightsPage>
-    with TickerProviderStateMixin {
+class _BusPageState extends State<BusPage> with TickerProviderStateMixin {
   int _adult = 1;
   int child = 0;
   int infant = 0;
@@ -48,302 +47,28 @@ class _FlightsPageState extends State<FlightsPage>
     //pagelayout
     final size = AppLayout.getSize(context);
     buildSize = size;
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Color.fromARGB(255, 240, 243, 243),
-            title: Center(child: Text("پروازها")),
-            bottom: TabBar(tabs: <Widget>[
-              Tab(child: Container(child: Text("پرواز داخلی"))),
-              Tab(
-                child: Container(child: Text("پرواز خارجی")),
-              ),
-            ]),
-          ),
-          body: TabBarView(children: <Widget>[
-            FlightTabsDomestic(),
-            FlightTabsInternational()
-          ])),
-    );
-  }
-
-  DomesticOrigin() {
-    var items = OriginDomestic.items;
-
-    DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
-        value: item,
-        child: Center(
-          child: Text(
-            item,
-          ),
-        ));
-    return Container(
-      margin: EdgeInsets.only(top: 5, right: 20, left: 20),
-      padding: EdgeInsets.only(top: 2, bottom: 0, right: 10, left: 10),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.black87, width: 2)),
-      child: DropdownButton<String>(
-        icon: Icon(Icons.location_on_outlined),
-        isExpanded: true,
-        hint: Center(
-          child: Text(
-            "مبدا",
-            textAlign: TextAlign.right,
-          ),
-        ),
-        items: items.map(buildMenuItem).toList(),
-        value: valueOriginDomestic,
-        onChanged: ((value) => setState(() => valueOriginDomestic = value)),
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(child: Text("اتوبوس ها")),
       ),
-    );
-  }
-
-  DomesticDestination() {
-    var items = DestinationDomestic.items;
-
-    DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
-        value: item,
-        child: Center(
-          child: Text(
-            item,
+      body: ListView(
+        children: [
+          Container(
+            child: SizedBox(child: DomesticOrigin()),
           ),
-        ));
-    return Container(
-      margin: EdgeInsets.only(top: 5, right: 20, left: 20),
-      padding: EdgeInsets.only(top: 2, bottom: 0, right: 10, left: 10),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.black87, width: 2)),
-      child: DropdownButton<String>(
-        icon: Icon(Icons.location_on_outlined),
-        isExpanded: true,
-        hint: Center(
-          child: Text(
-            "مقصد",
-            textAlign: TextAlign.right,
+          Container(
+            child: SizedBox(child: DomesticDestination()),
           ),
-        ),
-        items: items.map(buildMenuItem).toList(),
-        value: valueDestinationDomestic,
-        onChanged: ((value) =>
-            setState(() => valueDestinationDomestic = value)),
+          Container(
+              child: CalendarDeparture(MediaQuery.of(context).size.width * .9)),
+          Center(
+            child: Container(
+              child: Passengers(),
+            ),
+          ),
+          Container(child: SearchButton()),
+        ],
       ),
-    );
-  }
-
-  FlightTabsDomestic() {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-          appBar: AppBar(
-            title: Transform(
-              transform: Matrix4.translationValues(-20.0, 0.0, 0.0),
-            ),
-            backgroundColor: Colors.white,
-            bottom: PreferredSize(
-              preferredSize: Size.fromHeight(0),
-              child: TabBar(
-                tabs: <Widget>[
-                  Tab(
-                    child: Container(child: Text("رفت و برگشت")),
-                  ),
-                  Tab(child: Container(child: Text("یک طرفه"))),
-                ],
-              ),
-            ),
-          ),
-          body: TabBarView(children: <Widget>[
-            //Two-Way
-            ListView(
-              children: [
-                Container(
-                  child: SizedBox(child: DomesticOrigin()),
-                ),
-                Container(
-                  child: SizedBox(child: DomesticDestination()),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(
-                        child: Container(
-                            child: CalendarReturn(
-                                MediaQuery.of(context).size.width * .45))),
-                    Container(
-                        child: CalendarDeparture(
-                            MediaQuery.of(context).size.width * .45)),
-                  ],
-                ),
-                Center(
-                  child: Container(
-                    child: Passengers(),
-                  ),
-                ),
-                Container(child: SearchButton()),
-              ],
-            ),
-            //One-Way
-            ListView(
-              children: [
-                Container(
-                  child: SizedBox(child: DomesticOrigin()),
-                ),
-                Container(
-                  child: SizedBox(child: DomesticDestination()),
-                ),
-                Container(
-                    child: CalendarDeparture(
-                        MediaQuery.of(context).size.width * .9)),
-                Center(
-                  child: Container(
-                    child: Passengers(),
-                  ),
-                ),
-                Container(child: SearchButton()),
-              ],
-            ),
-          ])),
-    );
-  }
-
-  InternationalOrigin() {
-    var items = OriginDomestic.items;
-
-    DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
-        value: item,
-        child: Text(
-          item,
-        ));
-    return Container(
-      margin: EdgeInsets.only(top: 5, right: 20, left: 20),
-      padding: EdgeInsets.only(top: 2, bottom: 0, right: 10, left: 10),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.black87, width: 2)),
-      child: DropdownButton<String>(
-        icon: Icon(Icons.location_on_outlined),
-        isExpanded: true,
-        hint: Center(
-          child: Text(
-            "مبدا",
-            textAlign: TextAlign.right,
-          ),
-        ),
-        items: items.map(buildMenuItem).toList(),
-        value: valueOriginInternational,
-        onChanged: ((value) =>
-            setState(() => valueOriginInternational = value)),
-      ),
-    );
-  }
-
-  InternationalDestination() {
-    var items = DestinationInternational.items;
-
-    DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
-        value: item,
-        child: Center(
-          child: Center(
-            child: Text(
-              item,
-            ),
-          ),
-        ));
-    return Container(
-      margin: EdgeInsets.only(top: 5, right: 20, left: 20),
-      padding: EdgeInsets.only(top: 2, bottom: 0, right: 10, left: 10),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.black87, width: 2)),
-      child: DropdownButton<String>(
-        icon: Icon(Icons.location_on_outlined),
-        isExpanded: true,
-        hint: Center(
-          child: Center(
-            child: Text(
-              "مقصد",
-              textAlign: TextAlign.right,
-            ),
-          ),
-        ),
-        items: items.map(buildMenuItem).toList(),
-        value: valueDestinationInternational,
-        onChanged: ((value) =>
-            setState(() => valueDestinationInternational = value)),
-      ),
-    );
-  }
-
-  FlightTabsInternational() {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-          appBar: AppBar(
-            title: Transform(
-              transform: Matrix4.translationValues(-20.0, 0.0, 0.0),
-            ),
-            backgroundColor: Colors.white,
-            bottom: PreferredSize(
-              preferredSize: Size.fromHeight(0),
-              child: TabBar(
-                tabs: <Widget>[
-                  Tab(
-                    child: Container(child: Text("رفت و برگشت")),
-                  ),
-                  Tab(child: Container(child: Text("یک طرفه"))),
-                ],
-              ),
-            ),
-          ),
-          body: TabBarView(children: <Widget>[
-            //Two-Way
-            ListView(
-              children: [
-                Container(
-                  child: SizedBox(child: InternationalOrigin()),
-                ),
-                Container(
-                  child: SizedBox(child: InternationalDestination()),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(
-                        child: Container(
-                            child: CalendarReturn(
-                                MediaQuery.of(context).size.width * .45))),
-                    Container(
-                        child: CalendarDeparture(
-                            MediaQuery.of(context).size.width * .45)),
-                  ],
-                ),
-                Container(
-                  child: Passengers(),
-                ),
-                Container(child: SearchButton()),
-              ],
-            ),
-            //One-Way
-            ListView(
-              children: [
-                Container(
-                  child: SizedBox(child: InternationalOrigin()),
-                ),
-                Container(
-                  child: SizedBox(child: InternationalDestination()),
-                ),
-                Container(
-                    child: CalendarDeparture(
-                        MediaQuery.of(context).size.width * .9)),
-                Container(
-                  child: Passengers(),
-                ),
-                Container(child: SearchButton()),
-              ],
-            ),
-          ])),
     );
   }
 
@@ -600,6 +325,71 @@ class _FlightsPageState extends State<FlightsPage>
             ),
           ));
         });
+  }
+
+  DomesticOrigin() {
+    var items = OriginDomestic.items;
+
+    DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
+        value: item,
+        child: Center(
+          child: Text(
+            item,
+          ),
+        ));
+    return Container(
+      margin: EdgeInsets.only(top: 5, right: 20, left: 20),
+      padding: EdgeInsets.only(top: 2, bottom: 0, right: 10, left: 10),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.black87, width: 2)),
+      child: DropdownButton<String>(
+        icon: Icon(Icons.location_on_outlined),
+        isExpanded: true,
+        hint: Center(
+          child: Text(
+            "مبدا",
+            textAlign: TextAlign.right,
+          ),
+        ),
+        items: items.map(buildMenuItem).toList(),
+        value: valueOriginDomestic,
+        onChanged: ((value) => setState(() => valueOriginDomestic = value)),
+      ),
+    );
+  }
+
+  DomesticDestination() {
+    var items = DestinationDomestic.items;
+
+    DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
+        value: item,
+        child: Center(
+          child: Text(
+            item,
+          ),
+        ));
+    return Container(
+      margin: EdgeInsets.only(top: 5, right: 20, left: 20),
+      padding: EdgeInsets.only(top: 2, bottom: 0, right: 10, left: 10),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.black87, width: 2)),
+      child: DropdownButton<String>(
+        icon: Icon(Icons.location_on_outlined),
+        isExpanded: true,
+        hint: Center(
+          child: Text(
+            "مقصد",
+            textAlign: TextAlign.right,
+          ),
+        ),
+        items: items.map(buildMenuItem).toList(),
+        value: valueDestinationDomestic,
+        onChanged: ((value) =>
+            setState(() => valueDestinationDomestic = value)),
+      ),
+    );
   }
 
   void addPassendgerAdult() {
