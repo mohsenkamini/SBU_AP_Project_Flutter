@@ -111,7 +111,7 @@ class MyTrips extends StatelessWidget {
               Text('data'),
               DataTable(
                 dataRowColor: MaterialStateColor.resolveWith((states) => Colors.white),
-                headingRowColor: MaterialStateColor.resolveWith((states) => Colors.lightBlue.shade50),
+                headingRowColor: MaterialStateColor.resolveWith((states) => Colors.grey.shade300),
                 columnSpacing: 8,
                 border: TableBorder(verticalInside: BorderSide(
                   color: Colors.grey,
