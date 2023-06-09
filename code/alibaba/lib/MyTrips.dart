@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'main.dart';
 import 'MyHomePage.dart';
 import 'Widgets/TicketCatalog.dart';
+import 'package:alibaba/screens/utils/App_Layout.dart';
 
 
 class Trip {
@@ -66,6 +67,11 @@ class MyTrips extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
+    
+    TextEditingController tripNumberController = TextEditingController();  
+    TextEditingController dateFromController = TextEditingController();  
+    TextEditingController dateToController = TextEditingController();  
+
     List<String> fields = [ "شماره سفارش", "نوع سفارش", "تاریخ و ساعت", "مبلغ (ریال)", "وضعیت", "" ];
     appState.trips.add(
       Trip(
@@ -100,48 +106,156 @@ class MyTrips extends StatelessWidget {
       );
     }
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+      padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: SingleChildScrollView(
           reverse: true,
           scrollDirection: Axis.horizontal,
-          child: Column(
-            children: [
-              Text('Search will be here '),
-              DataTable(
-                dataRowColor: MaterialStateColor.resolveWith((states) => Colors.white),
-                headingRowColor: MaterialStateColor.resolveWith((states) => Colors.grey.shade300),
-                columnSpacing: 8,
-                border: TableBorder(verticalInside: BorderSide(
-                  color: Colors.grey,
-                  width: 0.1,
-                  
-                )),
-                columns: [
-                  DataColumn(label: Center(child: Text(fields[4], textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))),
-                  DataColumn(label: Center(child: Text(fields[3], textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))),
-                  DataColumn(label: Center(child: Text(fields[2], textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))),
-                  DataColumn(label: Center(child: Text(fields[1], textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))),
-                  DataColumn(
-                    label: Center(child: Text(fields.first, textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))
+          child: Container(
+            color: Colors.white,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        'جستجو سفارش',
+                        style: TextStyle(
+                          color: Colors.amber,
+                          shadows: [
+                            Shadow( // bottomLeft
+                              offset: Offset(0.02, 0.02),
+                              color: Colors.black
+                            ),
+                          ],
+                          fontSize: appState.header2Size,
+                          fontWeight: FontWeight.bold,
+                        ),),
+                      Icon(Icons.search,
+                      color: Colors.amber,),
+                    ],
                   ),
-                ],
-                rows: 
-                [
-                    for (var i in appState.trips)
-                      DataRow(
-                        cells: [
-                          DataCell(i.statusIcon()),
-                          DataCell(Center(child: Text(i.price, textAlign:TextAlign.center))),
-                          DataCell(Center(child: Text(i.dateAndTime, textAlign:TextAlign.center))),
-                          DataCell(Center(child: Text(i.type, textAlign:TextAlign.center))),
-                          DataCell(Center(child: Text(i.number, textAlign:TextAlign.center))),
-                        ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        '.برای جستجو در لیست سفر‌های من پر کردن حداقل یک فیلد کافیست',
+                        style: TextStyle(
+                          color: Colors.black,
+                          shadows: [
+                            Shadow( // bottomLeft
+                              offset: Offset(0.02, 0.02),
+                              color: Colors.black
+                            ),
+                          ],
+                          fontSize: appState.normalSize,
+                          fontWeight: FontWeight.normal,
+                        ),),
+                      Icon(Icons.priority_high_rounded,
+                      color: Colors.amber,
+                      size: 20,),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(15, 0, 8, 3),
+                        child: SizedBox(
+                          width: AppLayout.getWidth(90),
+                          child: TextField(
+                            controller: dateToController, 
+                            textAlign: TextAlign.right,
+                            obscureText: false,  
+                            decoration: InputDecoration( 
+                              border: UnderlineInputBorder(),  
+                              //labelText: 'نام کاربری',  
+                              hintText: 'تا '  
+                            ),  
+                          ),
+                        ),
                       ),
-                ],
-              ),
-            ],
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(15, 0, 8, 3),
+                        child: SizedBox(
+                          width: AppLayout.getWidth(90),
+                          child: TextField(
+                            controller: dateFromController, 
+                            textAlign: TextAlign.right,
+                            obscureText: false,  
+                            decoration: InputDecoration( 
+                              border: UnderlineInputBorder(),  
+                              //labelText: 'نام کاربری',  
+                              hintText: ' تاریخ از'  
+                            ),  
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(15, 0, 8, 3),
+                        child: SizedBox(
+                          width: AppLayout.getWidth(140),
+                          child: TextField(
+                            controller: tripNumberController, 
+                            textAlign: TextAlign.right,
+                            obscureText: false,  
+                            decoration: InputDecoration( 
+                              border: UnderlineInputBorder(),  
+                              //labelText: 'نام کاربری',  
+                              hintText: 'شماره سفارش'  
+                            ),  
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                DataTable(
+                  dataRowColor: MaterialStateColor.resolveWith((states) => Colors.white),
+                  headingRowColor: MaterialStateColor.resolveWith((states) => Colors.grey.shade300),
+                  columnSpacing: 8,
+                  border: TableBorder(verticalInside: BorderSide(
+                    color: Colors.grey,
+                    width: 0.1,
+                    
+                  )),
+                  columns: [
+                    DataColumn(label: Center(child: Text(fields[4], textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))),
+                    DataColumn(label: Center(child: Text(fields[3], textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))),
+                    DataColumn(label: Center(child: Text(fields[2], textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))),
+                    DataColumn(label: Center(child: Text(fields[1], textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))),
+                    DataColumn(
+                      label: Center(child: Text(fields.first, textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))
+                    ),
+                  ],
+                  rows: 
+                  [
+                      for (var i in appState.trips)
+                        DataRow(
+                          cells: [
+                            DataCell(i.statusIcon()),
+                            DataCell(Center(child: Text(i.price, textAlign:TextAlign.center))),
+                            DataCell(Center(child: Text(i.dateAndTime, textAlign:TextAlign.center))),
+                            DataCell(Center(child: Text(i.type, textAlign:TextAlign.center))),
+                            DataCell(Center(child: Text(i.number, textAlign:TextAlign.center))),
+                          ],
+                        ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
