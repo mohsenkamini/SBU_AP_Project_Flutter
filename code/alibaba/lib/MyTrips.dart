@@ -66,7 +66,7 @@ class MyTrips extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
-    List<String> fields = [ "شماره سفارش", "نوع سفارش", "تاریخ", "مبلغ (ریال)", "وضعیت", "" ];
+    List<String> fields = [ "شماره سفارش", "نوع سفارش", "تاریخ و ساعت", "مبلغ (ریال)", "وضعیت", "" ];
     appState.trips.add(
       Trip(
         number: "۳۴۲۹۳۴۳",
@@ -116,12 +116,12 @@ class MyTrips extends StatelessWidget {
               
             )),
             columns: [
-              DataColumn(label: Center(child: Text(fields[4], textAlign:TextAlign.center))),
-              DataColumn(label: Center(child: Text(fields[3], textAlign:TextAlign.center))),
-              DataColumn(label: Center(child: Text(fields[2], textAlign:TextAlign.center))),
-              DataColumn(label: Center(child: Text(fields[1], textAlign:TextAlign.center))),
+              DataColumn(label: Center(child: Text(fields[4], textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))),
+              DataColumn(label: Center(child: Text(fields[3], textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))),
+              DataColumn(label: Center(child: Text(fields[2], textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))),
+              DataColumn(label: Center(child: Text(fields[1], textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))),
               DataColumn(
-                label: Center(child: Text(fields.first, textAlign:TextAlign.center,))
+                label: Center(child: Text(fields.first, textAlign:TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),))
               ),
             ],
             rows: 
