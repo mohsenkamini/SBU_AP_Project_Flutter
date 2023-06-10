@@ -1,16 +1,8 @@
-import 'package:alibaba/Account.dart';
-import 'package:alibaba/Details/OriginDomestic.dart';
-import 'package:alibaba/FavoritesPage.dart';
 import 'package:alibaba/FindPage.dart';
-import 'package:alibaba/main.dart';
 import 'package:alibaba/screens/utils/App_Layout.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:alibaba/screens/utils/Styles.dart';
-import 'package:alibaba/Details/OriginDomestic.dart';
-import 'Details/DestinationDomestic.dart';
-import 'Details/DestinationInternational.dart';
+import 'package:counter/counter.dart';
 
 class BusPage extends StatefulWidget {
   @override
@@ -30,6 +22,9 @@ class Ticket {
 }
 
 class _BusPageState extends State<BusPage> with TickerProviderStateMixin {
+  DateTime date = DateTime(2023, 10, 6);
+  DateTime? dateDeparture = null;
+
   static String selectedCity = "";
   static final allCityItems = [
     'شهر اتوبوس 1',
@@ -56,9 +51,8 @@ class _BusPageState extends State<BusPage> with TickerProviderStateMixin {
     return [];
   }
 
-  int _adult = 1;
-  int child = 0;
-  int infant = 0;
+  int _child = 0;
+  int _infant = 0;
   @override
   String? valueOriginDomestic;
   String? valueDestinationDomestic;
@@ -66,7 +60,6 @@ class _BusPageState extends State<BusPage> with TickerProviderStateMixin {
   String? valueDestinationInternational;
   String passengersText = "مسافران";
   String calendarTextDeparture = "تاریخ رفت";
-  String calendarTextReturn = "تاریخ برگشت";
 
   var buildSize;
   Widget build(BuildContext context) {
@@ -155,23 +148,27 @@ class _BusPageState extends State<BusPage> with TickerProviderStateMixin {
             border: Border.all(color: Colors.black87, width: 2)),
         child: Center(
             child: TextButton(
-                onPressed: () {}, child: Text(calendarTextDeparture))),
-      ),
-    );
-  }
-
-  CalendarReturn(double a) {
-    return SizedBox(
-      width: a,
-      child: Container(
-        margin: EdgeInsets.only(top: 20, right: 20, left: 20),
-        padding: EdgeInsets.only(top: 10, bottom: 10, right: 10),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: Colors.black87, width: 2)),
-        child: Center(
-            child:
-                TextButton(onPressed: () {}, child: Text(calendarTextReturn))),
+                onPressed: () async {
+                  DateTime? newDate = await showDatePicker(
+                    context: context,
+                    initialDate: date,
+                    firstDate: DateTime(2023, 10, 6),
+                    lastDate: DateTime(2025),
+                  );
+                  if (newDate == null) {
+                    setState(() {
+                      calendarTextDeparture = "تاریخ رفت";
+                    });
+                  } else {
+                    setState(() {
+                      dateDeparture = newDate;
+                      calendarTextDeparture =
+                          "تاریخ رفت :${dateDeparture!.year}/${dateDeparture!.month}/${dateDeparture!.day}";
+                      date = newDate;
+                    });
+                  }
+                },
+                child: Text(calendarTextDeparture))),
       ),
     );
   }
@@ -189,6 +186,7 @@ class _BusPageState extends State<BusPage> with TickerProviderStateMixin {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -211,90 +209,63 @@ class _BusPageState extends State<BusPage> with TickerProviderStateMixin {
                       ],
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Padding(
-                            padding: const EdgeInsets.all(2.0),
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.08,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.05,
-                                            margin: EdgeInsets.symmetric(
-                                                horizontal: 3),
-                                            child: FloatingActionButton(
-                                                backgroundColor: Styles
-                                                    .passengerButtonColros,
-                                                onPressed: () {
-                                                  setState(() {
-                                                    _adult = _adult--;
-                                                  });
-                                                },
-                                                child: Icon(Icons.remove))),
-                                        Text('$_adult'),
-                                        Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.08,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.05,
-                                            margin: EdgeInsets.symmetric(
-                                                horizontal: 3),
-                                            child: FloatingActionButton(
-                                                backgroundColor: Styles
-                                                    .passengerButtonColros,
-                                                onPressed: () {
-                                                  setState(() {
-                                                    addPassendgerAdult();
-                                                  });
-                                                },
-                                                child: Icon(Icons.add))),
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(top: 7, bottom: 7),
-                                    child: Text(
-                                      "(دوازده سال به بالا) ",
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                      ),
-                                      textAlign: TextAlign.right,
-                                    ),
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "  بزرگسال",
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.right,
-                                    ),
-                                  ),
-                                ]))
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Padding(
                             padding: const EdgeInsets.all(2.0),
                             child: Row(children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.2,
+                                height:
+                                    MediaQuery.of(context).size.width * 0.05,
+                                margin: EdgeInsets.symmetric(horizontal: 3),
+                                child: Counter(
+                                    min: 1,
+                                    max: 20,
+                                    step: 1,
+                                    onValueChanged: ((value) =>
+                                        _adult = value.toInt())),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 7, bottom: 7),
+                                child: Text(
+                                  "(دوازده سال به بالا) ",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                  ),
+                                  textAlign: TextAlign.right,
+                                ),
+                              ),
+                              Container(
+                                child: Text(
+                                  " بزرگسال",
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.right,
+                                ),
+                              ),
+                            ]))
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Padding(
+                            padding: const EdgeInsets.all(2.0),
+                            child: Row(children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.2,
+                                height:
+                                    MediaQuery.of(context).size.width * 0.05,
+                                margin: EdgeInsets.symmetric(horizontal: 3),
+                                child: Counter(
+                                    min: 0,
+                                    max: 20,
+                                    step: 1,
+                                    onValueChanged: ((value) =>
+                                        _child = value.toInt())),
+                              ),
                               Container(
                                 margin: EdgeInsets.only(top: 7, bottom: 7),
                                 child: Text(
@@ -318,11 +289,23 @@ class _BusPageState extends State<BusPage> with TickerProviderStateMixin {
                       ],
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Padding(
                             padding: const EdgeInsets.all(2.0),
                             child: Row(children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.2,
+                                height:
+                                    MediaQuery.of(context).size.width * 0.05,
+                                margin: EdgeInsets.symmetric(horizontal: 3),
+                                child: Counter(
+                                    min: 0,
+                                    max: 20,
+                                    step: 1,
+                                    onValueChanged: ((value) =>
+                                        _infant = value.toInt())),
+                              ),
                               Container(
                                 margin: EdgeInsets.only(top: 7, bottom: 7),
                                 child: Text(
@@ -345,6 +328,22 @@ class _BusPageState extends State<BusPage> with TickerProviderStateMixin {
                             ]))
                       ],
                     ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10),
+                      child: FloatingActionButton.extended(
+                        backgroundColor: Colors.amber[800],
+                        onPressed: () {
+                          setState(() {
+                            passengersText =
+                                "${_adult + _child + _infant} : تعداد مسافران ";
+                          });
+
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(Icons.done),
+                        label: Text('تایید'),
+                      ),
+                    )
                   ],
                 ),
               ],
@@ -421,17 +420,5 @@ class _BusPageState extends State<BusPage> with TickerProviderStateMixin {
             setState(() => valueDestinationDomestic = value)),
       ),
     );
-  }
-
-  void addPassendgerAdult() {
-    setState(() {
-      _adult = _adult + 1;
-    });
-  }
-
-  void removePassendgerAdult() {
-    setState(() {
-      _adult = _adult - 1;
-    });
   }
 }

@@ -1,8 +1,10 @@
+import 'package:alibaba/Details/LoginCheck.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
+import 'Profile.dart';
 import 'main.dart';
 
 class Login extends StatefulWidget {
@@ -94,7 +96,11 @@ class _LoginState extends State<Login> {
               ),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Logged.isLoggedIn = true;
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Profile()));
+              },
               child: Text(
                 'ورود',
                 style: TextStyle(

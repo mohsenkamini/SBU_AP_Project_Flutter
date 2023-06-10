@@ -1,4 +1,6 @@
+import 'package:alibaba/Details/LoginCheck.dart';
 import 'package:alibaba/Home.dart';
+import 'package:alibaba/Profile.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -30,7 +32,11 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget page;
     switch (selectedIndex) {
       case 0:
-        page = Account();
+        if (Logged.isLoggedIn) {
+          page = Profile();
+        } else {
+          page = Account();
+        }
         break;
       case 1:
         //page = MyTrips();
