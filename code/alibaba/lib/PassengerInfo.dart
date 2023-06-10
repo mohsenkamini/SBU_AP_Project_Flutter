@@ -17,10 +17,10 @@ class _PassengerInfoState extends State<PassengerInfo> {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
-    var selectedIndex = 2;
+    var selectedIndex = 4;
   void onDestinationSelected(int index) {
     setState(() {
-      if (selectedIndex == index || selectedIndex == index+1 )
+      if (selectedIndex == index || selectedIndex == index-1 )
         return;
       
       selectedIndex = index;
@@ -30,9 +30,13 @@ class _PassengerInfoState extends State<PassengerInfo> {
         break;
       case 2:
       case 3:
-        Navigator.pushNamed(context, '/Purchase/Flight/Find/PassengerInfo');
+        Navigator.pushNamed(context, '/Purchase/Flight/Find/PassengerInfo/Confirm');
         break;
       case 4:
+      case 5:
+        Navigator.pushNamed(context, '/Purchase/Flight/Find/PassengerInfo');
+        break;
+      case 6:
         Navigator.pushNamed(context, '/Purchase/Flight/Find');
         break;
       default:
@@ -76,8 +80,8 @@ class _PassengerInfoState extends State<PassengerInfo> {
       child: Column(
         children: [
           SizedBox(
-            width: 400,
-            height: 50,
+            width: 500,
+            height: 70,
             child: NavigationBar(
               selectedIndex: selectedIndex,
               onDestinationSelected: onDestinationSelected,
@@ -86,9 +90,11 @@ class _PassengerInfoState extends State<PassengerInfo> {
               destinations: [
               NavigationDestination(selectedIcon: Icon(Icons.payment_sharp,color: Colors.green,) ,icon: Icon(Icons.payment,color: Colors.grey,), label: 'پرداخت'),//selected Index=0
               NavigationDestination(icon: Icon(Icons.navigate_before,color: Colors.grey,), label: ''),//selected Index=1
-              NavigationDestination(selectedIcon: Icon(Icons.people,color: Colors.green,) ,icon: selectedIndex<1?Icon(Icons.people,color: Colors.green,):Icon(Icons.people_outline,color:Colors.grey,), label: 'مسافران'),//selected Index=2
+              NavigationDestination(icon: selectedIndex<=2?Icon(Icons.list_alt_rounded,color: Colors.green,):Icon(Icons.list_alt,color:Colors.grey,), label: 'تایید اطلاعات'),//selected Index=2
               NavigationDestination(icon: Icon(Icons.navigate_before,color: Colors.grey,), label: ''),//selected Index=3
-              NavigationDestination(icon: Icon(Icons.check_circle, color: Colors.green,), label: 'اطلاعات پرواز'),//selected Index=4
+              NavigationDestination(icon: selectedIndex<=4?Icon(Icons.people,color: Colors.green,):Icon(Icons.people_outline,color:Colors.grey,), label: 'مسافران'),//selected Index=4
+              NavigationDestination(icon: Icon(Icons.navigate_before,color: Colors.grey,), label: ''),//selected Index=5
+              NavigationDestination(icon: Icon(Icons.check_circle, color: Colors.green,), label: 'اطلاعات پرواز'),//selected Index=6
             ],
                   ),
           ),
@@ -106,6 +112,7 @@ class _PassengerInfoState extends State<PassengerInfo> {
                  price: "۱۲,۰۷۰,۰۰۰", 
                  booked: 34, 
                  capacity: 200,
+                 touchEnable: false,
                ),
                
             ),

@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
           '/Purchase/Flight': (BuildContext context) => FlightsPage(),
           '/Purchase/Flight/Find': (BuildContext context) => FindPage(),
           '/Purchase/Flight/Find/PassengerInfo': (BuildContext context) => PassengerInfo(),
+          '/Purchase/Flight/Find/PassengerInfo/Confirm': (BuildContext context) => PassengerInfo(),
 
         },
       ),

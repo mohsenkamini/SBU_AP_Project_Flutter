@@ -1,3 +1,4 @@
+import 'package:alibaba/PassengerInfo.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -18,6 +19,7 @@ class TicketCatalog extends StatefulWidget {
     required this.price,
     required this.booked,
     required this.capacity,
+    required this.touchEnable,
   });
 
   final String airlineName;
@@ -30,6 +32,7 @@ class TicketCatalog extends StatefulWidget {
   final String price;
   final int booked; // number of people bought this ticket
   final int capacity;
+  final bool touchEnable;
 
   @override
   State<TicketCatalog> createState() => _TicketCatalogState();
@@ -55,9 +58,12 @@ class _TicketCatalogState extends State<TicketCatalog> {
       surfaceTintColor: appState.columnColor,
       child: InkWell(
           splashColor: Colors.blue.withAlpha(30),
-          onTap: () {
+          onTap: widget.touchEnable? 
+          (){Navigator.pushNamed(context, '/Purchase/Flight/Find/PassengerInfo');}
+          :() {
             debugPrint('Card tapped.');
-          },
+          }
+          ,
           child: Column(
             children: [
               Row(
