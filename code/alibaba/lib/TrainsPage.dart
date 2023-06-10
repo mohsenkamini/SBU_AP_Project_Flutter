@@ -4,6 +4,7 @@ import 'package:alibaba/FavoritesPage.dart';
 import 'package:alibaba/FindPage.dart';
 import 'package:alibaba/main.dart';
 import 'package:alibaba/screens/utils/App_Layout.dart';
+import 'package:counter/counter.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -34,8 +35,8 @@ class _TrainsPageState extends State<TrainsPage> with TickerProviderStateMixin {
   DateTime? dateDeparture = DateTime(2023, 10, 6);
   DateTime? dateReturn = DateTime(2023, 10, 6);
   int _adult = 1;
-  int child = 0;
-  int infant = 0;
+  int _child = 0;
+  int _infant = 0;
   @override
   String? valueOriginDomestic;
   String? valueDestinationDomestic;
@@ -262,7 +263,6 @@ class _TrainsPageState extends State<TrainsPage> with TickerProviderStateMixin {
   }
 
   void _passengersBottomSheet(context) {
-    int _adult = 1;
     showModalBottomSheet(
         context: context,
         builder: (BuildContext bc) {
@@ -274,6 +274,7 @@ class _TrainsPageState extends State<TrainsPage> with TickerProviderStateMixin {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -296,90 +297,63 @@ class _TrainsPageState extends State<TrainsPage> with TickerProviderStateMixin {
                       ],
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Padding(
-                            padding: const EdgeInsets.all(2.0),
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.08,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.05,
-                                            margin: EdgeInsets.symmetric(
-                                                horizontal: 3),
-                                            child: FloatingActionButton(
-                                                backgroundColor: Styles
-                                                    .passengerButtonColros,
-                                                onPressed: () {
-                                                  setState(() {
-                                                    _adult = _adult--;
-                                                  });
-                                                },
-                                                child: Icon(Icons.remove))),
-                                        Text('$_adult'),
-                                        Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.08,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.05,
-                                            margin: EdgeInsets.symmetric(
-                                                horizontal: 3),
-                                            child: FloatingActionButton(
-                                                backgroundColor: Styles
-                                                    .passengerButtonColros,
-                                                onPressed: () {
-                                                  setState(() {
-                                                    addPassendgerAdult();
-                                                  });
-                                                },
-                                                child: Icon(Icons.add))),
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(top: 7, bottom: 7),
-                                    child: Text(
-                                      "(دوازده سال به بالا) ",
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                      ),
-                                      textAlign: TextAlign.right,
-                                    ),
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "  بزرگسال",
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.right,
-                                    ),
-                                  ),
-                                ]))
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Padding(
                             padding: const EdgeInsets.all(2.0),
                             child: Row(children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.2,
+                                height:
+                                    MediaQuery.of(context).size.width * 0.05,
+                                margin: EdgeInsets.symmetric(horizontal: 3),
+                                child: Counter(
+                                    min: 1,
+                                    max: 20,
+                                    step: 1,
+                                    onValueChanged: ((value) =>
+                                        _adult = value.toInt())),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 7, bottom: 7),
+                                child: Text(
+                                  "(دوازده سال به بالا) ",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                  ),
+                                  textAlign: TextAlign.right,
+                                ),
+                              ),
+                              Container(
+                                child: Text(
+                                  " بزرگسال",
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.right,
+                                ),
+                              ),
+                            ]))
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Padding(
+                            padding: const EdgeInsets.all(2.0),
+                            child: Row(children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.2,
+                                height:
+                                    MediaQuery.of(context).size.width * 0.05,
+                                margin: EdgeInsets.symmetric(horizontal: 3),
+                                child: Counter(
+                                    min: 0,
+                                    max: 20,
+                                    step: 1,
+                                    onValueChanged: ((value) =>
+                                        _child = value.toInt())),
+                              ),
                               Container(
                                 margin: EdgeInsets.only(top: 7, bottom: 7),
                                 child: Text(
@@ -403,11 +377,23 @@ class _TrainsPageState extends State<TrainsPage> with TickerProviderStateMixin {
                       ],
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Padding(
                             padding: const EdgeInsets.all(2.0),
                             child: Row(children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.2,
+                                height:
+                                    MediaQuery.of(context).size.width * 0.05,
+                                margin: EdgeInsets.symmetric(horizontal: 3),
+                                child: Counter(
+                                    min: 0,
+                                    max: 20,
+                                    step: 1,
+                                    onValueChanged: ((value) =>
+                                        _infant = value.toInt())),
+                              ),
                               Container(
                                 margin: EdgeInsets.only(top: 7, bottom: 7),
                                 child: Text(
@@ -430,6 +416,22 @@ class _TrainsPageState extends State<TrainsPage> with TickerProviderStateMixin {
                             ]))
                       ],
                     ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10),
+                      child: FloatingActionButton.extended(
+                        backgroundColor: Colors.amber[800],
+                        onPressed: () {
+                          setState(() {
+                            passengersText =
+                                "${_adult + _child + _infant} : تعداد مسافران ";
+                          });
+
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(Icons.done),
+                        label: Text('تایید'),
+                      ),
+                    )
                   ],
                 ),
               ],

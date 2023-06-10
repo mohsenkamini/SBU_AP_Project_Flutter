@@ -41,6 +41,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.17.0"
+  counter:
+    dependency: "direct main"
+    description:
+      name: counter
+      sha256: "501cd9478339f92aed9d339112cc81cb994a078a903112ebcd0a47db7c557380"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.2"
   date_time_picker:
     dependency: "direct main"
     description:

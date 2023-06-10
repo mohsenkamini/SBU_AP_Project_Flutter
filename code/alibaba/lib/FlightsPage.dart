@@ -4,6 +4,7 @@ import 'package:alibaba/FavoritesPage.dart';
 import 'package:alibaba/FindPage.dart';
 import 'package:alibaba/main.dart';
 import 'package:alibaba/screens/utils/App_Layout.dart';
+import 'package:counter/counter.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -79,8 +80,8 @@ class _FlightsPageState extends State<FlightsPage>
   }
 
   int _adult = 1;
-  int child = 0;
-  int infant = 0;
+  int _child = 0;
+  int _infant = 0;
   @override
   String? valueOriginDomestic;
   String? valueDestinationDomestic;
@@ -565,61 +566,26 @@ class _FlightsPageState extends State<FlightsPage>
                       ],
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Padding(
                             padding: const EdgeInsets.all(2.0),
                             child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.08,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.05,
-                                            margin: EdgeInsets.symmetric(
-                                                horizontal: 3),
-                                            child: FloatingActionButton(
-                                                backgroundColor: Styles
-                                                    .passengerButtonColros,
-                                                onPressed: () {
-                                                  setState(() {
-                                                    _adult = _adult--;
-                                                  });
-                                                },
-                                                child: Icon(Icons.remove))),
-                                        Text('$_adult'),
-                                        Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.08,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.05,
-                                            margin: EdgeInsets.symmetric(
-                                                horizontal: 3),
-                                            child: FloatingActionButton(
-                                                backgroundColor: Styles
-                                                    .passengerButtonColros,
-                                                onPressed: () {
-                                                  setState(() {
-                                                    addPassendgerAdult();
-                                                  });
-                                                },
-                                                child: Icon(Icons.add))),
-                                      ],
-                                    ),
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.2,
+                                    height: MediaQuery.of(context).size.width *
+                                        0.05,
+                                    margin: EdgeInsets.symmetric(horizontal: 3),
+                                    child: Counter(
+                                        min: 1,
+                                        max: 20,
+                                        step: 1,
+                                        onValueChanged: ((value) =>
+                                            _adult = value.toInt())),
                                   ),
                                   Container(
                                     margin: EdgeInsets.only(top: 7, bottom: 7),
@@ -644,11 +610,23 @@ class _FlightsPageState extends State<FlightsPage>
                       ],
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Padding(
                             padding: const EdgeInsets.all(2.0),
                             child: Row(children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.2,
+                                height:
+                                    MediaQuery.of(context).size.width * 0.05,
+                                margin: EdgeInsets.symmetric(horizontal: 3),
+                                child: Counter(
+                                    min: 0,
+                                    max: 20,
+                                    step: 1,
+                                    onValueChanged: ((value) =>
+                                        _child = value.toInt())),
+                              ),
                               Container(
                                 margin: EdgeInsets.only(top: 7, bottom: 7),
                                 child: Text(
@@ -672,33 +650,67 @@ class _FlightsPageState extends State<FlightsPage>
                       ],
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Padding(
                             padding: const EdgeInsets.all(2.0),
-                            child: Row(children: [
-                              Container(
-                                margin: EdgeInsets.only(top: 7, bottom: 7),
-                                child: Text(
-                                  "(ده روز تا دو سال) ",
-                                  style: TextStyle(
-                                    fontSize: 12,
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.2,
+                                    height: MediaQuery.of(context).size.width *
+                                        0.05,
+                                    margin: EdgeInsets.symmetric(horizontal: 3),
+                                    child: Counter(
+                                        min: 0,
+                                        max: 20,
+                                        step: 1,
+                                        onValueChanged: ((value) =>
+                                            _infant = value.toInt())),
                                   ),
-                                  textAlign: TextAlign.right,
-                                ),
-                              ),
-                              Container(
-                                child: Text(
-                                  "  نوزاد",
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.right,
-                                ),
-                              ),
-                            ]))
+                                  Container(
+                                    margin: EdgeInsets.only(top: 7, bottom: 7),
+                                    child: Text(
+                                      "(ده روز تا دو سال) ",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                      ),
+                                      textAlign: TextAlign.right,
+                                    ),
+                                  ),
+                                  Container(
+                                    child: Text(
+                                      "  نوزاد",
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.right,
+                                    ),
+                                  ),
+                                ])),
                       ],
                     ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10),
+                      child: FloatingActionButton.extended(
+                        backgroundColor: Colors.amber[800],
+                        onPressed: () {
+                          setState(() {
+                            passengersText =
+                                (_adult + _child + _infant).toString() +
+                                    " : " +
+                                    "تعداد مسافران ";
+                          });
+
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(Icons.done),
+                        label: Text('تایید'),
+                      ),
+                    )
                   ],
                 ),
               ],
