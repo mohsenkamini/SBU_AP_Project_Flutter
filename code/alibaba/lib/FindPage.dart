@@ -239,6 +239,7 @@ class _FindPageState extends State<FindPage> {
                     price: "۱۲,۰۷۰,۰۰۰", 
                     booked: 34, 
                     capacity: 200,
+                   touchEnable: true,
                   ),
                   TicketCatalog(
                     airlineName: "آسمان",
@@ -251,6 +252,7 @@ class _FindPageState extends State<FindPage> {
                     price: "۱۲,۰۷۰,۰۰۰", 
                     booked: 34, 
                     capacity: 200,
+                   touchEnable: true,
                   ),
                   TicketCatalog(
                     airlineName: "ایران ایر",
@@ -263,6 +265,7 @@ class _FindPageState extends State<FindPage> {
                     price: "۱۲,۰۷۰,۰۰۰", 
                     booked: 200, 
                     capacity: 200,
+                   touchEnable: true,
                   ),
                  ],
                ),

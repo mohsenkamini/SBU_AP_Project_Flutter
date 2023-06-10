@@ -1,3 +1,7 @@
+import 'package:alibaba/FindPage.dart';
+import 'package:alibaba/FlightsPage.dart';
+import 'package:alibaba/PassengerInfo.dart';
+
 import 'Login.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +34,11 @@ class MyApp extends StatelessWidget {
         home: MyHomePage(),
         routes: <String, WidgetBuilder>{
           '/Account/Login': (BuildContext context) => Login(),
+          '/Purchase/Flight': (BuildContext context) => FlightsPage(),
+          '/Purchase/Flight/Find': (BuildContext context) => FindPage(),
+          '/Purchase/Flight/Find/PassengerInfo': (BuildContext context) => PassengerInfo(),
+          '/Purchase/Flight/Find/PassengerInfo/Confirm': (BuildContext context) => PassengerInfo(),
+
         },
       ),
     );
