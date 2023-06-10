@@ -1,11 +1,10 @@
 import 'dart:io';
-import 'dart:js_util';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'MyHomePage.dart';
+import 'Transactions.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -34,7 +33,7 @@ class _ProfileState extends State<Profile> {
 
   String firstName = "نام";
   String lastName = "نام خانوادگی";
-  double accBalance = 0;
+  double accBalance = 100;
   String Email = "Example@sbu.ac.com";
   String PhoneNumber = "09121234567";
   String emergencyNumber = "09121234567";
@@ -45,7 +44,7 @@ class _ProfileState extends State<Profile> {
     Future<String?> openDialogPhonenum() => showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              title: Center(child: Text(":شماره مبایل")),
+              title: Center(child: Text(":شماره موبایل")),
               content: TextField(
                 autofocus: true,
                 controller: controllerPhone,
@@ -53,8 +52,8 @@ class _ProfileState extends State<Profile> {
                   print("onsumbmmited");
                   submitPhone();
                 },
-                decoration:
-                    InputDecoration(hintText: ' :شماره مبایل خود را وارد کنید'),
+                decoration: InputDecoration(
+                    hintText: ' :شماره موبایل خود را وارد کنید'),
               ),
               actions: [
                 TextButton(onPressed: submitPhone, child: Text('تایید'))
@@ -103,7 +102,11 @@ class _ProfileState extends State<Profile> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "موجودی حساب: $accBalance",
+                " تومان",
+                style: TextStyle(fontSize: 15),
+              ),
+              Text(
+                "موجودی حساب: $accBalance ",
                 style: TextStyle(fontSize: 20),
               ),
             ],
@@ -214,7 +217,7 @@ class _ProfileState extends State<Profile> {
                   ),
                   Column(
                     children: [
-                      Text(":شماره مبایل", style: TextStyle(fontSize: 13)),
+                      Text(":شماره موبایل", style: TextStyle(fontSize: 13)),
                       SizedBox(height: 10),
                       Text(":ایمیل", style: TextStyle(fontSize: 13)),
                       SizedBox(height: 10),
@@ -300,6 +303,23 @@ class _ProfileState extends State<Profile> {
                   ),
                 ],
               )),
+          SizedBox(
+            height: 20,
+          ),
+          Container(
+              margin: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.width * .65, right: 10),
+              height: MediaQuery.of(context).size.height * .05,
+              child: FloatingActionButton(
+                  heroTag: "btnTransaction",
+                  backgroundColor: Colors.cyan[700],
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Transactions()));
+                  },
+                  child: Text(" سوابق تراکنش ها")))
         ],
       ),
     ));
