@@ -335,9 +335,7 @@ class _BusPageState extends State<BusPage> with TickerProviderStateMixin {
                         onPressed: () {
                           setState(() {
                             passengersText =
-                                (_adult + _child + _infant).toString() +
-                                    " : " +
-                                    "تعداد مسافران ";
+                                "${_adult + _child + _infant} : تعداد مسافران ";
                           });
 
                           Navigator.pop(context);

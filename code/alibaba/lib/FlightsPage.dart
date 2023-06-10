@@ -700,9 +700,7 @@ class _FlightsPageState extends State<FlightsPage>
                         onPressed: () {
                           setState(() {
                             passengersText =
-                                (_adult + _child + _infant).toString() +
-                                    " : " +
-                                    "تعداد مسافران ";
+                                "${_adult + _child + _infant} : تعداد مسافران ";
                           });
 
                           Navigator.pop(context);

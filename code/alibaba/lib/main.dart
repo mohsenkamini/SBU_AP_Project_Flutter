@@ -7,7 +7,7 @@ import 'Account.dart';
 import 'FavoritesPage.dart';
 import 'MyHomePage.dart';
 
-void main() { 
+void main() {
   runApp(MyApp());
 }
 
