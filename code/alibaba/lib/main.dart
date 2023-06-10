@@ -8,7 +8,7 @@ import 'FavoritesPage.dart';
 import 'MyHomePage.dart';
 import 'MyTrips.dart';
 
-void main() { 
+void main() {
   runApp(MyApp());
 }
 
