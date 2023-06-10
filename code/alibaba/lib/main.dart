@@ -1,3 +1,7 @@
+import 'package:alibaba/FindPage.dart';
+import 'package:alibaba/FlightsPage.dart';
+import 'package:alibaba/PassengerInfo.dart';
+
 import 'Login.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'Account.dart';
 import 'FavoritesPage.dart';
 import 'MyHomePage.dart';
+import 'MyTrips.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,11 +28,17 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(
-              seedColor: Color.fromARGB(245, 151, 151, 94)),
+              seedColor: Colors.amber,
+              ),
         ),
         home: MyHomePage(),
         routes: <String, WidgetBuilder>{
           '/Account/Login': (BuildContext context) => Login(),
+          '/Purchase/Flight': (BuildContext context) => FlightsPage(),
+          '/Purchase/Flight/Find': (BuildContext context) => FindPage(),
+          '/Purchase/Flight/Find/PassengerInfo': (BuildContext context) => PassengerInfo(),
+          '/Purchase/Flight/Find/PassengerInfo/Confirm': (BuildContext context) => PassengerInfo(),
+
         },
       ),
     );
@@ -59,6 +70,8 @@ class MyAppState extends ChangeNotifier {
     }
     notifyListeners();
   }
+  var trips = <Trip>[];
+  
 }
 
 class GeneratorPage extends StatelessWidget {
