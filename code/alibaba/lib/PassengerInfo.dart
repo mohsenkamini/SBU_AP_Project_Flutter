@@ -1,3 +1,4 @@
+
 import 'package:alibaba/Login.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/gestures.dart';
@@ -7,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'main.dart';
 import 'MyHomePage.dart';
 import 'Widgets/TicketCatalog.dart';
+import 'package:alibaba/screens/utils/App_Layout.dart';
 
 class PassengerInfo extends StatefulWidget {
   @override
@@ -16,6 +18,12 @@ class PassengerInfo extends StatefulWidget {
 class _PassengerInfoState extends State<PassengerInfo> {
   @override
   Widget build(BuildContext context) {
+
+
+    TextEditingController latinNameController = TextEditingController();  
+    TextEditingController latinLastNameController = TextEditingController();  
+    TextEditingController nationalIdController = TextEditingController();  
+
     var appState = context.watch<MyAppState>();
     var selectedIndex = 4;
   void onDestinationSelected(int index) {
@@ -116,6 +124,107 @@ class _PassengerInfoState extends State<PassengerInfo> {
                ),
                
             ),
+            //Divider(),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/Purchase/Flight/Find');
+              },
+              child: Row(
+                children: [
+                  Text(
+                    'تغییر بلیط',
+                    style: TextStyle(
+                      fontSize: appState.header3Size,
+                      fontWeight: FontWeight.normal,
+                    
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 30, 8, 8),
+                  child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        ' مشخصات مسافران',
+                        style: TextStyle(
+                          color: Colors.amber,
+                          shadows: [
+                            Shadow( // bottomLeft
+                              offset: Offset(0.02, 0.02),
+                              color: Colors.black
+                            ),
+                          ],
+                          fontSize: appState.header2Size,
+                          fontWeight: FontWeight.bold,
+                        ),),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(8, 0, 2, 0),
+                        child: Icon(Icons.people,
+                        color: Colors.amber,),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(15, 0, 8, 3),
+                        child: SizedBox(
+                          width: AppLayout.getWidth(80),
+                          child: TextField(
+                            controller: nationalIdController, 
+                            textAlign: TextAlign.right,
+                            obscureText: false,  
+                            decoration: InputDecoration( 
+                              border: UnderlineInputBorder(),  
+                              //labelText: 'نام کاربری',  
+                              hintText: 'کد ملی '  
+                            ),  
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(15, 0, 8, 3),
+                        child: SizedBox(
+                          width: AppLayout.getWidth(120),
+                          child: TextField(
+                            controller: latinLastNameController, 
+                            textAlign: TextAlign.right,
+                            obscureText: false,  
+                            decoration: InputDecoration( 
+                              border: UnderlineInputBorder(),  
+                              //labelText: 'نام کاربری',  
+                              hintText: '  نام خانوادگی لاتین'  
+                            ),  
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(15, 0, 8, 3),
+                        child: SizedBox(
+                          width: AppLayout.getWidth(80),
+                          child: TextField(
+                            controller: latinNameController, 
+                            textAlign: TextAlign.right,
+                            obscureText: false,  
+                            decoration: InputDecoration( 
+                              border: UnderlineInputBorder(),  
+                              //labelText: 'نام کاربری',  
+                              hintText: 'نام  لاتین '  
+                            ),  
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
         ],
       ),
     ),
