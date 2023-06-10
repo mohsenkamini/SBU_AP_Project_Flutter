@@ -8,10 +8,38 @@ import 'main.dart';
 import 'MyHomePage.dart';
 import 'Widgets/TicketCatalog.dart';
 
-class PassengerInfo extends StatelessWidget {
+class PassengerInfo extends StatefulWidget {
+  @override
+  State<PassengerInfo> createState() => _PassengerInfoState();
+}
+
+class _PassengerInfoState extends State<PassengerInfo> {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
+    var selectedIndex = 2;
+  void onDestinationSelected(int index) {
+    setState(() {
+      if (selectedIndex == index || selectedIndex == index+1 )
+        return;
+      
+      selectedIndex = index;
+      switch (selectedIndex) {
+      case 0:
+      case 1:
+        break;
+      case 2:
+      case 3:
+        Navigator.pushNamed(context, '/Purchase/Flight/Find/PassengerInfo');
+        break;
+      case 4:
+        Navigator.pushNamed(context, '/Purchase/Flight/Find');
+        break;
+      default:
+        throw UnimplementedError('no widget for $selectedIndex');
+    }
+    });
+  }
     return Scaffold(
       backgroundColor:  appState.backgroundColor,
     appBar: AppBar(
@@ -48,12 +76,19 @@ class PassengerInfo extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            width: 100,
+            width: 400,
             height: 50,
-            child: NavigationBar(destinations: [
-              NavigationDestination(icon: Icon(Icons.temple_buddhist), label: 'test'),
-              NavigationDestination(icon: Icon(Icons.temple_buddhist), label: 'test2'),
-              NavigationDestination(icon: Icon(Icons.temple_buddhist), label: 'test3'),
+            child: NavigationBar(
+              selectedIndex: selectedIndex,
+              onDestinationSelected: onDestinationSelected,
+              labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+              backgroundColor: Colors.transparent,
+              destinations: [
+              NavigationDestination(selectedIcon: Icon(Icons.payment_sharp,color: Colors.green,) ,icon: Icon(Icons.payment,color: Colors.grey,), label: 'پرداخت'),//selected Index=0
+              NavigationDestination(icon: Icon(Icons.navigate_before,color: Colors.grey,), label: ''),//selected Index=1
+              NavigationDestination(selectedIcon: Icon(Icons.people,color: Colors.green,) ,icon: selectedIndex<1?Icon(Icons.people,color: Colors.green,):Icon(Icons.people_outline,color:Colors.grey,), label: 'مسافران'),//selected Index=2
+              NavigationDestination(icon: Icon(Icons.navigate_before,color: Colors.grey,), label: ''),//selected Index=3
+              NavigationDestination(icon: Icon(Icons.check_circle, color: Colors.green,), label: 'اطلاعات پرواز'),//selected Index=4
             ],
                   ),
           ),
