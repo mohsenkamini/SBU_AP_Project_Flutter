@@ -15,6 +15,23 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  late TextEditingController controllerPhone;
+  late TextEditingController controllerEmail;
+  @override
+  void initState() {
+    super.initState();
+
+    controllerPhone = TextEditingController();
+    controllerEmail = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    controllerPhone.dispose();
+    controllerEmail.dispose();
+    super.dispose();
+  }
+
   String firstName = "نام";
   String lastName = "نام خانوادگی";
   double accBalance = 0;
@@ -25,6 +42,41 @@ class _ProfileState extends State<Profile> {
   String socialNum = "1234678";
   @override
   Widget build(BuildContext context) {
+    Future<String?> openDialogPhonenum() => showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Center(child: Text(":شماره مبایل")),
+              content: TextField(
+                autofocus: true,
+                controller: controllerPhone,
+                onSubmitted: (s) {
+                  print("onsumbmmited");
+                  submitPhone();
+                },
+                decoration:
+                    InputDecoration(hintText: ' :شماره مبایل خود را وارد کنید'),
+              ),
+              actions: [
+                TextButton(onPressed: submitPhone, child: Text('تایید'))
+              ],
+            ));
+
+    Future<String?> openDialogEmail() => showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Center(child: Text(":ایمیل")),
+              content: TextField(
+                controller: controllerPhone,
+                onSubmitted: (_) => submitEmail(),
+                autofocus: true,
+                decoration:
+                    InputDecoration(hintText: ' :ایمیل خود را وارد کنید'),
+              ),
+              actions: [
+                TextButton(onPressed: submitEmail, child: Text('تایید'))
+              ],
+            ));
+
     return Scaffold(
         body: Center(
       child: ListView(
@@ -109,7 +161,21 @@ class _ProfileState extends State<Profile> {
                           child: Row(
                             children: [
                               Icon(Icons.edit, size: 12),
-                              Text("ویرایش", style: TextStyle(fontSize: 12)),
+                              GestureDetector(
+                                  onTap: () async {
+                                    final newPhoneNumber =
+                                        await openDialogPhonenum();
+                                    if (newPhoneNumber == null ||
+                                        newPhoneNumber.isEmpty)
+                                      return;
+                                    else {
+                                      setState(() {
+                                        PhoneNumber = newPhoneNumber;
+                                      });
+                                    }
+                                  },
+                                  child: Text("ویرایش",
+                                      style: TextStyle(fontSize: 12))),
                             ],
                           )),
                       SizedBox(height: 10),
@@ -118,7 +184,19 @@ class _ProfileState extends State<Profile> {
                           child: Row(
                             children: [
                               Icon(Icons.edit, size: 12),
-                              Text("ویرایش", style: TextStyle(fontSize: 12)),
+                              GestureDetector(
+                                  onTap: () async {
+                                    final newEmail = await openDialogEmail();
+                                    if (newEmail == null || newEmail.isEmpty)
+                                      return;
+                                    else {
+                                      setState(() {
+                                        Email = newEmail;
+                                      });
+                                    }
+                                  },
+                                  child: Text("ویرایش",
+                                      style: TextStyle(fontSize: 12))),
                             ],
                           )),
                     ],
@@ -157,8 +235,8 @@ class _ProfileState extends State<Profile> {
                   cursor: SystemMouseCursors.click,
                   child: Row(
                     children: [
-                      Text("ویرایش", style: TextStyle(fontSize: 12)),
                       Icon(Icons.edit, size: 12),
+                      Text("ویرایش", style: TextStyle(fontSize: 12)),
                     ],
                   )),
               Container(
@@ -225,5 +303,16 @@ class _ProfileState extends State<Profile> {
         ],
       ),
     ));
+  }
+
+  void submitPhone() {
+    print("submitted");
+    Navigator.of(context).pop(controllerPhone.text);
+    controllerPhone.clear();
+  }
+
+  void submitEmail() {
+    Navigator.of(context).pop(controllerEmail.text);
+    controllerEmail.clear();
   }
 }
