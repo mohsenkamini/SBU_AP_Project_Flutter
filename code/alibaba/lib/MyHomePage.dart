@@ -39,8 +39,8 @@ class _MyHomePageState extends State<MyHomePage> {
         }
         break;
       case 1:
-        //page = MyTrips();
-        page = PassengerInfo();
+        page = MyTrips();
+        //page = PassengerInfo();
         break;
       case 2:
         page = Home();
