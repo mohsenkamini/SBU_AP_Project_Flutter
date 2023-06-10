@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'Account.dart';
 import 'FavoritesPage.dart';
 import 'MyHomePage.dart';
+import 'MyTrips.dart';
 
 void main() { 
   runApp(MyApp());
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(
-              seedColor: Color.fromARGB(245, 151, 151, 94)),
+              seedColor: Colors.amber,
+              ),
         ),
         home: MyHomePage(),
         routes: <String, WidgetBuilder>{
@@ -59,6 +61,8 @@ class MyAppState extends ChangeNotifier {
     }
     notifyListeners();
   }
+  var trips = <Trip>[];
+  
 }
 
 class GeneratorPage extends StatelessWidget {
